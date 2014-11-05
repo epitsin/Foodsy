@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{5BE1B661-B49E-4E51-89CD-BE3E5162A54D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{28AC29DF-5C2C-4369-B868-30E70A321F28}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5F1D9703-65BF-44CE-B62C-E01454F15E2D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Foodsy.Web", "Foodsy.Web\Foodsy.Web.vbproj", "{E7C34EAB-F08E-4561-875E-84BB0F578799}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Web", "Foodsy.Web\Foodsy.Web.csproj", "{40E49835-F3C6-47A8-A417-850F579ABE21}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Foodsy.Web.Tests", "Foodsy.Web.Tests\Foodsy.Web.Tests.vbproj", "{5413A0D1-DD41-4ABA-9165-23A08D5AF594}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Web.Tests", "Foodsy.Web.Tests\Foodsy.Web.Tests.csproj", "{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,20 +17,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E7C34EAB-F08E-4561-875E-84BB0F578799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7C34EAB-F08E-4561-875E-84BB0F578799}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7C34EAB-F08E-4561-875E-84BB0F578799}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7C34EAB-F08E-4561-875E-84BB0F578799}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5413A0D1-DD41-4ABA-9165-23A08D5AF594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5413A0D1-DD41-4ABA-9165-23A08D5AF594}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5413A0D1-DD41-4ABA-9165-23A08D5AF594}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5413A0D1-DD41-4ABA-9165-23A08D5AF594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40E49835-F3C6-47A8-A417-850F579ABE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E49835-F3C6-47A8-A417-850F579ABE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E49835-F3C6-47A8-A417-850F579ABE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E49835-F3C6-47A8-A417-850F579ABE21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E7C34EAB-F08E-4561-875E-84BB0F578799} = {5F1D9703-65BF-44CE-B62C-E01454F15E2D}
-		{5413A0D1-DD41-4ABA-9165-23A08D5AF594} = {5F1D9703-65BF-44CE-B62C-E01454F15E2D}
+		{40E49835-F3C6-47A8-A417-850F579ABE21} = {0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}
+		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E} = {0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}
 	EndGlobalSection
 EndGlobal

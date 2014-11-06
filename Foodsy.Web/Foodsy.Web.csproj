@@ -359,6 +359,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foodsy.Data.Models\Foodsy.Data.Models.csproj">
+      <Project>{f6c01c08-5539-4f6f-85e7-78c53313461a}</Project>
+      <Name>Foodsy.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foodsy.Data\Foodsy.Data.csproj">
+      <Project>{dc5a4412-b3ee-4b00-9903-370f3fb74b57}</Project>
+      <Name>Foodsy.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

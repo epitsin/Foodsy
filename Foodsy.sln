@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Web", "Foodsy.Web\Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Web.Tests", "Foodsy.Web.Tests\Foodsy.Web.Tests.csproj", "{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Data.Models", "Foodsy.Data.Models\Foodsy.Data.Models.csproj", "{F6C01C08-5539-4F6F-85E7-78C53313461A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Data", "Foodsy.Data\Foodsy.Data.csproj", "{DC5A4412-B3EE-4B00-9903-370F3FB74B57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C01C08-5539-4F6F-85E7-78C53313461A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C01C08-5539-4F6F-85E7-78C53313461A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C01C08-5539-4F6F-85E7-78C53313461A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C01C08-5539-4F6F-85E7-78C53313461A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5A4412-B3EE-4B00-9903-370F3FB74B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5A4412-B3EE-4B00-9903-370F3FB74B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5A4412-B3EE-4B00-9903-370F3FB74B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5A4412-B3EE-4B00-9903-370F3FB74B57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{40E49835-F3C6-47A8-A417-850F579ABE21} = {0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}
 		{AED34A77-EA4B-4458-9DA0-28C51C98AC5E} = {0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}
+		{F6C01C08-5539-4F6F-85E7-78C53313461A} = {28AC29DF-5C2C-4369-B868-30E70A321F28}
+		{DC5A4412-B3EE-4B00-9903-370F3FB74B57} = {28AC29DF-5C2C-4369-B868-30E70A321F28}
 	EndGlobalSection
 EndGlobal

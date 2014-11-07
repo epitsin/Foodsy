@@ -187,6 +187,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Home\IndexRecipePostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -398,6 +399,10 @@
     <ProjectReference Include="..\Foodsy.Data\Foodsy.Data.csproj">
       <Project>{dc5a4412-b3ee-4b00-9903-370f3fb74b57}</Project>
       <Name>Foodsy.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foodsy.Web.Infrastructure\Foodsy.Web.Infrastructure.csproj">
+      <Project>{8d7cb943-9422-4fb8-9845-5b05b28d0846}</Project>
+      <Name>Foodsy.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,10 +1,13 @@
 ﻿namespace Foodsy.Web
 {
-    using Foodsy.Web.App_Start;
+    using System.Reflection;
     using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+
+    using Foodsy.Web.Infrastructure.Mapping;
+    using Foodsy.Web.App_Start;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -18,6 +21,9 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+
+            var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
+            autoMapperConfig.Execute();
         }
     }
 }

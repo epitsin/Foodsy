@@ -55,6 +55,7 @@
     <Compile Include="FoodsyData.cs" />
     <Compile Include="FoodsyDbContext.cs" />
     <Compile Include="IFoodsyData.cs" />
+    <Compile Include="IFoodsyDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />

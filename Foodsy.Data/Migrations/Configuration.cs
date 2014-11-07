@@ -4,7 +4,10 @@ namespace Foodsy.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Foodsy.Data.FoodsyDbContext>
+    using Foodsy.Data.Models;
+    using System.Collections.Generic;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<FoodsyDbContext>
     {
         public Configuration()
         {
@@ -12,20 +15,123 @@ namespace Foodsy.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Foodsy.Data.FoodsyDbContext context)
+        protected override void Seed(FoodsyDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            this.SeedIngredients(context);
+            this.SeedRecipes(context);
+        }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+        protected void SeedIngredients(FoodsyDbContext context)
+        {
+            if (context.Ingredients.Any())
+            {
+                return;
+            }
+
+            context.Ingredients.Add(new Ingredient { Name = "Pork", Calories = 400, Proteins = 30, Carbohydrates = 0, Fats = 30 });
+            context.Ingredients.Add(new Ingredient { Name = "Chicken", Calories = 300, Proteins = 30, Carbohydrates = 0, Fats = 10 });
+            context.Ingredients.Add(new Ingredient { Name = "Bread", Calories = 400, Proteins = 0, Carbohydrates = 30, Fats = 5 });
+            context.Ingredients.Add(new Ingredient { Name = "Cheese", Calories = 300, Proteins = 20, Carbohydrates = 0, Fats = 20 });
+            context.Ingredients.Add(new Ingredient { Name = "Tomato", Calories = 100, Proteins = 5, Carbohydrates = 10, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Cucumber", Calories = 100, Proteins = 5, Carbohydrates = 10, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Olive", Calories = 100, Proteins = 0, Carbohydrates = 0, Fats = 10 });
+            context.Ingredients.Add(new Ingredient { Name = "Olive oil", Calories = 100, Proteins = 0, Carbohydrates = 0, Fats = 10 });
+            context.Ingredients.Add(new Ingredient { Name = "Butter", Calories = 100, Proteins = 0, Carbohydrates = 0, Fats = 10 });
+            context.Ingredients.Add(new Ingredient { Name = "Lettuce", Calories = 50, Proteins = 2, Carbohydrates = 5, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Wine", Calories = 200, Proteins = 0, Carbohydrates = 20, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Rice", Calories = 200, Proteins = 0, Carbohydrates = 30, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Milk", Calories = 150, Proteins = 5, Carbohydrates = 10, Fats = 5 });
+
+            context.SaveChanges();
+        }
+
+        protected void SeedRecipes(FoodsyDbContext context)
+        {
+            if (context.Recipes.Any())
+            {
+                return;
+            }
+
+            var banica = new Recipe
+            {
+                Name = "Banica",
+                Description = "Traditional BG meal",
+                Category = Category.Vegetarian,
+                MealType = MealType.Breakfast
+            };
+
+            var batter = new Ingredient { Name = "Batter", Calories = 400, Proteins = 0, Carbohydrates = 30, Fats = 5 };
+            var cottageCheese = new Ingredient { Name = "Cottage cheese", Calories = 200, Proteins = 20, Carbohydrates = 0, Fats = 10 };
+            var eggs = new Ingredient { Name = "Eggs", Calories = 150, Proteins = 10, Carbohydrates = 0, Fats = 10 };
+            var sunflowerOil = new Ingredient { Name = "Sunflower oil", Calories = 100, Proteins = 0, Carbohydrates = 0, Fats = 10 };
+
+            var relationships = new List<RecipeIngredient>();
+            relationships.Add(new RecipeIngredient
+            {
+                Ingredient = batter,
+                Recipe = banica,
+                Quantity = 200
+            });
+            relationships.Add(new RecipeIngredient
+            {
+                Ingredient = cottageCheese,
+                Recipe = banica,
+                Quantity = 150
+            });
+            relationships.Add(new RecipeIngredient
+            {
+                Ingredient = eggs,
+                Recipe = banica,
+                Quantity = 100
+            });
+            relationships.Add(new RecipeIngredient
+            {
+                Ingredient = sunflowerOil,
+                Recipe = banica,
+                Quantity = 20
+            });
+
+            banica.RecipeIngredients = relationships;
+
+            context.Recipes.Add(banica);
+
+            var musaka = new Recipe
+            {
+                Name = "Musaka",
+                Description = "Another traditional BG meal",
+                Category = Category.Meat,
+                MealType = MealType.MainMeal
+            };
+
+            var potato = new Ingredient { Name = "Potato", Calories = 200, Proteins = 0, Carbohydrates = 30, Fats = 0 };
+            var meat = new Ingredient { Name = "Minced meat", Calories = 400, Proteins = 30, Carbohydrates = 0, Fats = 30 };
+            var carrots = new Ingredient { Name = "Carrots", Calories = 100, Proteins = 0, Carbohydrates = 15, Fats = 0 };
+
+            var relationshipsMusaka = new List<RecipeIngredient>();
+            relationshipsMusaka.Add(new RecipeIngredient
+            {
+                Ingredient = potato,
+                Recipe = musaka,
+                Quantity = 200
+            });
+            relationshipsMusaka.Add(new RecipeIngredient
+            {
+                Ingredient = meat,
+                Recipe = musaka,
+                Quantity = 150
+            });
+            relationshipsMusaka.Add(new RecipeIngredient
+            {
+                Ingredient = carrots,
+                Recipe = musaka,
+                Quantity = 50
+            });
+
+            musaka.RecipeIngredients = relationshipsMusaka;
+
+            context.Recipes.Add(musaka);
+
+            context.SaveChanges();
         }
     }
 }

@@ -4,11 +4,11 @@
 
     public class Ingredient
     {
-        private ICollection<Recipe> recipes;
+        private ICollection<RecipeIngredient> recipes;
 
         public Ingredient()
         {
-            this.recipes = new HashSet<Recipe>();
+            this.recipes = new HashSet<RecipeIngredient>();
         }
 
         public int Id { get; set; }
@@ -23,7 +23,7 @@
 
         public int Fats { get; set; }
 
-        public virtual ICollection<Recipe> Recipes
+        public virtual ICollection<RecipeIngredient> RecipeIngredients
         {
             get
             {

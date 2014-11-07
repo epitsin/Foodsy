@@ -3,8 +3,7 @@
     public enum MealType
     {
         Breakfast,
-        Lunch,
-        Dinner,
+        MainMeal,
         Snack,
         Beverage
     }

@@ -4,7 +4,7 @@
 
     public class Recipe
     {
-        private ICollection<Ingredient> ingredients;
+        private ICollection<RecipeIngredient> ingredients;
         private ICollection<Action> actions;
         private ICollection<Comment> comments;
         private ICollection<Like> likes;
@@ -12,7 +12,7 @@
 
         public Recipe()
         {
-            this.ingredients = new HashSet<Ingredient>();
+            this.ingredients = new HashSet<RecipeIngredient>();
             this.actions = new HashSet<Action>();
             this.comments = new HashSet<Comment>();
             this.likes = new HashSet<Like>();
@@ -33,7 +33,7 @@
 
         public virtual User Author { get; set; }
 
-        public virtual ICollection<Ingredient> Ingredients
+        public virtual ICollection<RecipeIngredient> RecipeIngredients
         {
             get
             {

@@ -1,18 +1,22 @@
 ﻿namespace Foodsy.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Foodsy.Data.Contracts.Models;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser
+    public class User : IdentityUser, IAuditInfo
     {
         private ICollection<Recipe> recipes;
 
         public User()
         {
+            this.CreatedOn = DateTime.Now;
             this.recipes = new HashSet<Recipe>();
         }
 
@@ -35,5 +39,15 @@
             // Add custom user claims here
             return userIdentity;
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public System.DateTime? DeletedOn { get; set; }
     }
 }

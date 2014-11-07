@@ -13,7 +13,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="logo"><a href="index.html"><img src="~/Content/img/logoo.png" alt="" /></a></div>
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/Content/img/logoo.png")" />
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="col-md-10 topbar">
@@ -47,19 +51,23 @@
 
     @RenderBody()
 
-    <div class="footer_bottom">
+    <div class="footer_bottom bottom">
         <div class="wrap">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
-                        <div class="foot_logo"><a href="index.html"><img src="~/Content/img/logo2.png" alt="" /></a></div>
+                        <div class="foot_logo">
+                            <a href="@Url.Action("Index", "Home")">
+                                <img src="@Url.Content("~/Content/img/logo2.png")" />
+                            </a>
+                        </div>
                         <div class="copyright">&copy; 2014 Elena Pitsin</div>
                     </div>
                     <div class="col-md-7">
                         <div class="foot_right_block">
                             <div class="fright">
                                 <form action="#" method="post">
-                                    <input class="inp_search" name="name" type="text" value="Search the Site" onfocus="if (this.value == 'Search the Site') this.value = '';" onblur="if (this.value == '') this.value = 'Search the Site';" />
+                                    <input class="inp_search" name="name" type="text" value="Search the Site" />
                                 </form>
                             </div>
                             <div class="follow_us">

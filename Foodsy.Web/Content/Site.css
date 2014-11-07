@@ -9,6 +9,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .font {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /*Normal*/
@@ -1336,6 +1337,7 @@ a {
         color: #313131;
     }
 
-/*.sf-menu {
-    margin-right: 5px;
-}*/
+.top-bottom-space {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}

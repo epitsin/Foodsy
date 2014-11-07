@@ -79,7 +79,5 @@ $(document).ready(function(){
 			$(".preloader").css({'background':'none'});
 		}
 	);
-	
-	
 							
 });	

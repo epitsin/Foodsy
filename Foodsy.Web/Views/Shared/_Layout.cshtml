@@ -36,8 +36,8 @@
                             <ul class="nav sf-menu">
                                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                                 <li>@Html.ActionLink("About", "About", "Home")</li>
-                                <li>@Html.ActionLink("Recipes", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Healthy", "About", "Home")</li>
+                                <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes")</li>
+                                <li>@Html.ActionLink("Healthy", "AllArticles", "Articles")</li>
                                 <li>@Html.ActionLink("Challenges", "Index", "Home")</li>
                                 <li>@Html.ActionLink("Custom menu", "About", "Home")</li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -84,8 +84,8 @@
                                 <ul>
                                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                                    <li>@Html.ActionLink("Recipes", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Healthy", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes")</li>
+                                    <li>@Html.ActionLink("Healthy", "AllArticles", "Articles")</li>
                                     <li>@Html.ActionLink("Challenges", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Custom menu", "About", "Home")</li>
                                 </ul>
@@ -99,6 +99,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/myscript")
     @RenderSection("scripts", required: false)
 </body>
 </html>

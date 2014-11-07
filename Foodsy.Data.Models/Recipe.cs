@@ -1,5 +1,6 @@
 ﻿namespace Foodsy.Data.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public class Recipe
@@ -25,6 +26,10 @@
 
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        public DateTime? CreatedOn { get; set; }
+        
         public MealType MealType { get; set; }
 
         public Category Category { get; set; }

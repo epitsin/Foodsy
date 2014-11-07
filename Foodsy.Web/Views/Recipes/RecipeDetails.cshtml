@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "RecipeDetails";
+}
+
+<div class="page_container">
+    <div class="wrap">
+        <div class="container">
+            <section>
+                <div class="row pad5">
+                    <div class="span8">
+                        <div class="post">
+                            <img src="~/Content/img/blueberry-dessert_1920x1080_sc.jpg" />
+                            <div class="post_info">
+                                <div class="fleft">On <span>12 Nov 2020</span> / By <a href="#">John Smith</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                                <div class="fright"><a href="#">25</a> Comments</div>
+                                <div class="clear"></div>
+                            </div>
+                            <p>Sollicitudin urna ullamcorper vel. In consectetur purus eu mauris pellentesque tincidunt. Suspendisse hendrerit pretium tellus, sitami amet elementum sapien mollis nec. Etiam sit amet hendrerit enim. Sed ullamcorper nunc non mi aliquam et tincidunt massa mauris congue. Nam pharetra elit convallis urna auctor auctor iaculis vestibulum dolor ipsum lorem eget mas mauris.</p>
+                            <ul class="links">
+                                <li><a href="#">Etiam vitae felis sit amet libero viverra varius et ut nisi.</a></li>
+                                <li><a href="#">Pellentesque egestas scelerisque turpis, ut dignissim mauris luctus vel.</a></li>
+                                <li><a href="#">Fusce et ante at ligula lobortis congue a in eros.</a></li>
+                                <li><a href="#">In hac habitasse platea dictumst lorem ipsum dolor sit amet, consectetur.</a></li>
+                                <li><a href="#">Phasellus adipiscing varius felis, sit amet feugiat turpis consequat at.</a></li>
+                            </ul>
+                            <p>Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.</p>
+                            <p>Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit id adipiscing. Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Proin risus nisl, convallis vitae dignissim sit amet, malesuada a lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat. Quisque magna quam, ullamcorper vel elementum non, consequat sed sem. Proin sed massa nec justo adipiscing aliquam eget vel magna. Quisque urna nibh, vestibulum a varius at, <a href="#">varius sed tellus.</a></p>
+                        </div>
+
+                        <!-- Comments -->
+                        <h4>4 comments</h4>
+                        <div id="comments">
+                            <ol>
+                                <li>
+                                    @*<div class="avatar"><a href="#"><img src="img/avatar1.jpg" width="68" height="68" alt="" /></a></div>*@
+                                    <div class="comment_right">
+                                        <div class="comment_info">
+                                            Posted by <a href="#">Anna Smith</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
+                                        </div>
+                                        Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
+                                    </div>
+                                    <div class="clear"></div>
+                                    <ul>
+                                        <li>
+                                            @*<div class="avatar"><a href="#"><img src="img/avatar2.jpg" width="68" height="68" alt="" /></a></div>*@
+                                            <div class="comment_right">
+                                                <div class="comment_right">
+                                                    <div class="comment_info">
+                                                        Posted by <a href="#">Tom Sawyer</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
+                                                    </div>
+                                                    <p>Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.</p>
+                                                    Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Proin risus nisl, convallis vitae dignissim sit amet, malesuada a lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @*<div class="avatar"><a href="#"><img src="img/avatar3.jpg" width="68" height="68" alt="" /></a></div>*@
+                                    <div class="comment_right">
+                                        <div class="comment_right">
+                                            <div class="comment_info">
+                                                Posted by <a href="#">Adam White</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
+                                            </div>
+                                            Cursus tellus quis magna porta adipiscin
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </li>
+                            </ol>
+                        </div>
+                        <h4>Leave a comment</h4>
+                        <form action="#" method="post">
+                            <input class="form-control bottom-space" type="text" name="name" value="Name" onfocus="if (this.value == 'Name') this.value = '';" onblur="if (this.value == '') this.value = 'Name';" />
+                            <input class="form-control bottom-space" type="text" name="mail" value="Email" onfocus="if (this.value == 'Email') this.value = '';" onblur="if (this.value == '') this.value = 'Email';" />
+                            <textarea name="message" class="form-control bottom-space" onfocus="if (this.value == 'Message...') this.value = '';" onblur="if (this.value == '') this.value = 'Message...';">Message...</textarea>
+                            <div class="clear"></div>
+                            <input type="reset" class="btn dark_btn" value="Clear form" />
+                            <input type="submit" class="btn send_btn" value="Post Comment" />
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -46,6 +47,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
+        [Index]
         public bool IsDeleted { get; set; }
 
         public System.DateTime? DeletedOn { get; set; }

@@ -34,6 +34,16 @@
 
         public Category Category { get; set; }
 
+        public int Calories { get; set; }
+
+        public int Proteins { get; set; }
+
+        public int Carbohydrates { get; set; }
+
+        public int Fats { get; set; }
+
+        public int GramsPerPortion { get; set; }
+
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }

@@ -20,6 +20,8 @@ namespace Foodsy.Web.ViewModels.Recipes
 
         public DateTime CreatedOn { get; set; }
 
+        public Category Category { get; set; }
+
         public ICollection<CommentViewModel> Comments { get; set; }
 
         public ICollection<Foodsy.Data.Models.Action> Actions { get; set; }

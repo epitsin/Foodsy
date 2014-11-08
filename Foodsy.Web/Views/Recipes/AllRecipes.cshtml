@@ -8,6 +8,7 @@
         <div class="wrap">
             <div class="container inner_content">
                 <div id="options">
+                    @Html.EnumDropDownListFor(model => Model.FirstOrDefault().Category, new { @class = "btn send_btn", role = "menu" })
                     <ul id="filters" class="option-set" data-option-key="filter">
                         <li><a href="#filter" data-option-value="*" class="btn dark_btn selected">All</a></li>
                         <li><a href="#filter" data-option-value=".category01" class="btn dark_btn">Category 01</a></li>
@@ -23,7 +24,7 @@
                             <div class="col-md-4 element category01" data-category="category01">
                                 <div class="hover_img">
                                     <img src="@recipe.ImageUrl" alt="" />
-                                    <span class="portfolio_zoom"><a href="" rel="prettyPhoto[portfolio1]"></a></span>
+                                    <span class="portfolio_zoom"><a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a></span>
                                     <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", new { @recipe.Id })">View item</a></span>
                                 </div>
                                 <div class="item_description">

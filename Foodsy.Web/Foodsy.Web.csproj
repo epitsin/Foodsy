@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\CustomMenuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
@@ -204,6 +205,8 @@
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
     <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
+    <Compile Include="ViewModels\CustomMenu\CustomMenuType.cs" />
+    <Compile Include="ViewModels\CustomMenu\CustomMenuViewModel.cs" />
     <Compile Include="ViewModels\Recipes\RecipeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +404,8 @@
     <Content Include="Views\Articles\ArticleDetails.cshtml" />
     <Content Include="Views\CustomMenu\GetInformation.cshtml" />
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
+    <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
+    <Content Include="Views\CustomMenu\GenerateMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

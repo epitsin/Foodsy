@@ -41,7 +41,8 @@ namespace Foodsy.Web.Controllers
                 Name = x.Name,
                 Description = x.Description,
                 ImageUrl = x.ImageUrl,
-                CreatedOn = x.CreatedOn
+                CreatedOn = x.CreatedOn,
+                Category = x.Category
             }).OrderBy(x => x.Id);
 
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);

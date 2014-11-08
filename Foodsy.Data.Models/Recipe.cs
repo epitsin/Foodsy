@@ -28,13 +28,13 @@
 
         public string ImageUrl { get; set; }
 
-        public DateTime? CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         
         public MealType MealType { get; set; }
 
         public Category Category { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 

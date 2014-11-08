@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Article : IMapFrom<Recipe>
+    public class Article
     {
         public int Id { get; set; }
 
@@ -12,6 +12,6 @@
 
         public string ImageUrl { get; set; }
 
-        public DateTime? CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

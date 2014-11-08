@@ -21,35 +21,12 @@
                             <a href="blog_post.html" class="arrow_link">Read more</a>
                         </div>
                     }
-                    @*<div class="post">
-                            <h2 class="title"><span><a href="blog_post.html">It is a long established fact that a reader will</a></span></h2>
-                            <img src="~/Content/img/black-water-glass-strawberry.jpg" />
-                            <div class="post_info">
-                                <div class="fleft">On <span>12 Nov 2020</span> / By <a href="#">John Smith</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus...</p>
-                            <a href="blog_post.html" class="arrow_link">Read more</a>
-                        </div>
-                        <div class="post">
-                            <h2 class="title"><span><a href="blog_post.html">Duis aute irure dolor in reprehenderit in voluptate velit esse</a></span></h2>
-                            <img src="~/Content/img/chocolate-i-love-it_1920x1080_sc.jpg" />
-                            <div class="post_info">
-                                <div class="fleft">On <span>12 Nov 2020</span> / By <a href="#">John Smith</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus...</p>
-                            <a href="blog_post.html" class="arrow_link">Read more</a>
-                        </div>*@
-                    <div class="pagination">
-                        <ul>
-                            <li><a href="#">&larr;</a></li>
-                            <li class="active"><a href="#">10</a></li>
-                            <li class="disabled"><a href="#">...</a></li>
-                            <li><a href="#">20</a></li>
-                            <li><a href="#">&rarr;</a></li>
-                        </ul>
-                    </div>
+                    @for (int i = 1; i <= ViewBag.Pages; i++)
+                    {
+                        <a class="btn send_btn" href="@Url.Action("AllArticles", new { id = i })">@i</a>
+                    }
+                    <br />
+                    <br />
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar">

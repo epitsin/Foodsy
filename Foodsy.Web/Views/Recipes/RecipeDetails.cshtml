@@ -1,4 +1,4 @@
-﻿﻿@model IEnumerable<Foodsy.Data.Models.Recipe>
+﻿﻿@model Foodsy.Web.ViewModels.Recipes.RecipeViewModel
 @{
     ViewBag.Title = "RecipeDetails";
 }
@@ -7,81 +7,72 @@
     <div class="wrap">
         <div class="container">
             <section>
+                <h2 class="page-header text-center">@Model.Name</h2>
                 <div class="row pad5">
-                    <div class="span8">
+                    <div class="col-md-8">
                         <div class="post">
-                            <img src="~/Content/img/blueberry-dessert_1920x1080_sc.jpg" />
+                            <img src="@Model.ImageUrl" />
                             <div class="post_info">
-                                <div class="fleft">On <span>12 Nov 2020</span> / By <a href="#">John Smith</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
-                                <div class="fright"><a href="#">25</a> Comments</div>
+                                <div class="fleft">On <span>@Model.CreatedOn</span> / By <a href="#">Someone</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                                <div class="fright"><a href="#">@Model.Likes.Count</a> Likes</div>
                                 <div class="clear"></div>
                             </div>
-                            <p></p>
+                            <p>@Model.Description</p>
                             <ul class="links">
-                                <li><a href="#">Etiam vitae felis sit amet libero viverra varius et ut nisi.</a></li>
-                                <li><a href="#">Pellentesque egestas scelerisque turpis, ut dignissim mauris luctus vel.</a></li>
-                                <li><a href="#">Fusce et ante at ligula lobortis congue a in eros.</a></li>
-                                <li><a href="#">In hac habitasse platea dictumst lorem ipsum dolor sit amet, consectetur.</a></li>
-                                <li><a href="#">Phasellus adipiscing varius felis, sit amet feugiat turpis consequat at.</a></li>
+                                @foreach (var step in Model.Actions)
+                                {
+                                    <li><a href="#">@step.Text</a></li>
+                                }
                             </ul>
-                            <p>Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.</p>
-                            <p>Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit id adipiscing. Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Proin risus nisl, convallis vitae dignissim sit amet, malesuada a lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat. Quisque magna quam, ullamcorper vel elementum non, consequat sed sem. Proin sed massa nec justo adipiscing aliquam eget vel magna. Quisque urna nibh, vestibulum a varius at, <a href="#">varius sed tellus.</a></p>
                         </div>
 
-                        <!-- Comments -->
-                        <h4>4 comments</h4>
-                        <div id="comments">
-                            <ol>
-                                <li>
-                                    @*<div class="avatar"><a href="#"><img src="img/avatar1.jpg" width="68" height="68" alt="" /></a></div>*@
-                                    <div class="comment_right">
-                                        <div class="comment_info">
-                                            Posted by <a href="#">Anna Smith</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
-                                        </div>
-                                        Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-                                    </div>
-                                    <div class="clear"></div>
-                                    <ul>
-                                        <li>
-                                            @*<div class="avatar"><a href="#"><img src="img/avatar2.jpg" width="68" height="68" alt="" /></a></div>*@
-                                            <div class="comment_right">
-                                                <div class="comment_right">
-                                                    <div class="comment_info">
-                                                        Posted by <a href="#">Tom Sawyer</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
-                                                    </div>
-                                                    <p>Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.</p>
-                                                    Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Proin risus nisl, convallis vitae dignissim sit amet, malesuada a lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    @*<div class="avatar"><a href="#"><img src="img/avatar3.jpg" width="68" height="68" alt="" /></a></div>*@
-                                    <div class="comment_right">
-                                        <div class="comment_right">
-                                            <div class="comment_info">
-                                                Posted by <a href="#">Adam White</a> <span>|</span> 25 apr 2019 <span>|</span> <a href="#">Reply</a>
-                                            </div>
-                                            Cursus tellus quis magna porta adipiscin
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </li>
+                        <div>
+                            Likes: <span id="recipe-votes">@Model.Likes.Count</span>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "vote-button", @class = "btn" })
+                            }
+                        </div>
+
+                        <h4>@Model.Comments.Count comments</h4>
+                        <div>
+                            <ol id="comments">
+                                @foreach (var comment in Model.Comments)
+                                {
+                                    @Html.Partial("_CommentPartial", comment)
+                                }
                             </ol>
                         </div>
                         <h4>Leave a comment</h4>
-                        <form action="#" method="post">
-                            <input class="form-control bottom-space" type="text" name="name" value="Name" onfocus="if (this.value == 'Name') this.value = '';" onblur="if (this.value == '') this.value = 'Name';" />
-                            <input class="form-control bottom-space" type="text" name="mail" value="Email" onfocus="if (this.value == 'Email') this.value = '';" onblur="if (this.value == '') this.value = 'Email';" />
-                            <textarea name="message" class="form-control bottom-space" onfocus="if (this.value == 'Message...') this.value = '';" onblur="if (this.value == '') this.value = 'Message...';">Message...</textarea>
-                            <div class="clear"></div>
-                            <input type="reset" class="btn dark_btn" value="Clear form" />
-                            <input type="submit" class="btn send_btn" value="Post Comment" />
-                            <div class="clear"></div>
-                        </form>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
+                            {
+                                @Html.Hidden("RecipeId", Model.Id)
+                                @Html.TextArea("comment", new { @class = "form-control bottom-space" })
+                                @Html.AntiForgeryToken()
+                                <input type="reset" class="btn dark_btn" value="Clear form" />
+                                <input type="submit" class="btn send_btn" value="Post Comment" />
+                            }
+                        }
                     </div>
+                    <div class="col-md-4">
+                        <div class="sidebar" style="padding-top:60px;">
+                            <div class="widget">
+                                <h2 class="title"><span>Let's prepare it together!</span></h2>
+                                <ul class="links">
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur</a></li>
+                                    <li><a href="#">Adipisicing elit, sed do eiusmod tempor incididunt</a></li>
+                                    <li><a href="#">Ut labore et dolore magna aliqua.</a></li>
+                                    <li><a href="#">Ut enim ad minim veniam, quis nostrud exercitation ullamco</a></li>
+                                    <li><a href="#">Laboris nisi ut aliquip ex ea commodo consequat.</a></li>
+                                    <li><a href="#">Duis aute irure dolor in reprehenderit</a></li>
+                                    <li><a href="#">In voluptate velit esse cillum</a></li>
+                                    <li><a href="#">Excepteur sint occaecat cupidatat non proident</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </section>
         </div>
@@ -89,3 +80,14 @@
 </div>
 
 
+@section scripts{
+    <script>
+        function commentPostFailure() {
+            alert("Error");
+        }
+
+        function hideVoteButton() {
+            $("#vote-button").hide();
+        }
+    </script>
+}

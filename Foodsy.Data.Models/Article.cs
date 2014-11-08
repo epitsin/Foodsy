@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Article
+    public class Article : IMapFrom<Recipe>
     {
         public int Id { get; set; }
 

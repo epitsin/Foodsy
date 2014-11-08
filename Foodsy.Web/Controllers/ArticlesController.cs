@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foodsy.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,17 @@ namespace Foodsy.Web.Controllers
 {
     public class ArticlesController : Controller
     {
-        // GET: Articles
+        private IFoodsyData data;
+
+        public ArticlesController(IFoodsyData data)
+        {
+            this.data = data;
+        }
+
         public ActionResult AllArticles()
         {
-            return View();
+            var articles = this.data.Articles.All().ToList();
+            return View(articles);
         }
         public ActionResult ArticleDetails()
         {

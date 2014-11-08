@@ -7,7 +7,12 @@ using Foodsy.Data.Models;
 
 namespace Foodsy.Web.ViewModels.Home
 {
-    public class IndexRecipePostViewModel : IMapFrom<Recipe>
+    public class RecipeViewModel : IMapFrom<Recipe>
     {
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

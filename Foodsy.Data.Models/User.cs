@@ -11,12 +11,13 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser, IAuditInfo
+    public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<Recipe> recipes;
 
         public User()
         {
+            // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
             this.recipes = new HashSet<Recipe>();
         }
@@ -50,6 +51,6 @@
         [Index]
         public bool IsDeleted { get; set; }
 
-        public System.DateTime? DeletedOn { get; set; }
+        public DateTime? DeletedOn { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class Recipe
+    public class Recipe 
     {
         private ICollection<RecipeIngredient> ingredients;
         private ICollection<Action> actions;

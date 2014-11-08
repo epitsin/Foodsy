@@ -13,14 +13,14 @@
     {
         protected void Application_Start()
         {
-            ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
+            //ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+            //AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
             var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
             autoMapperConfig.Execute();

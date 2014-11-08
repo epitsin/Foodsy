@@ -21,6 +21,7 @@ namespace Foodsy.Data.Migrations
         {
             this.SeedIngredients(context);
             this.SeedRecipes(context);
+            this.SeedArticles(context);
         }
 
         protected void SeedIngredients(FoodsyDbContext context)
@@ -59,7 +60,9 @@ namespace Foodsy.Data.Migrations
                 Name = "Banica",
                 Description = "Traditional BG meal",
                 Category = Category.Vegetarian,
-                MealType = MealType.Breakfast
+                MealType = MealType.Breakfast,
+                CreatedOn = DateTime.Now,
+                ImageUrl = "/Content/img/beer-tomato-food-knife-still-life_1920x1080_sc.jpg"
             };
 
             var batter = new Ingredient { Name = "Batter", Calories = 400, Proteins = 0, Carbohydrates = 30, Fats = 5 };
@@ -102,7 +105,9 @@ namespace Foodsy.Data.Migrations
                 Name = "Musaka",
                 Description = "Another traditional BG meal",
                 Category = Category.Meat,
-                MealType = MealType.MainMeal
+                MealType = MealType.MainMeal,
+                CreatedOn = DateTime.Now,
+                ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg"
             };
 
             var potato = new Ingredient { Name = "Potato", Calories = 200, Proteins = 0, Carbohydrates = 30, Fats = 0 };
@@ -132,6 +137,40 @@ namespace Foodsy.Data.Migrations
             musaka.RecipeIngredients = relationshipsMusaka;
 
             context.Recipes.Add(musaka);
+
+            context.SaveChanges();
+        }
+
+        protected void SeedArticles(FoodsyDbContext context)
+        {
+            if (context.Articles.Any())
+            {
+                return;
+            }
+
+            context.Articles.Add(new Article
+            {
+                Title = "Some title",
+                Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
+                CreatedOn = DateTime.Now,
+                ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg"
+            });
+
+            context.Articles.Add(new Article
+            {
+                Title = "Another title",
+                Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
+                CreatedOn = DateTime.Now,
+                ImageUrl = "/Content/img/black-water-glass-strawberry.jpg"
+            });
+            
+            context.Articles.Add(new Article
+            {
+                Title = "Another another title",
+                Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
+                CreatedOn = DateTime.Now,
+                ImageUrl = "/Content/img/blueberries_1600x900_sc.jpg"
+            });
 
             context.SaveChanges();
         }

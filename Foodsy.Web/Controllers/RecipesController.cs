@@ -85,6 +85,34 @@ namespace Foodsy.Web.Controllers
             return View(recipeModel);
         }
 
+        [HttpGet]
+        public ActionResult CreateRecipe()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateRecipe(RecipeViewModel recipe)
+        {
+            if(ModelState.IsValid)
+            {
+                var newRecipe = new Recipe
+                {
+                   Name = recipe.Name,
+                   Description = recipe.Description,
+                   Category = recipe.Category,
+                   AuthorId = this.User.Identity.GetUserId(),
+                   CreatedOn = DateTime.Now,
+                   MealType = recipe.MealType
+                };
+
+                this.data.Recipes.Add(newRecipe);
+                this.data.SaveChanges();
+            }
+
+            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name});
+        }
+
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult PostComment(SubmitCommentViewModel commentModel)

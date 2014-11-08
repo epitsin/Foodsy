@@ -193,6 +193,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CustomMenuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,6 +203,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Actions\ActionViewModel.cs" />
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
     <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
@@ -406,6 +408,8 @@
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
     <Content Include="Views\CustomMenu\GenerateMenu.cshtml" />
+    <Content Include="Views\Recipes\CreateRecipe.cshtml" />
+    <Content Include="Views\Images\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

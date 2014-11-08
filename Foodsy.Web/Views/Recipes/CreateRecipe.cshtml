@@ -1,0 +1,55 @@
+﻿@model Foodsy.Web.ViewModels.Recipes.RecipeViewModel
+@{
+    ViewBag.Title = "CreateRecipe";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Your recipe!</h2>
+        <section id="userInformation" class="top-bottom-space">
+            @using (Html.BeginForm("CreateRecipe", "Recipes", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3 class="text-center">Tell us the secret ingredient...</h3>
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.Name, new { @class = "input-group" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Category, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MealType, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EnumDropDownListFor(m => m.MealType, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GramsPerPortion, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.GramsPerPortion, new { @class = "input-group" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" class="btn send_btn" value="Share" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>

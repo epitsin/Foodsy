@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "UploadImage";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <section id="userInformation" class="top-bottom-space">
+            <h3 class="text-center">Upload an image to your recipe</h3>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-4 control-label">Image</div>
+                @*@Html.LabelFor(m => m.ImageUrl, new { @class = "col-md-4 control-label" })*@
+                <div class="col-md-8">
+                    @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data", recipeName = ViewBag.RecipeName }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @*@Html.Hidden("recipeName", ViewBag.RecipeName)*@
+                        <input type="file" name="image" />
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <input type="submit" class="btn send_btn" value="Select" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

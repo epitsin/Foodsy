@@ -69,6 +69,13 @@ namespace Foodsy.Web.Controllers
             return View();
         }
 
+        private Expression<Func<T, object>> CreatePropSelectorExpression<T>(string propertyName)
+        {
+            var parameter = Expression.Parameter(typeof(T));
+            var body = Expression.Convert(Expression.PropertyOrField(parameter, propertyName), typeof(object));
+            return Expression.Lambda<Func<T, object>>(body, parameter);
+        }
+
         private List<Recipe> SelectMeals(int calories)
         {
             var recipes = this.data.Recipes.All().ToList();

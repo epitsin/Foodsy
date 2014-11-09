@@ -1,0 +1,40 @@
+﻿@model Foodsy.Web.ViewModels.Recipes.CreateRecipeViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Category, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.MealType, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.EnumDropDownListFor(m => m.MealType, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.GramsPerPortion, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.EditorFor(m => m.GramsPerPortion, new { @class = "form-control" })
+    </div>
+</div>
+<div id="actions">
+    @Html.EditorFor(m => m.Actions)
+</div>
+
+<div class="col-md-offset-4">
+    @Foodsy.Web.Helpers.HtmlHelpers.AddLink(Html, "Add more steps", "#actions", ".action", "Actions", typeof(Foodsy.Data.Models.Action))
+</div>
+

@@ -11,6 +11,7 @@ using System.Net;
 using Foodsy.Web.ViewModels.Comment;
 using Foodsy.Web.ViewModels.Recipes;
 using Microsoft.AspNet.Identity;
+using Foodsy.Web.ViewModels.Actions;
 
 namespace Foodsy.Web.Controllers
 {
@@ -93,7 +94,9 @@ namespace Foodsy.Web.Controllers
         [HttpGet]
         public ActionResult CreateRecipe()
         {
-            return View();
+            var recipe = new CreateRecipeViewModel();
+            recipe.Actions.Add(new Foodsy.Data.Models.Action());
+            return View(recipe);
         }
 
         [HttpPost]

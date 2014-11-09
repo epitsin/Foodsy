@@ -1,4 +1,5 @@
-$(document).ready(function(){	
+$(document).ready(function () {
+    
 	//build dropdown
 	$("<select />").appendTo("nav#main_menu div");
 	

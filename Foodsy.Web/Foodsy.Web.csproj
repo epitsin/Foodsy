@@ -201,6 +201,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
     <Compile Include="ViewModels\CustomMenu\CustomMenuType.cs" />
     <Compile Include="ViewModels\CustomMenu\CustomMenuViewModel.cs" />
+    <Compile Include="ViewModels\Recipes\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\Recipes\RecipeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +426,8 @@
     <Content Include="Views\Challenges\ChallengeDetails.cshtml" />
     <Content Include="Views\CustomMenu\CustomMenu.cshtml" />
     <Content Include="Views\FavouriteRecipes\FavouriteRecipes.cshtml" />
+    <Content Include="Views\Recipes\EditorTemplates\Action.cshtml" />
+    <Content Include="Views\Recipes\EditorTemplates\CreateRecipeViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

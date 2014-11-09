@@ -1,4 +1,4 @@
-﻿@model Foodsy.Web.ViewModels.Recipes.RecipeViewModel
+﻿@model Foodsy.Web.ViewModels.Recipes.CreateRecipeViewModel
 @{
     ViewBag.Title = "CreateRecipe";
 }
@@ -14,36 +14,48 @@
                 <hr />
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.EditorFor(m => m.Name, new { @class = "input-group" })
+                @*<div class="form-group">
+                        @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Category, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Category, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.MealType, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.EnumDropDownListFor(m => m.MealType, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MealType, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.EnumDropDownListFor(m => m.MealType, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.GramsPerPortion, new { @class = "col-md-4 control-label" })
-                    <div class="col-md-8">
-                        @Html.EditorFor(m => m.GramsPerPortion, new { @class = "input-group" })
-                    </div>
-                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.GramsPerPortion, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(m => m.GramsPerPortion, new { @class = "form-control" })
+                        </div>
+                    </div>*@
+                @*<div id="actions"></div>
+                    <input type="button" class="col-md-offset-6 btn dark_btn" value="Add action" onclick="addActionForm()" />
+
+                    var action = new Foodsy.Data.Models.Action();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        @Html.EditorFor(m => action.Text)
+                        @Html.EditorFor(m => action.StepLevel)
+                    }*@
+
+                @Html.EditorForModel()
+
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
                         <input type="submit" class="btn send_btn" value="Share" />
@@ -53,3 +65,20 @@
         </section>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        function addNestedForm(container, counter, ticks, content) {
+            var nextIndex = $(counter).length;
+            var pattern = new RegExp(ticks, "gi");
+            content = content.replace(pattern, nextIndex);
+            $(container).append(content);
+        }
+    </script>
+
+    <script>
+        function addActionForm() {
+            $('<input/>').attr({ type: 'text', id: 'test', name: 'test' }).appendTo('#actions');
+        }
+    </script>
+}

@@ -64,9 +64,11 @@ namespace Foodsy.Web.Controllers
                 {
                     throw new ArgumentException("Invalid menu type!");
                 }
+
+                return View("CustomMenu", meals);
             }
 
-            return View();
+            return RedirectToAction("GetInformation");
         }
 
         private Expression<Func<T, object>> CreatePropSelectorExpression<T>(string propertyName)

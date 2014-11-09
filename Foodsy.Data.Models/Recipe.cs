@@ -36,6 +36,8 @@
 
         public int Calories { get; set; }
 
+        public int CaloriesPerPortion { get; set; }
+
         public int Proteins { get; set; }
 
         public int Carbohydrates { get; set; }

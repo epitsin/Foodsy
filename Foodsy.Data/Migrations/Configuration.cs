@@ -108,6 +108,8 @@ namespace Foodsy.Data.Migrations
                 banica.Fats += ingredient.Fats;
             }
 
+            banica.CaloriesPerPortion = banica.Calories * banica.GramsPerPortion / 100;
+
             context.Recipes.Add(banica);
 
             var musaka = new Recipe
@@ -154,6 +156,8 @@ namespace Foodsy.Data.Migrations
                 musaka.Carbohydrates += ingredient.Carbohydrates;
                 musaka.Fats += ingredient.Fats;
             }
+
+            musaka.CaloriesPerPortion = musaka.Calories * musaka.GramsPerPortion / 100;
 
             context.Recipes.Add(musaka);
 

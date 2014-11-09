@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Foodsy.Data.Models;
 
 namespace Foodsy.Web.Controllers
 {
@@ -74,12 +76,16 @@ namespace Foodsy.Web.Controllers
 
             if (canJoin)
             {
-                challenge.Participants.Add(User);
+                var store = new UserStore<User>(new FoodsyDbContext());
+                var userManager = new UserManager<User>(store);
+                var user = userManager.FindByNameAsync(User.Identity.Name).Result;
 
-                this.data.SaveChanges();
+                challenge.Participants.Add(user);
+
+                this.data.SaveChanges(); //TODO: does not work. Problems with 2 contexts!!!
             }
             
-            return Content(challenge);
+            return View(challenge);
         }
     }
 }

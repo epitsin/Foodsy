@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CustomMenuController.cs" />
+    <Compile Include="Controllers\FavouriteRecipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Content\camera.css" />
     <Content Include="Content\docs.css" />
     <Content Include="Content\img\about-bg.jpg" />
+    <Content Include="Content\img\American-Bar_1920x600_01.jpg" />
     <Content Include="Content\img\assets\responsive-illustrations.png" />
     <Content Include="Content\img\background_contacts.jpg" />
     <Content Include="Content\img\beer-tomato-food-knife-still-life_1920x1080_sc.jpg" />
@@ -300,7 +302,11 @@
     <Content Include="Content\img\prettyPhoto\light_square\default_thumbnail.gif" />
     <Content Include="Content\img\prettyPhoto\light_square\loader.gif" />
     <Content Include="Content\img\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Content\img\raspberries___food-wallpaper-1920x600.jpg" />
     <Content Include="Content\img\red-wine_1920x1080_sc.jpg" />
+    <Content Include="Content\img\red_wine_bottle-wallpaper-1920x1080.jpg" />
+    <Content Include="Content\img\Restaurant-Food_02_1920x600_01.jpg" />
+    <Content Include="Content\img\Restaurant-Food_03_1920x600_03.jpg" />
     <Content Include="Content\img\salmon-and-fresh-vegetables_1920x1080_sc.jpg" />
     <Content Include="Content\img\saucer-coffee-smoke-corn-spoon-cappuccino-foam-table-croissant-star-anise-cinnamon_1920x1080_sc.jpg" />
     <Content Include="Content\img\slider_nav.png" />
@@ -316,6 +322,7 @@
     <Content Include="Content\img\twitter-bg.jpg" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\watch.png" />
+    <Content Include="Content\img\Weihnachten_02_1920x600_01.jpg" />
     <Content Include="Content\img\welcome_bg.png" />
     <Content Include="Content\img\wine-red-cheese-cheese-sausage-grapes-glass-bottle-knife_1920x1080_sc.jpg" />
     <Content Include="Content\img\wine-red-grapes-bottle-glass-black-background_1920x1080_sc.jpg" />
@@ -415,6 +422,8 @@
     <Content Include="Views\Challenges\AllChallenges.cshtml" />
     <Content Include="Views\Shared\_ChallengeTypePartial.cshtml" />
     <Content Include="Views\Challenges\ChallengeDetails.cshtml" />
+    <Content Include="Views\CustomMenu\CustomMenu.cshtml" />
+    <Content Include="Views\FavouriteRecipes\FavouriteRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

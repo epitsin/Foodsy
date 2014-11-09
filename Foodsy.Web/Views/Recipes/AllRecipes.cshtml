@@ -8,14 +8,8 @@
         <div class="wrap">
             <div class="container inner_content">
                 <div id="options">
-                    @Html.EnumDropDownListFor(model => Model.FirstOrDefault().Category, new { @class = "btn send_btn", role = "menu" })
-                    <ul id="filters" class="option-set" data-option-key="filter">
-                        <li><a href="#filter" data-option-value="*" class="btn dark_btn selected">All</a></li>
-                        <li><a href="#filter" data-option-value=".category01" class="btn dark_btn">Category 01</a></li>
-                        <li><a href="#filter" data-option-value=".category02" class="btn dark_btn">Category 02</a></li>
-                        <li><a href="#filter" data-option-value=".category03" class="btn dark_btn">Category 03</a></li>
-                    </ul>
-                    <a class="btn dark_btn" href="@Url.Action("CreateRecipe")">Create recipe</a>
+                    <a class="btn send_btn" href="@Url.Action("CreateRecipe")">Create recipe</a>
+                    @Html.Partial("_CategoriesPartial")
                     <div class="clear"></div>
                 </div>
                 <div class="row">

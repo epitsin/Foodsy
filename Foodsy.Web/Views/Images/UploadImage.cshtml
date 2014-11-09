@@ -9,13 +9,14 @@
             <hr />
             <div class="form-group">
                 <div class="col-md-4 control-label">Image</div>
-                @*@Html.LabelFor(m => m.ImageUrl, new { @class = "col-md-4 control-label" })*@
                 <div class="col-md-8">
-                    @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data", recipeName = ViewBag.RecipeName }))
+                    @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { @class = "text-danger" })
-                        @*@Html.Hidden("recipeName", ViewBag.RecipeName)*@
+                        @Html.AntiForgeryToken()
+                        <h2>@ViewBag.RecipeName</h2>
+                        string recipe = ViewBag.RecipeName;
+                        @Html.Hidden("name", recipe)
                         <input type="file" name="image" />
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">

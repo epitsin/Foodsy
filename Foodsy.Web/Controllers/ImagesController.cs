@@ -24,13 +24,15 @@ namespace Foodsy.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(HttpPostedFileBase image, string recipeName)
+        public ActionResult UploadImage(HttpPostedFileBase image, string name)
         {
             if (image != null)
             {
                 image.SaveAs(Server.MapPath("~/Content/img/") + image.FileName);
-                var recipe = this.data.Recipes.All().FirstOrDefault(x => x.Name == recipeName);
-                recipe.ImageUrl = "~/Content/img/" + image.FileName;
+                var recipe = this.data.Recipes.All().FirstOrDefault(x => x.Name == name);
+                recipe.ImageUrl = "/Content/img/" + image.FileName;
+
+                this.data.SaveChanges();
 
                 return RedirectToAction("RecipeDetails", "Recipes", new { id = recipe.Id });
             }

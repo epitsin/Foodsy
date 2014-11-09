@@ -14,12 +14,14 @@
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<Recipe> recipes;
+        private ICollection<Challenge> challenges;
 
         public User()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
             this.recipes = new HashSet<Recipe>();
+            this.challenges = new HashSet<Challenge>();
         }
 
         public virtual ICollection<Recipe> Recipes
@@ -31,6 +33,18 @@
             set
             {
                 this.recipes = value;
+            }
+        }
+
+        public virtual ICollection<Challenge> Challenges
+        {
+            get
+            {
+                return this.challenges;
+            }
+            set
+            {
+                this.challenges = value;
             }
         }
 

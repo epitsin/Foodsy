@@ -6,10 +6,12 @@
     public class Challenge
     {
         private ICollection<Recipe> recipes;
+        private ICollection<User> participants;
 
         public Challenge()
         {
             this.recipes = new HashSet<Recipe>();
+            this.participants = new HashSet<User>();
         }
 
         public int Id { get; set; }
@@ -33,6 +35,18 @@
             set
             {
                 this.recipes = value;
+            }
+        }
+
+        public virtual ICollection<User> Participants
+        {
+            get
+            {
+                return this.participants;
+            }
+            set
+            {
+                this.participants = value;
             }
         }
     }

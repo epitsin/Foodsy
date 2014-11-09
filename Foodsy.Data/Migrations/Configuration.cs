@@ -22,6 +22,7 @@ namespace Foodsy.Data.Migrations
             this.SeedIngredients(context);
             this.SeedRecipes(context);
             this.SeedArticles(context);
+            this.SeedChallenges(context);
         }
 
         protected void SeedIngredients(FoodsyDbContext context)
@@ -188,6 +189,32 @@ namespace Foodsy.Data.Migrations
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/blueberries_1600x900_sc.jpg"
+            });
+
+            context.SaveChanges();
+        }
+
+        protected void SeedChallenges(FoodsyDbContext context)
+        {
+            if (context.Challenges.Any())
+            {
+                return;
+            }
+
+            var recipe1 = context.Recipes.Find(1);
+            var recipe2 = context.Recipes.Find(2);
+
+            context.Challenges.Add(new Challenge
+            {
+                Title = "Only Bulgarian food challenge",
+                Description = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
+                Start = DateTime.Now,
+                Finish = DateTime.Now,
+                ChallengeType = ChallengeType.Detox,
+                Recipes = new List<Recipe>() {
+                      recipe1,
+                      recipe2
+                  }
             });
 
             context.SaveChanges();

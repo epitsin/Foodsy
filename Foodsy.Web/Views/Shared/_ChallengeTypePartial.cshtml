@@ -1,0 +1,23 @@
+﻿@using Foodsy.Data.Models;
+
+<ul id="filters" class="option-set" data-option-key="filter">
+    <li><a href="#filter" data-option-value="*" class="btn dark_btn selected">All</a></li>
+    @{
+        Array values = Enum.GetValues(typeof(ChallengeType));
+        var items = new List<System.Web.UI.WebControls.ListItem>(values.Length);
+
+        foreach (var i in values)
+        {
+            items.Add(new System.Web.UI.WebControls.ListItem
+            {
+                Text = Enum.GetName(typeof(ChallengeType), i),
+                Value = ((int)i).ToString()
+            });
+        }
+    }
+
+    @foreach (var item in items)
+    {
+        <li><a href="#filter" data-option-value=".@item.Text" class="btn dark_btn">@item.Text</a></li>
+    }
+</ul>

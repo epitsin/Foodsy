@@ -206,6 +206,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Actions\ActionViewModel.cs" />
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\Challenges\ChallengeViewModel.cs" />
     <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
     <Compile Include="ViewModels\CustomMenu\CustomMenuType.cs" />
@@ -412,6 +413,8 @@
     <Content Include="Views\Recipes\CreateRecipe.cshtml" />
     <Content Include="Views\Images\UploadImage.cshtml" />
     <Content Include="Views\Challenges\AllChallenges.cshtml" />
+    <Content Include="Views\Shared\_ChallengeTypePartial.cshtml" />
+    <Content Include="Views\Challenges\ChallengeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

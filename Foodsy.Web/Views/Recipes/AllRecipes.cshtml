@@ -23,7 +23,7 @@
                                     <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", new { @recipe.Id })">View item</a></span>
                                 </div>
                                 <div class="item_description">
-                                    <h6><a href="single_portfolio.html">@recipe.Name</a></h6>
+                                    <h6><a href="@Url.Action("RecipeDetails", new { @recipe.Id })">@recipe.Name</a></h6>
                                     <div class="descr">@recipe.Description</div>
                                 </div>
                             </div>

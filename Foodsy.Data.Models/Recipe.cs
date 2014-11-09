@@ -44,6 +44,8 @@
 
         public int GramsPerPortion { get; set; }
 
+        public int ViewCount { get; set; }
+
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }

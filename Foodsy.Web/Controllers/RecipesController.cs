@@ -59,6 +59,10 @@ namespace Foodsy.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var recipe = this.data.Recipes.Find(id);
+
+            this.IncreaseViewCount(recipe);
+            this.data.SaveChanges();
+
             var comments = recipe.Comments.Select(x => new CommentViewModel
                 {
                     AuthorUsername = x.Author.UserName,
@@ -75,7 +79,8 @@ namespace Foodsy.Web.Controllers
                 CreatedOn = recipe.CreatedOn,
                 Actions = recipe.Actions,
                 Comments = comments,
-                Likes = recipe.Likes
+                Likes = recipe.Likes,
+                ViewCount = recipe.ViewCount
             };
 
             if (recipe == null)
@@ -161,6 +166,31 @@ namespace Foodsy.Web.Controllers
             var votes = this.data.Recipes.Find(id).Likes.Where(x => x.IsPositive).Count();
 
             return Content(votes.ToString());
+        }
+
+        private void IncreaseViewCount(Recipe recipe)
+        {
+            if (Request.Cookies["ViewedRecipe"] != null)
+            {
+                if (Request.Cookies["ViewedRecipe"][string.Format("rId_{0}", recipe.Id)] == null)
+                {
+                    HttpCookie cookie = Request.Cookies["ViewedRecipe"];
+                    cookie[string.Format("rId_{0}", recipe.Id)] = "1";
+                    cookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(cookie);
+
+                    recipe.ViewCount += 1;
+                }
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie("ViewedRecipe");
+                cookie[string.Format("rId_{0}", recipe.Id)] = "1";
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+
+                recipe.ViewCount += 1;
+            }
         }
     }
 }

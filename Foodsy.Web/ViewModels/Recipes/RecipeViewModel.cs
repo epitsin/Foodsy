@@ -29,6 +29,8 @@ namespace Foodsy.Web.ViewModels.Recipes
         [Display(Name="Grams per portion")]
         public int GramsPerPortion { get; set; }
 
+        public int ViewCount { get; set; }
+
         public ICollection<CommentViewModel> Comments { get; set; }
 
         public ICollection<Foodsy.Data.Models.Action> Actions { get; set; }

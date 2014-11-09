@@ -418,7 +418,6 @@
     <Content Include="Views\CustomMenu\GetInformation.cshtml" />
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
-    <Content Include="Views\CustomMenu\GenerateMenu.cshtml" />
     <Content Include="Views\Recipes\CreateRecipe.cshtml" />
     <Content Include="Views\Images\UploadImage.cshtml" />
     <Content Include="Views\Challenges\AllChallenges.cshtml" />

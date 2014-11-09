@@ -1,27 +1,28 @@
 ﻿﻿@model IEnumerable<Foodsy.Web.ViewModels.Challenges.ChallengeViewModel>
-@{
-    ViewBag.Title = "AllChallenges";
-}
 
-<div class="wrap">
-    <div class="container inner_content">
-        <div id="options">
-            <a class="btn send_btn" href="@Url.Action("CreateChallenge")">Create challenge</a>
-            @Html.Partial("_ChallengeTypePartial")
-            <div class="clear"></div>
-        </div>
-        <div class="row">
-            <div class="projects isotope" style="overflow: hidden; position: relative; height: 1125px;">
-                @foreach (var challenge in Model)
-                {
-                    <div class="col-md-6 element category01 isotope-item" data-category="category01" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">
-                        <div class="item_description">
-                            <h3><a href="@Url.Action("ChallengeDetails", new { @challenge.Id })">@challenge.Title</a></h3>
-                            <div class="descr">@challenge.Description</div>
-                        </div>
+<div class="container">
+    <div class="page_container">
+        <div class="wrap">
+            <div class="container inner_content">
+                <div id="options">
+                    <a class="btn send_btn" href="@Url.Action("CreateChallenge")">Create challenge</a>
+                    @Html.Partial("_ChallengeTypePartial")
+                    <div class="clear"></div>
+                </div>
+                <div class="row">
+                    <div class="projects">
+                        @foreach (var challenge in Model)
+                        {
+                            <div class="col-md-6 element category01 isotope-item" data-category="category01">
+                                <div class="item_description">
+                                    <h3><a href="@Url.Action("ChallengeDetails", new { @challenge.Id })">@challenge.Title</a></h3>
+                                    <div class="descr">@challenge.Description</div>
+                                </div>
+                            </div>
+                        }
+                        <div class="clear"></div>
                     </div>
-                }
-                <div class="clear"></div>
+                </div>
             </div>
         </div>
     </div>

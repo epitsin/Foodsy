@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Foodsy.Web.Infrastructure.Mapping;
-using Foodsy.Data.Models;
-
-namespace Foodsy.Web.ViewModels.Articles
+﻿namespace Foodsy.Web.ViewModels.Articles
 {
-    public class ArticleViewModel : IMapFrom<Article>
+    using System;
+
+    public class ArticleViewModel
     {
         public int Id { get; set; }
 

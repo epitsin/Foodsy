@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Foodsy.Web.ViewModels.Comment
+﻿namespace Foodsy.Web.ViewModels.Comment
 {
+    using System;
+
     public class CommentViewModel
     {
         public string AuthorUsername { get; set; }

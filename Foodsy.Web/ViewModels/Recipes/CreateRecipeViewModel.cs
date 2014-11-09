@@ -1,12 +1,10 @@
-﻿using Foodsy.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace Foodsy.Web.ViewModels.Recipes
+﻿namespace Foodsy.Web.ViewModels.Recipes
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using Foodsy.Data.Models;
+
     public class CreateRecipeViewModel
     {
         public CreateRecipeViewModel()

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Foodsy.Web.Infrastructure.Mapping;
-using Foodsy.Data.Models;
-using Foodsy.Web.ViewModels.Comment;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foodsy.Web.ViewModels.Recipes
+﻿namespace Foodsy.Web.ViewModels.Recipes
 {
-    public class RecipeViewModel : IMapFrom<Recipe>
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using Foodsy.Data.Models;
+    using Foodsy.Web.ViewModels.Comment;
+
+    public class RecipeViewModel
     {
         public RecipeViewModel()
         {

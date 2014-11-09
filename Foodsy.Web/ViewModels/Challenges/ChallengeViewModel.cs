@@ -1,11 +1,10 @@
-﻿using Foodsy.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Foodsy.Web.ViewModels.Challenges
+﻿namespace Foodsy.Web.ViewModels.Challenges
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Foodsy.Data.Models;
+
     public class ChallengeViewModel
     {
         public int Id { get; set; }

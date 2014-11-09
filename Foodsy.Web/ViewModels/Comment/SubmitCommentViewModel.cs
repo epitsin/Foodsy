@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace Foodsy.Web.ViewModels.Comment
+﻿namespace Foodsy.Web.ViewModels.Comment
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class SubmitCommentViewModel
     {
         [Required]

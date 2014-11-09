@@ -22,6 +22,8 @@
 
         public DateTime? Finish { get; set; }
 
+        public ChallengeType ChallengeType { get; set; }
+
         public virtual ICollection<Recipe> Recipes
         {
             get

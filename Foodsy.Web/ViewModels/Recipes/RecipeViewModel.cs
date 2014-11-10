@@ -40,5 +40,7 @@
         public ICollection<Foodsy.Data.Models.Action> Actions { get; set; }
 
         public ICollection<Like> Likes { get; set; }
+
+        public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

@@ -10,15 +10,15 @@
                         <div class="post">
                             <img src="@Model.ImageUrl" />
                             <div class="post_info">
-                                <div class="fleft">On <span>@Model.CreatedOn</span> / By <a href="#">Someone</a> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                                <div class="fleft">On <span>@Model.CreatedOn</span> / By <span>Someone</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
                                 <div class="fright"><a href="#">@Model.ViewCount</a> Views</div>
                                 <div class="clear"></div>
                             </div>
                             <p>@Model.Description</p>
                             <ul class="links">
-                                @foreach (var step in Model.Actions)
+                                @foreach (var ingredient in Model.RecipeIngredients)
                                 {
-                                    <li><a href="#">@step.Text</a></li>
+                                    <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
                                 }
                             </ul>
                         </div>

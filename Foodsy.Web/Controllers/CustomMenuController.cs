@@ -65,6 +65,8 @@ namespace Foodsy.Web.Controllers
                     throw new ArgumentException("Invalid menu type!");
                 }
 
+                ViewBag.CustomCalories = BMR;
+
                 return View("CustomMenu", meals);
             }
 

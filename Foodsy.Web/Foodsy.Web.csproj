@@ -196,6 +196,7 @@
     <Compile Include="Controllers\FavouriteRecipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +214,7 @@
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
     <Compile Include="ViewModels\CustomMenu\CustomMenuType.cs" />
     <Compile Include="ViewModels\CustomMenu\CustomMenuViewModel.cs" />
+    <Compile Include="ViewModels\Ingredients\IngredientViewModel.cs" />
     <Compile Include="ViewModels\Recipes\CreateRecipeViewModel.cs" />
     <Compile Include="ViewModels\Recipes\RecipeViewModel.cs" />
   </ItemGroup>
@@ -427,6 +429,7 @@
     <Content Include="Views\FavouriteRecipes\FavouriteRecipes.cshtml" />
     <Content Include="Views\Recipes\EditorTemplates\Action.cshtml" />
     <Content Include="Views\Recipes\EditorTemplates\CreateRecipeViewModel.cshtml" />
+    <Content Include="Views\Ingredients\IngredientDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

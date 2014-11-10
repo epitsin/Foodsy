@@ -81,7 +81,8 @@ namespace Foodsy.Web.Controllers
                 Actions = recipe.Actions,
                 Comments = comments,
                 Likes = recipe.Likes,
-                ViewCount = recipe.ViewCount
+                ViewCount = recipe.ViewCount,
+                RecipeIngredients = recipe.RecipeIngredients
             };
 
             if (recipe == null)

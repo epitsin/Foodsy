@@ -12,18 +12,16 @@ using Foodsy.Data.Models;
 
 namespace Foodsy.Web.Controllers
 {
-    public class ChallengesController : Controller
+    public class ChallengesController : BaseController
     {
-         private IFoodsyData data;
-
-         public ChallengesController(IFoodsyData data)
+        public ChallengesController(IFoodsyData data)
+            : base(data)
         {
-            this.data = data;
         }
 
         public ActionResult AllChallenges()
         {
-            var challenges = this.data.Challenges.All().Select(x => new ChallengeViewModel
+            var challenges = this.Data.Challenges.All().Select(x => new ChallengeViewModel
             {
                 Id = x.Id,
                 Title = x.Title,
@@ -44,7 +42,7 @@ namespace Foodsy.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var challenge = this.data.Challenges.Find(id);
+            var challenge = this.Data.Challenges.Find(id);
             
             var challengeModel = new ChallengeViewModel
             {
@@ -70,7 +68,7 @@ namespace Foodsy.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var challenge = this.data.Challenges.Find(id);
+            var challenge = this.Data.Challenges.Find(id);
 
             var canJoin = !challenge.Participants.Any(x => x.Id == userId);
 
@@ -82,7 +80,7 @@ namespace Foodsy.Web.Controllers
 
                 challenge.Participants.Add(user);
 
-                this.data.SaveChanges(); //TODO: does not work. Problems with 2 contexts!!!
+                this.Data.SaveChanges(); //TODO: does not work. Problems with 2 contexts!!!
             }
             
             return View(challenge);

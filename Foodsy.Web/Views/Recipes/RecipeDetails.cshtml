@@ -21,37 +21,43 @@
                                     <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
                                 }
                             </ul>
-                        </div>
-
-                        <div>
-                            Likes: <span id="recipe-votes">@Model.Likes.Count</span>
+                            <div class="top-bottom-space">
+                                <p>Grams per portion: @Model.GramsPerPortion</p>
+                                <p>Calories per portion: @Model.CaloriesPerPortion</p>
+                                <p>Proteins: @Model.Proteins</p>
+                                <p>Carbs: @Model.Carbohydrates</p>
+                                <p>Fats: @Model.Fats</p>
+                            </div>
+                            <div>
+                                Likes: <span id="recipe-votes">@Model.Likes.Count</span>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "vote-button", @class = "btn" })
+                                }
+                            </div>
+                            <h4>@Model.Comments.Count comments</h4>
+                            <div>
+                                <ol id="comments">
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        @Html.Partial("_CommentPartial", comment)
+                                    }
+                                </ol>
+                            </div>
+                            <h4>Leave a comment</h4>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "vote-button", @class = "btn" })
+                                using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
+                                {
+                                    @Html.Hidden("RecipeId", Model.Id)
+                                    @Html.TextArea("comment", new { @class = "form-control bottom-space" })
+                                    @Html.AntiForgeryToken()
+                                    <input type="reset" class="btn dark_btn" value="Clear form" />
+                                    <input type="submit" class="btn send_btn" value="Post Comment" />
+                                }
                             }
                         </div>
 
-                        <h4>@Model.Comments.Count comments</h4>
-                        <div>
-                            <ol id="comments">
-                                @foreach (var comment in Model.Comments)
-                                {
-                                    @Html.Partial("_CommentPartial", comment)
-                                }
-                            </ol>
-                        </div>
-                        <h4>Leave a comment</h4>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
-                            {
-                                @Html.Hidden("RecipeId", Model.Id)
-                                @Html.TextArea("comment", new { @class = "form-control bottom-space" })
-                                @Html.AntiForgeryToken()
-                                <input type="reset" class="btn dark_btn" value="Clear form" />
-                                <input type="submit" class="btn send_btn" value="Post Comment" />
-                            }
-                        }
                     </div>
                     <div class="col-md-4">
                         <div class="sidebar" style="padding-top:60px;">

@@ -7,18 +7,11 @@
 
     using AutoMapper;
 
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
-        private Assembly assembly;
-
-        public AutoMapperConfig(Assembly assembly)
+        public static void Execute()
         {
-            this.assembly = assembly;
-        }
-
-        public void Execute()
-        {
-            var types = this.assembly.GetExportedTypes();
+            var types = Assembly.GetExecutingAssembly().GetExportedTypes();
 
             LoadStandardMappings(types);
 
@@ -36,11 +29,12 @@
                         {
                             Source = i.GetGenericArguments()[0],
                             Destination = t
-                        });
+                        }).ToArray();
 
             foreach (var map in maps)
             {
                 Mapper.CreateMap(map.Source, map.Destination);
+                Mapper.CreateMap(map.Destination, map.Source);
             }
         }
 
@@ -51,7 +45,7 @@
                         where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
                               !t.IsAbstract &&
                               !t.IsInterface
-                        select (IHaveCustomMappings)Activator.CreateInstance(t));
+                        select (IHaveCustomMappings)Activator.CreateInstance(t)).ToArray();
 
             foreach (var map in maps)
             {

@@ -15,28 +15,19 @@ using Foodsy.Web.ViewModels.Actions;
 
 namespace Foodsy.Web.Controllers
 {
-    public class RecipesController : Controller
+    public class RecipesController : BaseController
     {
         private const int PageSize = 9;
-        //private IRepository<Recipe> recipes;
-
-        //public RecipesController(IRepository<Recipe> recipes)
-        //{
-        //    this.recipes = recipes;
-        //}
-
-        private IFoodsyData data;
-
         public RecipesController(IFoodsyData data)
+            : base(data)
         {
-            this.data = data;
         }
 
         public ActionResult AllRecipes(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);
 
-            var allRecipes = this.data.Recipes.All().Select(x => new RecipeViewModel
+            var allRecipes = this.Data.Recipes.All().Select(x => new RecipeViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -59,10 +50,10 @@ namespace Foodsy.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var recipe = this.data.Recipes.Find(id);
+            var recipe = this.Data.Recipes.Find(id);
 
             this.IncreaseViewCount(recipe);
-            this.data.SaveChanges();
+            this.Data.SaveChanges();
 
             var comments = recipe.Comments.Select(x => new CommentViewModel
                 {
@@ -80,6 +71,10 @@ namespace Foodsy.Web.Controllers
                 CreatedOn = recipe.CreatedOn,
                 Actions = recipe.Actions,
                 Comments = comments,
+                CaloriesPerPortion = recipe.CaloriesPerPortion,
+                Carbohydrates = recipe.Carbohydrates,
+                Fats = recipe.Fats,
+                Proteins = recipe.Proteins,
                 Likes = recipe.Likes,
                 ViewCount = recipe.ViewCount,
                 RecipeIngredients = recipe.RecipeIngredients
@@ -115,8 +110,8 @@ namespace Foodsy.Web.Controllers
                    MealType = recipe.MealType
                 };
 
-                this.data.Recipes.Add(newRecipe);
-                this.data.SaveChanges();
+                this.Data.Recipes.Add(newRecipe);
+                this.Data.SaveChanges();
             }
 
             return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name});
@@ -138,9 +133,9 @@ namespace Foodsy.Web.Controllers
                     CreatedOn = DateTime.Now
                 };
 
-                this.data.Comments.Add(comment);
+                this.Data.Comments.Add(comment);
 
-                this.data.SaveChanges();
+                this.Data.SaveChanges();
 
                 var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn  };
                 return PartialView("_CommentPartial", viewModel);
@@ -153,21 +148,21 @@ namespace Foodsy.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var canVote = !this.data.Likes.All().Any(x => x.RecipeId == id && x.AuthorId == userId);
+            var canVote = !this.Data.Likes.All().Any(x => x.RecipeId == id && x.AuthorId == userId);
 
             if (canVote)
             {
-                this.data.Recipes.Find(id).Likes.Add(new Like
+                this.Data.Recipes.Find(id).Likes.Add(new Like
                 {
                     RecipeId = id,
                     AuthorId = userId,
                     IsPositive = true
                 });
 
-                this.data.SaveChanges();
+                this.Data.SaveChanges();
             }
 
-            var votes = this.data.Recipes.Find(id).Likes.Where(x => x.IsPositive).Count();
+            var votes = this.Data.Recipes.Find(id).Likes.Where(x => x.IsPositive).Count();
 
             return Content(votes.ToString());
         }

@@ -22,8 +22,7 @@
 
             //AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
-            var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
-            autoMapperConfig.Execute();
+            AutoMapperConfig.Execute();
         }
     }
 }

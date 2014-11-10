@@ -10,13 +10,11 @@ using System.Web.Mvc;
 
 namespace Foodsy.Web.Controllers
 {
-    public class CustomMenuController : Controller
-    { 
-        private IFoodsyData data;
-
+    public class CustomMenuController : BaseController
+    {
         public CustomMenuController(IFoodsyData data)
+            : base(data)
         {
-            this.data = data;
         }
 
         public ActionResult GetInformation()
@@ -82,7 +80,7 @@ namespace Foodsy.Web.Controllers
 
         private List<Recipe> SelectMeals(int calories)
         {
-            var recipes = this.data.Recipes.All().ToList();
+            var recipes = this.Data.Recipes.All().ToList();
             var recipesCount = recipes.Count();
 
             int[,] dynamicMatrix = new int[recipesCount + 1, calories + 1];

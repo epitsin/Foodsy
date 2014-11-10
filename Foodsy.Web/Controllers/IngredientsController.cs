@@ -5,30 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 
 namespace Foodsy.Web.Controllers
 {
-    public class IngredientsController : Controller
+    public class IngredientsController : BaseController
     {
-        private IFoodsyData data;
-
         public IngredientsController(IFoodsyData data)
+            : base(data)
         {
-            this.data = data;
         }
 
         public ActionResult IngredientDetails(int? id)
         {
-            var ingredient = this.data.Ingredients.Find(id);
-            var viewModel = new IngredientViewModel
-            {
-                Name = ingredient.Name,
-                Carbohydrates = ingredient.Carbohydrates,
-                Proteins = ingredient.Proteins,
-                Fats = ingredient.Fats
-            };
+            var allIngredienits = this.Data.Ingredients.All().AsQueryable().Project().To<IngredientViewModel>();
+            var ingredient = allIngredienits.FirstOrDefault(x=>x.Id == id);
+            //var viewModel = new IngredientViewModel
+            //{
+            //    Name = ingredient.Name,
+            //    Carbohydrates = ingredient.Carbohydrates,
+            //    Proteins = ingredient.Proteins,
+            //    Fats = ingredient.Fats
+            //};
 
-            return View(viewModel);
+            return View(ingredient);
         }
     }
 }

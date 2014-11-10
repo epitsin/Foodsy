@@ -1,21 +1,17 @@
-﻿using System;
+﻿using Foodsy.Data.Models;
+using Foodsy.Web.Infrastructure.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Foodsy.Web.ViewModels.Ingredients
 {
-    public class IngredientViewModel
+    public class IngredientViewModel : IMapFrom<Ingredient>
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
 
-        public int Calories
-        {
-            get
-            {
-                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
-            }
-        }
+        public string Name { get; set; }
 
         public int Proteins { get; set; }
 

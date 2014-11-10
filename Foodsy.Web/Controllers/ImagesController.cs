@@ -7,13 +7,11 @@ using System.Web.Mvc;
 
 namespace Foodsy.Web.Controllers
 {
-    public class ImagesController : Controller
+    public class ImagesController : BaseController
     {
-        private IFoodsyData data;
-
         public ImagesController(IFoodsyData data)
+            : base(data)
         {
-            this.data = data;
         }
 
         [HttpGet]
@@ -29,10 +27,10 @@ namespace Foodsy.Web.Controllers
             if (image != null)
             {
                 image.SaveAs(Server.MapPath("~/Content/img/") + image.FileName);
-                var recipe = this.data.Recipes.All().FirstOrDefault(x => x.Name == name);
+                var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
                 recipe.ImageUrl = "/Content/img/" + image.FileName;
 
-                this.data.SaveChanges();
+                this.Data.SaveChanges();
 
                 return RedirectToAction("RecipeDetails", "Recipes", new { id = recipe.Id });
             }

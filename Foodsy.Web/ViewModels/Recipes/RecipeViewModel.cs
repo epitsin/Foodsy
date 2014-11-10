@@ -6,8 +6,9 @@
 
     using Foodsy.Data.Models;
     using Foodsy.Web.ViewModels.Comment;
+    using Foodsy.Web.Infrastructure.Mapping;
 
-    public class RecipeViewModel
+    public class RecipeViewModel : IMapFrom<Recipe>
     {
         public RecipeViewModel()
         {
@@ -31,6 +32,14 @@
 
         [Display(Name = "Grams per portion")]
         public int GramsPerPortion { get; set; }
+
+        public int CaloriesPerPortion { get; set; }
+
+        public int Proteins { get; set; }
+
+        public int Carbohydrates { get; set; }
+
+        public int Fats { get; set; }
 
         public int ViewCount { get; set; }
 

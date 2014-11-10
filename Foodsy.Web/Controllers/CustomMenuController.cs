@@ -39,24 +39,28 @@ namespace Foodsy.Web.Controllers
                 var meals = new List<Recipe>();
                 if (model.Type == CustomMenuType.HighFat)
                 {
-                    meals = this.SelectMeals(BMR + 100);
+                    meals = this.SelectMeals(BMR + 100, (x => x.Fats), null);
                 }
                 else if (model.Type == CustomMenuType.LowCarb)
                 {
-                    meals = this.SelectMeals(BMR);
+                    meals = this.SelectMeals(BMR, (x => x.Carbohydrates), null);
+                }
+                else if (model.Type == CustomMenuType.LowFat)
+                {
+                    meals = this.SelectMeals(BMR, (x => x.Carbohydrates), null);
                 }
                 else if (model.Type == CustomMenuType.Raw)
                 {
-                    meals = this.SelectMeals(BMR);
+                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Raw);
                 }
                 else if (model.Type == CustomMenuType.Vegan)
                 {
-                    meals = this.SelectMeals(BMR);
+                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Vegetarian);
 
                 }
-                else if(model.Type == CustomMenuType.Vegetarian)
+                else if (model.Type == CustomMenuType.Vegetarian)
                 {
-                    meals = this.SelectMeals(BMR);                    
+                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Vegetarian);
                 }
                 else
                 {
@@ -71,14 +75,7 @@ namespace Foodsy.Web.Controllers
             return RedirectToAction("GetInformation");
         }
 
-        private Expression<Func<T, object>> CreatePropSelectorExpression<T>(string propertyName)
-        {
-            var parameter = Expression.Parameter(typeof(T));
-            var body = Expression.Convert(Expression.PropertyOrField(parameter, propertyName), typeof(object));
-            return Expression.Lambda<Func<T, object>>(body, parameter);
-        }
-
-        private List<Recipe> SelectMeals(int calories)
+        private List<Recipe> SelectMeals(int calories, Func<Recipe, int> action, Category? category)
         {
             var recipes = this.Data.Recipes.All().ToList();
             var recipesCount = recipes.Count();
@@ -92,10 +89,21 @@ namespace Foodsy.Web.Controllers
                 for (int j = 1; j <= calories; j++)
                 {
                     int notUsedValue = dynamicMatrix[i - 1, j];
-                    int usedValue = 0; 
+                    int usedValue = 0;
                     if (j - currentRecipe.Calories >= 0)
                     {
-                        usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + currentRecipe.Carbohydrates; //TODO: CHANGE THIS WHEN YOU KNOW HOW
+                        //usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + currentRecipe.Carbohydrates; //TODO: CHANGE THIS WHEN YOU KNOW HOW
+                        if (category == null)
+                        {
+                            usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
+                        }
+                        else
+                        {
+                            if(currentRecipe.Category == category)
+                            {
+                                usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
+                            }
+                        }
                     }
 
                     if (usedValue >= notUsedValue && usedValue != 0)

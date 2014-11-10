@@ -13,7 +13,9 @@
     {
         protected void Application_Start()
         {
-            //ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
+            ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
+
+            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -22,7 +24,6 @@
 
             //AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 
-            AutoMapperConfig.Execute();
         }
     }
 }

@@ -80,6 +80,10 @@ namespace Foodsy.Web.Controllers
                 RecipeIngredients = recipe.RecipeIngredients
             };
 
+            //var canVote = !this.Data.Likes.All().Any(x => x.RecipeId == recipe.Id && x.AuthorId == this.CurrentUser.Id);
+            var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
+            ViewBag.CanLike = canLike;
+
             if (recipe == null)
             {
                 return HttpNotFound();
@@ -166,6 +170,37 @@ namespace Foodsy.Web.Controllers
 
             return Content(votes.ToString());
         }
+
+        //public ActionResult Search(SubmitSearchModel submitModel)
+        //{
+        //    var result = this.Data.Laptops.All();
+
+        //    if (!string.IsNullOrEmpty(submitModel.ModelSearch))
+        //    {
+        //        result = result.Where(x => x.Model.ToLower().Contains(submitModel.ModelSearch.ToLower()));
+        //    }
+
+        //    if (submitModel.ManufSearch != "All")
+        //    {
+        //        result = result.Where(x => x.Manufacturer.Name == submitModel.ManufSearch);
+        //    }
+
+        //    if (submitModel.PriceSearch != 0)
+        //    {
+        //        result = result.Where(x => x.Price < submitModel.PriceSearch);
+        //    }
+
+        //    var endResult = result.Select(x => new LaptopViewModel
+        //    {
+        //        Id = x.Id,
+        //        Model = x.Model,
+        //        Manufacturer = x.Manufacturer.Name,
+        //        ImageUrl = x.ImageUrl,
+        //        Price = x.Price
+        //    });
+
+        //    return View(endResult);
+        //}
 
         private void IncreaseViewCount(Recipe recipe)
         {

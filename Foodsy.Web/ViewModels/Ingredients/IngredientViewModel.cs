@@ -13,6 +13,14 @@ namespace Foodsy.Web.ViewModels.Ingredients
 
         public string Name { get; set; }
 
+        public int Calories
+        {
+            get
+            {
+                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
+            }
+        }
+
         public int Proteins { get; set; }
 
         public int Carbohydrates { get; set; }

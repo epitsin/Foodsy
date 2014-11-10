@@ -5,6 +5,7 @@
         Meat,
         Fish,
         Vegetarian,
+        Vegan,
         DairyFree,
         GutenFree,
         Raw,

@@ -433,13 +433,13 @@
     <Content Include="Views\Recipes\EditorTemplates\Action.cshtml" />
     <Content Include="Views\Recipes\EditorTemplates\CreateRecipeViewModel.cshtml" />
     <Content Include="Views\Ingredients\IngredientDetails.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="ViewModels\Home\" />
     <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>

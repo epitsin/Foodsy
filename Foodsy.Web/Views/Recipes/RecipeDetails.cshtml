@@ -10,7 +10,7 @@
                         <div class="post">
                             <img src="@Model.ImageUrl" />
                             <div class="post_info">
-                                <div class="fleft">On <span>@Model.CreatedOn</span> / By <span>Someone</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                                <div class="fleft">On <span>@Html.DisplayFor(x=> Model.CreatedOn)</span> / By <span>Someone</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
                                 <div class="fright"><a href="#">@Model.ViewCount</a> Views</div>
                                 <div class="clear"></div>
                             </div>
@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 Likes: <span id="recipe-votes">@Model.Likes.Count</span>
-                                @if (User.Identity.IsAuthenticated)
+                                @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
                                 {
                                     @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "vote-button", @class = "btn" })
                                 }

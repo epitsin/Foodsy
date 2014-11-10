@@ -3,7 +3,7 @@
 <li>
     <div class="comment_right">
         <div class="comment_info">
-            Posted by <a href="#">@Model.AuthorUsername</a> <span>|</span> @Model.CreatedOn
+            Posted by <a href="#">@Model.AuthorUsername</a> <span>|</span> @Html.DisplayFor(x=> Model.CreatedOn)
         </div>
         <div class="container">            
             @Model.Text

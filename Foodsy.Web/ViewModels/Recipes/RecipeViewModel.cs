@@ -8,12 +8,13 @@
     using Foodsy.Web.ViewModels.Comment;
     using Foodsy.Web.Infrastructure.Mapping;
     using System.Web.Mvc;
+    using Foodsy.Web.ViewModels.Actions;
 
     public class RecipeViewModel : IMapFrom<Recipe>
     {
         public RecipeViewModel()
         {
-            this.Actions = new List<Foodsy.Data.Models.Action>();
+            this.Actions = new List<ActionViewModel>();
         }
 
         [HiddenInput(DisplayValue = false)]
@@ -55,7 +56,7 @@
         public ICollection<CommentViewModel> Comments { get; set; }
 
         [UIHint("Action")]
-        public ICollection<Foodsy.Data.Models.Action> Actions { get; set; }
+        public ICollection<ActionViewModel> Actions { get; set; }
 
         public ICollection<Like> Likes { get; set; }
 

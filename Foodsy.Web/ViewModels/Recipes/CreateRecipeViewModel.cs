@@ -4,12 +4,13 @@
     using System.ComponentModel.DataAnnotations;
 
     using Foodsy.Data.Models;
+    using Foodsy.Web.ViewModels.Actions;
 
     public class CreateRecipeViewModel
     {
         public CreateRecipeViewModel()
         {
-            this.Actions = new List<Foodsy.Data.Models.Action>();
+            this.Actions = new List<ActionViewModel>();
         }
 
         public string Name { get; set; }
@@ -24,6 +25,6 @@
         [Display(Name = "Grams per portion")]
         public int GramsPerPortion { get; set; }
 
-        public ICollection<Foodsy.Data.Models.Action> Actions { get; set; }
+        public ICollection<ActionViewModel> Actions { get; set; }
     }
 }

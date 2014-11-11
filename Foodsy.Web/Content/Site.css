@@ -1342,6 +1342,15 @@ a {
     padding-top: 30px;
 }
 
-.descr-heading{
+.descr-heading {
     color: #d00b01;
+}
+
+.with-numbers {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.control-label{
+    font-size: 16px;
 }

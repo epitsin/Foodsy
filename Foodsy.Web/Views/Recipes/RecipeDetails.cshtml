@@ -32,7 +32,7 @@
                                 Likes: <span id="recipe-votes">@Model.Likes.Count</span>
                                 @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
                                 {
-                                    @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "vote-button", @class = "btn" })
+                                    @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })
                                 }
                             </div>
                             <h4>@Model.Comments.Count comments</h4>
@@ -63,16 +63,12 @@
                         <div class="sidebar" style="padding-top:60px;">
                             <div class="widget">
                                 <h2 class="title"><span>Let's prepare it together!</span></h2>
-                                <ul class="links">
-                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur</a></li>
-                                    <li><a href="#">Adipisicing elit, sed do eiusmod tempor incididunt</a></li>
-                                    <li><a href="#">Ut labore et dolore magna aliqua.</a></li>
-                                    <li><a href="#">Ut enim ad minim veniam, quis nostrud exercitation ullamco</a></li>
-                                    <li><a href="#">Laboris nisi ut aliquip ex ea commodo consequat.</a></li>
-                                    <li><a href="#">Duis aute irure dolor in reprehenderit</a></li>
-                                    <li><a href="#">In voluptate velit esse cillum</a></li>
-                                    <li><a href="#">Excepteur sint occaecat cupidatat non proident</a></li>
-                                </ul>
+                                <ol class="links">
+                                    @foreach (var action in Model.Actions)
+                                    {
+                                        <li>@action.Text</li>
+                                    }
+                                </ol>
                             </div>
                         </div>
                     </div> 
@@ -90,7 +86,7 @@
         }
 
         function hideVoteButton() {
-            $("#vote-button").hide();
+            $("#like-button").hide();
         }
     </script>
 }

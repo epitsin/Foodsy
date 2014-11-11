@@ -9,7 +9,7 @@
                     <div class="col-md-8">
                         <div class="post">
                             <div class="post_info">
-                                <div class="fleft">From <span>@Model.Start</span> / To <span>@Model.Finish</span> / Tags <a href="">Works</a>, <a href="">Personal</a></div>
+                                <div class="fleft">From <span>@Html.DisplayFor(x => Model.Start)</span> / To <span>@Html.DisplayFor(x => Model.Finish)</span> / Tags <a href="">Works</a>, <a href="">Personal</a></div>
                                 <div class="clear"></div>
                             </div>
                             <p>@Model.Description</p>
@@ -29,12 +29,12 @@
                                 <ul class="links" id="participants">
                                     @foreach (var participant in Model.Participants)
                                     {
-                                        <li><a href="">@participant.UserName</a></li>
+                                        @Html.Partial("_ChallengeParticipantsPartial", participant)
                                     }
                                 </ul>
-                                @if (User.Identity.IsAuthenticated)
+                                @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)
                                 {
-                                    @Ajax.ActionLink("Join", "Join", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "participants", HttpMethod = "Post", OnSuccess = "hideJoinButton" }, new { id = "join-button", @class = "btn send_btn" })
+                                    @Ajax.ActionLink("Join", "Join", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "participants", HttpMethod = "Post", OnSuccess = "hideJoinButton" }, new { id = "join-button", @class = "btn send_btn" })
                                 }
                             </div>
                         </div>

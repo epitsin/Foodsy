@@ -62,6 +62,8 @@ namespace Foodsy.Web.Controllers
                     Text = x.Text
                 }).ToList();
 
+            var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
+
             var recipeModel = new RecipeViewModel
             {
                 Id = recipe.Id,
@@ -69,7 +71,7 @@ namespace Foodsy.Web.Controllers
                 Description = recipe.Description,
                 ImageUrl = recipe.ImageUrl,
                 CreatedOn = recipe.CreatedOn,
-                Actions = recipe.Actions,
+                Actions = actions,
                 Comments = comments,
                 CaloriesPerPortion = recipe.CaloriesPerPortion,
                 Carbohydrates = recipe.Carbohydrates,
@@ -80,7 +82,6 @@ namespace Foodsy.Web.Controllers
                 RecipeIngredients = recipe.RecipeIngredients
             };
 
-            //var canVote = !this.Data.Likes.All().Any(x => x.RecipeId == recipe.Id && x.AuthorId == this.CurrentUser.Id);
             var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
             ViewBag.CanLike = canLike;
 
@@ -95,15 +96,21 @@ namespace Foodsy.Web.Controllers
         public ActionResult CreateRecipe()
         {
             var recipe = new CreateRecipeViewModel();
-            recipe.Actions.Add(new Foodsy.Data.Models.Action());
+            recipe.Actions.Add(new ActionViewModel());
             return View(recipe);
         }
 
         [HttpPost]
-        public ActionResult CreateRecipe(RecipeViewModel recipe)
+        public ActionResult CreateRecipe(CreateRecipeViewModel recipe)
         {
             if(ModelState.IsValid)
             {
+                var actions = recipe.Actions.AsQueryable().Project().To<Foodsy.Data.Models.Action>().ToList();
+                foreach (var action in actions)
+                {
+                    this.Data.Actions.Add(action);
+                }
+
                 var newRecipe = new Recipe
                 {
                    Name = recipe.Name,
@@ -111,9 +118,10 @@ namespace Foodsy.Web.Controllers
                    Category = recipe.Category,
                    AuthorId = this.User.Identity.GetUserId(),
                    CreatedOn = DateTime.Now,
-                   MealType = recipe.MealType
+                   MealType = recipe.MealType,
+                   Actions = actions,
+                   GramsPerPortion = recipe.GramsPerPortion
                 };
-
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
             }

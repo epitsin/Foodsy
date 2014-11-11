@@ -4,8 +4,7 @@
             <h3 class="text-center">Upload an image to your recipe</h3>
             <hr />
             <div class="form-group">
-                <div class="col-md-4 control-label">Image</div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-md-offset-4">
                     @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -14,7 +13,7 @@
                         string recipe = ViewBag.RecipeName;
                         @Html.Hidden("name", recipe)
                         <input type="file" name="image" />
-                        <div class="form-group">
+                        <div class="form-group top-bottom-space">
                             <div class="col-md-offset-4 col-md-8">
                                 <input type="submit" class="btn send_btn" value="Select" />
                             </div>

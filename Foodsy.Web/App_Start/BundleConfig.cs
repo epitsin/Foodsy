@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Optimization;
 
 namespace Foodsy.Web
@@ -8,19 +9,47 @@ namespace Foodsy.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+            bundles.IgnoreList.Clear();
+
+            RegisterScriptBundles(bundles);
+            RegisterStyleBundles(bundles);    
+
+            BundleTable.EnableOptimizations = false;
+        }
+ 
+        private static void RegisterStyleBundles(BundleCollection bundles)
+        {
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo").Include("~/Content/kendo/kendo.common.min.css",
+                      "~/Content/kendo/kendo.common-bootstrap.min.css",
+                      "~/Content/kendo/kendo.silver.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/custom").Include(
+                      "~/Content/site.css"));
+        }
+ 
+        private static void RegisterScriptBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                //.Include("~/Scripts/jquery-{version}.js",
+                //        "~/Scripts/jquery.unobtrusive-ajax.js"));
+                .Include("~/Scripts/kendo/jquery.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax")
+                //.Include("~/Scripts/jquery-{version}.js",
+                //        "~/Scripts/jquery.unobtrusive-ajax.js"));
+               .Include(
+                       "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo")
+                .Include("~/Scripts/kendo/kendo.all.min.js",
+                "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryPretty").Include(
-            //            "~/Scripts/jquery.preloader.js",
-            //            "~/Scripts/jquery.prettyPhoto.js"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -31,14 +60,6 @@ namespace Foodsy.Web
             bundles.Add(new ScriptBundle("~/bundles/myscript").Include(
                       "~/Scripts/myscript.js",
                       "~/Scripts/sorting.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
-
-            // Set EnableOptimizations to false for debugging. For more information,
-            // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
         }
     }
 }

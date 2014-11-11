@@ -55,6 +55,8 @@ namespace Foodsy.Web.Controllers
                 Participants = challenge.Participants,
                 Recipes = challenge.Recipes
             };
+            var canJoin = !challenge.Participants.Any(x => x.Id == this.CurrentUser.Id);
+            ViewBag.CanJoin = canJoin;
 
             if (challenge == null)
             {
@@ -66,24 +68,18 @@ namespace Foodsy.Web.Controllers
 
         public ActionResult Join(int id)
         {
-            var userId = User.Identity.GetUserId();
-
             var challenge = this.Data.Challenges.Find(id);
 
-            var canJoin = !challenge.Participants.Any(x => x.Id == userId);
+            var canJoin = !challenge.Participants.Any(x => x.Id == this.CurrentUser.Id);
 
             if (canJoin)
             {
-                var store = new UserStore<User>(new FoodsyDbContext());
-                var userManager = new UserManager<User>(store);
-                var user = userManager.FindByNameAsync(User.Identity.Name).Result;
+                challenge.Participants.Add(this.CurrentUser);
 
-                challenge.Participants.Add(user);
-
-                this.Data.SaveChanges(); //TODO: does not work. Problems with 2 contexts!!!
+                this.Data.SaveChanges();
             }
-            
-            return View(challenge);
+
+            return PartialView("_ChallengeParticipantsPartial", this.CurrentUser);
         }
     }
 }

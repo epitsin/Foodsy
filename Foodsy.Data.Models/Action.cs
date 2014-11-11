@@ -6,7 +6,7 @@
 
         public string Text { get; set; }
 
-        public int StepLevel { get; set; }
+        public string ParentActions { get; set; }
 
         public int RecipeId { get; set; }
 

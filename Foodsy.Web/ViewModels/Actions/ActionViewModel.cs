@@ -1,10 +1,13 @@
 ﻿namespace Foodsy.Web.ViewModels.Actions
 {
-    public class ActionViewModel
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Infrastructure.Mapping;
+
+    public class ActionViewModel : IMapFrom<Action>
     {
         public string Text { get; set; }
 
-        public int StepLevel { get; set; }
+        public string ParentActions { get; set; }
 
     }
 }

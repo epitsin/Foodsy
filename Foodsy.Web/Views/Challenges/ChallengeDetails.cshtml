@@ -17,7 +17,7 @@
                             <ul class="links">
                                 @foreach (var recipe in Model.Recipes)
                                 {
-                                    <li><a href="@Url.Action("RecipeDetails", "Recipes", new { recipe.Id })">@recipe.Name</a></li>
+                                    <li><a href="@Url.Action("RecipeDetails", "Recipes", new { area = "Recipes", recipe.Id })">@recipe.Name</a></li>
                                 }
                             </ul>
                         </div>

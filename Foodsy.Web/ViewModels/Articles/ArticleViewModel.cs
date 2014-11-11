@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class ArticleViewModel
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Infrastructure.Mapping;
+
+    public class ArticleViewModel : IMapFrom<Article>
     {
         public int Id { get; set; }
 

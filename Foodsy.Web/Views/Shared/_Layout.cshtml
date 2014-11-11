@@ -6,8 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
     @Styles.Render("~/Content/custom")
@@ -39,13 +39,16 @@
                     <nav id="main_menu">
                         <div class="menu_wrap">
                             <ul class="nav sf-menu">
-                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                <li>@Html.ActionLink("About", "About", "Home")</li>
-                                <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes")</li>
-                                <li>@Html.ActionLink("Healthy", "AllArticles", "Articles")</li>
-                                <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges")</li>
-                                <li>@Html.ActionLink("Custom menu", "GetInformation", "CustomMenu")</li>
-                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
+                                <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, new { })</li>
+                                }
                             </ul>
                         </div>
                     </nav>
@@ -92,7 +95,7 @@
                                     <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes")</li>
                                     <li>@Html.ActionLink("Healthy", "AllArticles", "Articles")</li>
                                     <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges")</li>
-                                    <li>@Html.ActionLink("Custom menu", "GetInformation", "CustomMenu")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                 </ul>
                             </div>
                         </div>

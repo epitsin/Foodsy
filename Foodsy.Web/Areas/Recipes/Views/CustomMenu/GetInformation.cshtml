@@ -1,0 +1,54 @@
+﻿@model Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu.CustomMenuViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Generate your own custom menu!</h2>
+        <section id="userInformation" class="top-bottom-space">
+            @using (Html.BeginForm("GenerateMenu", "CustomMenu", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3 class="text-center">Enter the following information about yourself</h3>
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                var gender = new List<SelectListItem>() { new SelectListItem { Text = "Male", Value = "Male" }, new SelectListItem { Text = "Female", Value = "Female" } };
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Gender", gender, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Age, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Age, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Height, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Height, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Weight, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Weight, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Type, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EnumDropDownListFor(m => m.Type, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" class="btn send_btn" value="Generate" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>

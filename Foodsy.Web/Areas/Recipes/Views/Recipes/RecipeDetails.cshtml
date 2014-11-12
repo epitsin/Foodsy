@@ -1,4 +1,4 @@
-﻿@model Foodsy.Web.Areas.Recipes.ViewModels.Recipes.RecipeViewModel
+﻿@model Foodsy.Web.Areas.Recipes.ViewModels.Recipes.DetailedRecipeViewModel
 
 <div class="page_container">
     <div class="wrap">
@@ -24,7 +24,11 @@
                                             Anonymous
                                         </span>
                                     }
-                                    / Tags <a href="#">Works</a>, <a href="#">Personal</a>
+                                    / Tags 
+                                    @foreach (var tag in Model.Tags)
+                                    {
+                                        <a href="#">@tag.Name </a> 
+                                    }
                                 </div>
                                 <div class="fright"><a href="#">@Model.Views.Count</a> Views</div>
                                 <div class="clear"></div>

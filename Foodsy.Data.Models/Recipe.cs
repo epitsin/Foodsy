@@ -11,6 +11,7 @@
         private ICollection<Like> likes;
         private ICollection<Challenge> challenges;
         private ICollection<View> views;
+        private ICollection<Tag> tags;
 
         public Recipe()
         {
@@ -20,6 +21,7 @@
             this.likes = new HashSet<Like>();
             this.challenges = new HashSet<Challenge>();
             this.views = new HashSet<View>();
+            this.tags = new HashSet<Tag>();
         }
 
         public int Id { get; set; }
@@ -121,6 +123,18 @@
             set
             {
                 this.views = value;
+            }
+        }
+
+        public virtual ICollection<Tag> Tags
+        {
+            get
+            {
+                return this.tags;
+            }
+            set
+            {
+                this.tags = value;
             }
         }
     }

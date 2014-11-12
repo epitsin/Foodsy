@@ -1,21 +1,23 @@
-﻿using Foodsy.Data.Contracts.Repository;
-using Foodsy.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using Foodsy.Data;
-using System.Net;
-using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
-using Foodsy.Web.Areas.Recipes.ViewModels.Comment;
-using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
-using Foodsy.Web.Controllers;
-using Microsoft.AspNet.Identity;
-
-namespace Foodsy.Web.Areas.Recipes.Controllers
+﻿namespace Foodsy.Web.Areas.Recipes.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Text.RegularExpressions;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
+    using Foodsy.Web.Areas.Recipes.ViewModels.Comment;
+    using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
+    using Foodsy.Web.Controllers;
+
+    using Microsoft.AspNet.Identity;
+
     public class RecipesController : BaseController
     {
         private const int PageSize = 9;
@@ -28,19 +30,10 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
         {
             int pageNumber = id.GetValueOrDefault(1);
 
-            var allRecipes = this.Data.Recipes.All().Select(x => new RecipeViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                ImageUrl = x.ImageUrl,
-                CreatedOn = x.CreatedOn,
-                Category = x.Category
-            }).OrderBy(x => x.Id);
+            var allRecipes = this.Data.Recipes.All().AsQueryable().Project().To<AllRecipesViewModel>().ToList().OrderBy(x => x.Id);
 
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);
             ViewBag.Pages = Math.Ceiling((double)allRecipes.Count() / PageSize);
-            //.AsQueryable().Project().To<RecipeViewModel>();
 
             return View(recipes);
         }
@@ -53,7 +46,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
             }
 
             var recipe = this.Data.Recipes.Find(id);
-            if(!recipe.Views.Any(x=>x.AuthorId == User.Identity.GetUserId()))
+            if (!recipe.Views.Any(x => x.AuthorId == User.Identity.GetUserId()))
             {
                 recipe.Views.Add(new View
                 {
@@ -64,7 +57,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
 
             var comments = recipe.Comments.AsQueryable().Project().To<CommentViewModel>().ToList();
             var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
-            var recipeModel = new RecipeViewModel
+            var recipeModel = new DetailedRecipeViewModel
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
@@ -80,7 +73,8 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                 Likes = recipe.Likes,
                 RecipeIngredients = recipe.RecipeIngredients,
                 Views = recipe.Views,
-                Author = recipe.Author
+                Author = recipe.Author,
+                Tags = recipe.Tags
             };
 
             if (this.CurrentUser != null)
@@ -130,11 +124,47 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                     Actions = actions,
                     GramsPerPortion = recipe.GramsPerPortion
                 };
+
+                this.GetTagsForRecipe(recipe, newRecipe);
+
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
             }
 
             return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
+        }
+
+        private void GetTagsForRecipe(CreateRecipeViewModel recipe, Recipe newRecipe)
+        {
+            var tagNames = Regex.Split(recipe.Name, @"\W+").ToList();
+
+            foreach (var tag in tagNames)
+            {
+                if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
+                {
+                    var newTag = new Tag { Name = tag.ToLower() };
+                    newTag.Recipes.Add(newRecipe);
+                    this.Data.Tags.Add(newTag);
+                }
+                else
+                {
+                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Recipes.Add(newRecipe);
+                }
+            }
+
+            foreach (var ingredient in recipe.RecipeIngredients)
+            {
+                if (!this.Data.Tags.All().Any(x => x.Name == ingredient.Ingredient.Name.ToLower()))
+                {
+                    var newTag = new Tag { Name = ingredient.Ingredient.Name.ToLower() };
+                    newTag.Recipes.Add(newRecipe);
+                    this.Data.Tags.Add(newTag);
+                }
+                else
+                {
+                    this.Data.Tags.All().FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower()).Recipes.Add(newRecipe);
+                }
+            }
         }
 
         [Authorize]

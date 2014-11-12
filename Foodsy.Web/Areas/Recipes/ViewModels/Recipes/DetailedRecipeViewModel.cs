@@ -10,12 +10,13 @@
     using Foodsy.Web.Infrastructure.Mapping;
     using System.Web.Mvc;
 
-    public class RecipeViewModel : IMapFrom<Recipe>
+    public class DetailedRecipeViewModel : IMapFrom<Recipe>
     {
-        public RecipeViewModel()
+        public DetailedRecipeViewModel()
         {
             this.Actions = new List<ActionViewModel>();
             this.Views = new List<View>();
+            this.Tags = new List<Tag>();
         }
 
         [HiddenInput(DisplayValue = false)]
@@ -64,5 +65,7 @@
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
 
         public ICollection<View> Views { get; set; }
+
+        public ICollection<Tag> Tags { get; set; }
     }
 }

@@ -34,6 +34,10 @@
 
         public IDbSet<Recipe> Recipes { get; set; }
 
+        public IDbSet<Tag> Tags { get; set; }
+
+        public IDbSet<View> Views { get; set; }
+
         public static FoodsyDbContext Create()
         {
             return new FoodsyDbContext();

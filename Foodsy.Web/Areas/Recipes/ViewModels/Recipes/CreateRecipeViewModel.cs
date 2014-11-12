@@ -11,6 +11,7 @@
         public CreateRecipeViewModel()
         {
             this.Actions = new List<ActionViewModel>();
+            this.RecipeIngredients = new List<RecipeIngredient>();
         }
 
         public string Name { get; set; }
@@ -26,5 +27,7 @@
         public int GramsPerPortion { get; set; }
 
         public ICollection<ActionViewModel> Actions { get; set; }
+
+        public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

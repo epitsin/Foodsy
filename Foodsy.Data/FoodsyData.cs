@@ -104,6 +104,22 @@
             }
         }
 
+        public IRepository<Tag> Tags
+        {
+            get
+            {
+                return this.GetRepository<Tag>();
+            }
+        }
+
+        public IRepository<View> Views
+        {
+            get
+            {
+                return this.GetRepository<View>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.context.SaveChanges();

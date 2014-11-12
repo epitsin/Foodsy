@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class Ingredient
+    using Foodsy.Data.Contracts.Models;
+
+    public class Ingredient : DeletableEntity
     {
         private ICollection<RecipeIngredient> recipes;
 

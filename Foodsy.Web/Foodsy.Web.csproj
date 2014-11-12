@@ -196,10 +196,14 @@
     <Compile Include="Areas\Administration\Controllers\Base\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\Base\KendoGridAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\IngredientsAdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\RecipesAdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersAdminController.cs" />
     <Compile Include="Areas\Administration\Models\Base\AdministrationViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ArticleViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\IngredientViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\RecipeViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
@@ -246,6 +250,7 @@
     <Content Include="Content\docs.css" />
     <Content Include="Content\img\about-bg.jpg" />
     <Content Include="Content\img\American-Bar_1920x600_01.jpg" />
+    <Content Include="Content\img\Articles.png" />
     <Content Include="Content\img\assets\responsive-illustrations.png" />
     <Content Include="Content\img\background_contacts.jpg" />
     <Content Include="Content\img\beer-tomato-food-knife-still-life_1920x1080_sc.jpg" />
@@ -270,6 +275,7 @@
     <Content Include="Content\img\guitar.png" />
     <Content Include="Content\img\guitar2.jpg" />
     <Content Include="Content\img\header-bg.png" />
+    <Content Include="Content\img\icon-ingr-256.png" />
     <Content Include="Content\img\icon1.png" />
     <Content Include="Content\img\icon2.png" />
     <Content Include="Content\img\icon3.png" />
@@ -327,6 +333,7 @@
     <Content Include="Content\img\raspberries___food-wallpaper-1920x600.jpg" />
     <Content Include="Content\img\red-wine_1920x1080_sc.jpg" />
     <Content Include="Content\img\red_wine_bottle-wallpaper-1920x1080.jpg" />
+    <Content Include="Content\img\resized_160x159_recipes.png" />
     <Content Include="Content\img\Restaurant-Food_02_1920x600_01.jpg" />
     <Content Include="Content\img\Restaurant-Food_03_1920x600_03.jpg" />
     <Content Include="Content\img\salmon-and-fresh-vegetables_1920x1080_sc.jpg" />
@@ -343,6 +350,7 @@
     <Content Include="Content\img\twit.png" />
     <Content Include="Content\img\twitter-bg.jpg" />
     <Content Include="Content\img\twitter.png" />
+    <Content Include="Content\img\users.jpg" />
     <Content Include="Content\img\watch.png" />
     <Content Include="Content\img\Weihnachten_02_1920x600_01.jpg" />
     <Content Include="Content\img\welcome_bg.png" />
@@ -605,6 +613,8 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Administration\Views\ArticlesAdmin\AllArticles.cshtml" />
     <Content Include="Areas\Administration\Views\RecipesAdmin\AllRecipes.cshtml" />
+    <Content Include="Areas\Administration\Views\IngredientsAdmin\AllIngredients.cshtml" />
+    <Content Include="Areas\Administration\Views\UsersAdmin\AllUsers.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

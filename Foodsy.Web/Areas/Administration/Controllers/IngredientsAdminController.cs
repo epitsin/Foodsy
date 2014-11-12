@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -11,33 +10,32 @@
     using Kendo.Mvc.UI;
 
     using Foodsy.Data;
-    using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
 
-    using Model = Foodsy.Data.Models.Recipe;
-    using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.RecipeViewModel;
+    using Model = Foodsy.Data.Models.Ingredient;
+    using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.IngredientViewModel;
 
-    public class RecipesAdminController : KendoGridAdministrationController
+    public class IngredientsAdminController : KendoGridAdministrationController
     {
-        public RecipesAdminController(IFoodsyData data)
+        public IngredientsAdminController(IFoodsyData data)
             : base(data)
         {
         }
 
-        public ActionResult AllRecipes()
+        public ActionResult AllIngredients()
         {
             return View();
         }
 
         protected override IEnumerable GetData()
         {
-            return this.Data.Recipes.All().Project().To<RecipeViewModel>();
+            return this.Data.Ingredients.All().Project().To<IngredientViewModel>();
         }
 
         protected override T GetById<T>(object id)
         {
-            return this.Data.Recipes.Find(id) as T;
+            return this.Data.Ingredients.Find(id) as T;
         }
 
         [HttpPost]
@@ -61,7 +59,7 @@
         {
             if (model != null && ModelState.IsValid)
             {
-                this.Data.Recipes.Delete(model.Id);
+                this.Data.Ingredients.Delete(model.Id);
                 this.Data.SaveChanges();
             }
 

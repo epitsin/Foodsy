@@ -1,0 +1,36 @@
+﻿@using Foodsy.Web.Areas.Administration.ViewModels;
+@{
+    const string ControllerName = "IngredientsAdmin";
+}
+
+@(Html.Kendo()
+    .Grid<IngredientViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+    {
+        cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Name);
+        cols.Bound(pr => pr.Proteins);
+        cols.Bound(pr => pr.Carbohydrates);
+        cols.Bound(pr => pr.Fats);
+        cols.Bound(pr => pr.CreatedOn).Hidden();
+        cols.Bound(pr => pr.ModifiedOn).Hidden();
+        cols.Command(com => com.Edit()).Title("Edit");
+        cols.Command(com => com.Destroy()).Title("Delete");
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .ToolBar(toolbar => toolbar.Create())
+    .DataSource(data =>
+        data
+            .Ajax()
+            .Model(m => m.Id(f => f.Id))
+            .Read(read => read.Action("Read", ControllerName))
+            .Create(create => create.Action("Create", ControllerName))
+            .Update(update => update.Action("Update", ControllerName))
+            .Destroy(destroy => destroy.Action("Destroy", ControllerName))
+            ))

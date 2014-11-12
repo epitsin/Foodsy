@@ -56,25 +56,5 @@
 
             return PartialView("_AllArticlesPartial", articlesFound);
         }
-
-        private void GetTagsForArticle(CreateArticleViewModel article, Article newArticle)
-        {
-            var tagNames = Regex.Split(article.Title, @"\W+").ToList();
-
-            foreach (var tag in tagNames)
-            {
-                if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
-                {
-                    var newTag = new Tag { Name = tag.ToLower() };
-                    newTag.Articles.Add(newArticle);
-                    this.Data.Tags.Add(newTag);
-                }
-                else
-                {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(newArticle);
-                }
-            }
-        }
-
     }
 }

@@ -3,41 +3,43 @@
     using System;
     using System.Collections;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
 
     using Kendo.Mvc.UI;
 
-    using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Data;
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
 
-    using Model = Foodsy.Data.Models.Article;
-    using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.ArticleViewModel;
+    using Model = Foodsy.Data.Models.Recipe;
+    using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.RecipeViewModel;
 
-    public class ArticlesController : KendoGridAdministrationController
+    public class RecipesAdminController : KendoGridAdministrationController
     {
-        public ArticlesController(IFoodsyData data)
+        public RecipesAdminController(IFoodsyData data)
             : base(data)
         {
         }
 
-        public ActionResult AllArticles()
+        public ActionResult AllRecipes()
         {
             return View();
         }
 
         protected override IEnumerable GetData()
         {
-            return this.Data.Articles.All().Project().To<ArticleViewModel>();
+            return this.Data.Recipes.All().Project().To<RecipeViewModel>();
         }
 
         protected override T GetById<T>(object id)
         {
             return this.Data.Articles.Find(id) as T;
         }
-        
+
         [HttpPost]
         public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {

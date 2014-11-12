@@ -1,17 +1,20 @@
 ﻿@using Foodsy.Web.Areas.Administration.ViewModels;
 @{
-    const string ControllerName = "Articles";
+    const string ControllerName = "RecipesAdmin";
 }
 
 @(Html.Kendo()
-    .Grid<ArticleViewModel>()
+    .Grid<RecipeViewModel>()
     .Name("grid")
     .Columns(cols =>
     {
         cols.Bound(pr => pr.Id);
-        cols.Bound(pr => pr.Title);
-        cols.Bound(pr => pr.Text);
+        cols.Bound(pr => pr.Name);
+        cols.Bound(pr => pr.Description);
         cols.Bound(pr => pr.ImageUrl);
+        cols.Bound(pr => pr.Category);
+        cols.Bound(pr => pr.MealType);
+        cols.Bound(pr => pr.GramsPerPortion);
         cols.Bound(pr => pr.CreatedOn).Hidden();
         cols.Bound(pr => pr.ModifiedOn).Hidden();
         cols.Command(com => com.Edit()).Title("Edit");
@@ -23,7 +26,6 @@
     .Groupable()
     .Filterable()
     .Editable(edit => edit.Mode(GridEditMode.PopUp))
-    .ToolBar(toolbar => toolbar.Create())
     .DataSource(data =>
         data
             .Ajax()

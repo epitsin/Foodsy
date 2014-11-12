@@ -601,6 +601,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Areas\Administration\Views\Articles\AllArticles.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -696,7 +697,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Admin\" />
-    <Folder Include="Areas\Administration\Views\Articles\" />
     <Folder Include="Areas\Administration\Views\KendoGridAdministration\" />
     <Folder Include="Areas\Recipes\Models\" />
     <Folder Include="Views\Comments\" />

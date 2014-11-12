@@ -23,7 +23,7 @@
         {
         }
 
-        public ActionResult Index()
+        public ActionResult AllArticles()
         {
             return View();
         }
@@ -37,8 +37,7 @@
         {
             return this.Data.Articles.Find(id) as T;
         }
-
-
+        
         [HttpPost]
         public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {

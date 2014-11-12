@@ -24,7 +24,7 @@ namespace Foodsy.Web
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include("~/Content/kendo/kendo.common.min.css",
                       "~/Content/kendo/kendo.common-bootstrap.min.css",
-                      "~/Content/kendo/kendo.silver.min.css"));
+                      "~/Content/kendo/kendo.default.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                       "~/Content/site.css"));
@@ -38,8 +38,6 @@ namespace Foodsy.Web
                 .Include("~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax")
-                //.Include("~/Scripts/jquery-{version}.js",
-                //        "~/Scripts/jquery.unobtrusive-ajax.js"));
                .Include(
                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 

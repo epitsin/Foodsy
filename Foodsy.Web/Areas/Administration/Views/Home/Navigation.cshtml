@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Navigation";
+}
+
+<div class="page_container">
+    <div class="container">
+        <div class="row top-bottom-space">
+            <div class="col-md-3">
+                <a href="@Url.Action("AllRecipes", "RecipesAdmin", new { area = "Administration" })">
+                    <img src="@Url.Content("~/Content/img/resized_160x159_recipes.png")" width="100px" />
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("AllIngredients", "IngredientsAdmin", new { area = "Administration" })">
+                    <img src="@Url.Content("~/Content/img/icon-ingr-256.png")" width="100px" />
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("AllArticles", "ArticlesAdmin", new { area = "Administration" })">
+                    <img src="@Url.Content("~/Content/img/Articles.png")" width="100px" />
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("AllUsers", "UsersAdmin", new { area = "Administration" })">
+                    <img src="@Url.Content("~/Content/img/users.jpg")" width="100px" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

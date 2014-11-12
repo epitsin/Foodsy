@@ -55,8 +55,16 @@ namespace Foodsy.Web.Controllers
                 Participants = challenge.Participants,
                 Recipes = challenge.Recipes
             };
-            var canJoin = !challenge.Participants.Any(x => x.Id == this.CurrentUser.Id);
-            ViewBag.CanJoin = canJoin;
+
+            if (this.CurrentUser != null)
+            {
+                var canJoin = !challenge.Participants.Any(x => x.Id == this.CurrentUser.Id);
+                ViewBag.CanJoin = canJoin;
+            }
+            else
+            {
+                ViewBag.CanJoin = false;
+            }
 
             if (challenge == null)
             {

@@ -15,6 +15,7 @@
     {
         private ICollection<Recipe> recipes;
         private ICollection<Challenge> challenges;
+        private ICollection<View> views;
 
         public User()
         {
@@ -22,6 +23,7 @@
             this.CreatedOn = DateTime.Now;
             this.recipes = new HashSet<Recipe>();
             this.challenges = new HashSet<Challenge>();
+            this.views = new HashSet<View>();
         }
 
         public virtual ICollection<Recipe> Recipes
@@ -45,6 +47,18 @@
             set
             {
                 this.challenges = value;
+            }
+        }
+
+        public virtual ICollection<View> Views
+        {
+            get
+            {
+                return this.views;
+            }
+            set
+            {
+                this.views = value;
             }
         }
 

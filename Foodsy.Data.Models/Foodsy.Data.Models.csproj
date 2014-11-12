@@ -72,6 +72,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeIngredient.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

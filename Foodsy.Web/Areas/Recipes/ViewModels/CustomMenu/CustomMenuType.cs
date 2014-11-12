@@ -12,8 +12,6 @@
         LowCarb,
         [Display(Name = "Vegetarian diet")]
         Vegetarian,
-        [Display(Name = "Vegan diet")]
-        Vegan,
         [Display(Name = "Raw food diet")]
         Raw
     }

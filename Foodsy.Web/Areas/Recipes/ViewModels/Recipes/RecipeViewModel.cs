@@ -15,6 +15,7 @@
         public RecipeViewModel()
         {
             this.Actions = new List<ActionViewModel>();
+            this.Views = new List<View>();
         }
 
         [HiddenInput(DisplayValue = false)]
@@ -51,7 +52,7 @@
         [Range(0, 2000)]
         public int Fats { get; set; }
 
-        public int ViewCount { get; set; }
+        public User Author { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
 
@@ -61,5 +62,7 @@
         public ICollection<Like> Likes { get; set; }
 
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+
+        public ICollection<View> Views { get; set; }
     }
 }

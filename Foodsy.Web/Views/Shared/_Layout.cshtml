@@ -90,12 +90,12 @@
                             <div class="clear"></div>
                             <div class="foot_menu">
                                 <ul>
-                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                                    <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes")</li>
-                                    <li>@Html.ActionLink("Healthy", "AllArticles", "Articles")</li>
-                                    <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges")</li>
-                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, new { })</li>
+                                    <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
+                                    <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
+                                    <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
+                                    <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges", new { area = String.Empty }, new { })</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
                                 </ul>
                             </div>
                         </div>

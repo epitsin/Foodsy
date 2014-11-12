@@ -44,7 +44,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                 }
                 else if (model.Type == CustomMenuType.LowCarb)
                 {
-                    meals = this.SelectMeals(BMR, (x => x.Carbohydrates), null);
+                    meals = this.SelectMeals(BMR, (x => x.Proteins), null);
                 }
                 else if (model.Type == CustomMenuType.LowFat)
                 {
@@ -53,11 +53,6 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                 else if (model.Type == CustomMenuType.Raw)
                 {
                     meals = this.SelectMeals(BMR, (x => x.Calories), Category.Raw);
-                }
-                else if (model.Type == CustomMenuType.Vegan)
-                {
-                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Vegetarian);
-
                 }
                 else if (model.Type == CustomMenuType.Vegetarian)
                 {

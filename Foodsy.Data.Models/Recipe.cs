@@ -10,6 +10,7 @@
         private ICollection<Comment> comments;
         private ICollection<Like> likes;
         private ICollection<Challenge> challenges;
+        private ICollection<View> views;
 
         public Recipe()
         {
@@ -18,6 +19,7 @@
             this.comments = new HashSet<Comment>();
             this.likes = new HashSet<Like>();
             this.challenges = new HashSet<Challenge>();
+            this.views = new HashSet<View>();
         }
 
         public int Id { get; set; }
@@ -45,8 +47,6 @@
         public int Fats { get; set; }
 
         public int GramsPerPortion { get; set; }
-
-        public int ViewCount { get; set; }
 
         public string AuthorId { get; set; }
 
@@ -109,6 +109,18 @@
             set
             {
                 this.challenges = value;
+            }
+        }
+
+        public virtual ICollection<View> Views
+        {
+            get
+            {
+                return this.views;
+            }
+            set
+            {
+                this.views = value;
             }
         }
     }

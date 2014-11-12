@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class CommentViewModel
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Infrastructure.Mapping;
+
+    public class CommentViewModel : IMapFrom<Comment>
     {
         public string AuthorUsername { get; set; }
 

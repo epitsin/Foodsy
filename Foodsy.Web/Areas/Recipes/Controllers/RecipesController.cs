@@ -51,20 +51,19 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             var recipe = this.Data.Recipes.Find(id);
-
-            this.IncreaseViewCount(recipe);
-            this.Data.SaveChanges();
-
-            var comments = recipe.Comments.Select(x => new CommentViewModel
+            if(!recipe.Views.Any(x=>x.AuthorId == User.Identity.GetUserId()))
+            {
+                recipe.Views.Add(new View
                 {
-                    AuthorUsername = x.Author.UserName,
-                    CreatedOn = x.CreatedOn,
-                    Text = x.Text
-                }).ToList();
+                    AuthorId = User.Identity.GetUserId()
+                });
+                this.Data.SaveChanges();
+            }
 
+            var comments = recipe.Comments.AsQueryable().Project().To<CommentViewModel>().ToList();
             var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
-
             var recipeModel = new RecipeViewModel
             {
                 Id = recipe.Id,
@@ -79,12 +78,20 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                 Fats = recipe.Fats,
                 Proteins = recipe.Proteins,
                 Likes = recipe.Likes,
-                ViewCount = recipe.ViewCount,
-                RecipeIngredients = recipe.RecipeIngredients
+                RecipeIngredients = recipe.RecipeIngredients,
+                Views = recipe.Views,
+                Author = recipe.Author
             };
 
-            var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
-            ViewBag.CanLike = canLike;
+            if (this.CurrentUser != null)
+            {
+                var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
+                ViewBag.CanLike = canLike;
+            }
+            else
+            {
+                ViewBag.CanLike = false;
+            }
 
             if (recipe == null)
             {
@@ -104,7 +111,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
         [HttpPost]
         public ActionResult CreateRecipe(CreateRecipeViewModel recipe)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var actions = recipe.Actions.AsQueryable().Project().To<Foodsy.Data.Models.Action>().ToList();
                 foreach (var action in actions)
@@ -114,20 +121,20 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
 
                 var newRecipe = new Recipe
                 {
-                   Name = recipe.Name,
-                   Description = recipe.Description,
-                   Category = recipe.Category,
-                   AuthorId = this.User.Identity.GetUserId(),
-                   CreatedOn = DateTime.Now,
-                   MealType = recipe.MealType,
-                   Actions = actions,
-                   GramsPerPortion = recipe.GramsPerPortion
+                    Name = recipe.Name,
+                    Description = recipe.Description,
+                    Category = recipe.Category,
+                    AuthorId = this.User.Identity.GetUserId(),
+                    CreatedOn = DateTime.Now,
+                    MealType = recipe.MealType,
+                    Actions = actions,
+                    GramsPerPortion = recipe.GramsPerPortion
                 };
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
             }
 
-            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name});
+            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
         }
 
         [Authorize]
@@ -150,7 +157,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
 
                 this.Data.SaveChanges();
 
-                var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn  };
+                var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn };
                 return PartialView("_CommentPartial", viewModel);
             }
 
@@ -211,29 +218,29 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
         //    return View(endResult);
         //}
 
-        private void IncreaseViewCount(Recipe recipe)
-        {
-            if (Request.Cookies["ViewedRecipe"] != null)
-            {
-                if (Request.Cookies["ViewedRecipe"][string.Format("rId_{0}", recipe.Id)] == null)
-                {
-                    HttpCookie cookie = Request.Cookies["ViewedRecipe"];
-                    cookie[string.Format("rId_{0}", recipe.Id)] = "1";
-                    cookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(cookie);
+        //private void IncreaseViewCount(Recipe recipe)
+        //{
+        //    if (Request.Cookies["ViewedRecipe"] != null)
+        //    {
+        //        if (Request.Cookies["ViewedRecipe"][string.Format("rId_{0}", recipe.Id)] == null)
+        //        {
+        //            HttpCookie cookie = Request.Cookies["ViewedRecipe"];
+        //            cookie[string.Format("rId_{0}", recipe.Id)] = "1";
+        //            cookie.Expires = DateTime.Now.AddDays(1);
+        //            Response.Cookies.Add(cookie);
 
-                    recipe.ViewCount += 1;
-                }
-            }
-            else
-            {
-                HttpCookie cookie = new HttpCookie("ViewedRecipe");
-                cookie[string.Format("rId_{0}", recipe.Id)] = "1";
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(cookie);
+        //            recipe.ViewCount += 1;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        HttpCookie cookie = new HttpCookie("ViewedRecipe");
+        //        cookie[string.Format("rId_{0}", recipe.Id)] = "1";
+        //        cookie.Expires = DateTime.Now.AddDays(1);
+        //        Response.Cookies.Add(cookie);
 
-                recipe.ViewCount += 1;
-            }
-        }
+        //        recipe.ViewCount += 1;
+        //    }
+        //}
     }
 }

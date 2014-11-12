@@ -1,71 +1,41 @@
-﻿﻿@model IList<Foodsy.Data.Models.Article>
+﻿﻿@model IList<Foodsy.Web.ViewModels.Articles.ArticleViewModel>
 
 <div class="wrap">
     <div class="container">
         <section>
             <div class="row">
-                <div class="col-md-8">
-                    @foreach (var article in Model)
-                    {
-                        <div class="post">
-                            <h2 class="title"><span><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></span></h2>
-                            <img src="@article.ImageUrl" />
-                            <div class="post_info">
-                                <div class="fleft">On <span>@Html.DisplayFor(x => article.CreatedOn)</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>@article.Text</p>
-                            <a href="@Url.Action("ArticleDetails", new { id = article.Id })" class="arrow_link">Read more</a>
-                        </div>
-                    }
-                    @for (int i = 1; i <= ViewBag.Pages; i++)
-                    {
-                        <a class="btn send_btn" href="@Url.Action("AllArticles", new { id = i })">@i</a>
-                    }
-                    <br />
-                    <br />
+                <div id="articles">
+                    @Html.Partial("_AllArticlesPartial", Model)
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar">
                         <div class="widget">
-                            <form class="form-search">
-                                <input type="text" class="input-medium search-query">
-                                <button type="submit" class="btn dark_btn">Search</button>
-                            </form>
+                            @using (Ajax.BeginForm("Search", "Articles", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }))
+                            {
+                                @Html.TextBox("text")
+                                @Html.AntiForgeryToken()
+                                <input type="submit" class="btn dark_btn" value="Search" />
+                            }
                         </div>
                         <div class="widget">
                             <h2 class="title"><span>Recent posts</span></h2>
                             <ul class="recent_post">
-                                @{
-                                    int count = 0;
-                                }
-                                @foreach (var article in Model)
+                                @foreach (var article in ViewBag.RecentArticles)
                                 {
-                                    if (count < 3)
-                                    {
-                                        <li>
-                                            <div><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></div>
-                                            @article.CreatedOn
-                                            <div class="clear"></div>
-                                        </li>
-                                    
-                                        count += 1;
-                                    }
-                                    else
-                                    {
-                                        break;
-                                    }
+                                    <li>
+                                        <div><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></div>
+                                        @article.CreatedOn
+                                        <div class="clear"></div>
+                                    </li>
                                 }
                             </ul>
                         </div>
                         <div class="widget tags">
-                            <h2 class="title"><span>tags</span></h2>
-                            <a href="#">Lorem ipsum</a>
-                            <a href="#">Dolor</a>
-                            <a href="#">Long established</a>
-                            <a href="#">Sit amet</a>
-                            <a href="#">Latin words</a>
-                            <a href="#">Excepteur sint</a>
+                            <h2 class="title"><span>Tags</span></h2>
+                            @foreach (var tag in ViewBag.Tags)
+                            {
+                                <a href="#">@tag.Name</a>
+                            }
                         </div>
                     </div>
                 </div>

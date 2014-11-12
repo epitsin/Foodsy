@@ -30,7 +30,7 @@
         {
             int pageNumber = id.GetValueOrDefault(1);
 
-            var allRecipes = this.Data.Recipes.All().AsQueryable().Project().To<AllRecipesViewModel>().ToList().OrderBy(x => x.Id);
+            var allRecipes = this.Data.Recipes.All().Project().To<AllRecipesViewModel>().OrderBy(x => x.Id);
 
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);
             ViewBag.Pages = Math.Ceiling((double)allRecipes.Count() / PageSize);
@@ -52,6 +52,7 @@
                 {
                     AuthorId = User.Identity.GetUserId()
                 });
+
                 this.Data.SaveChanges();
             }
 
@@ -91,6 +92,7 @@
             {
                 return HttpNotFound();
             }
+
             return View(recipeModel);
         }
 
@@ -133,7 +135,56 @@
 
             return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
         }
+        
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostComment(SubmitCommentViewModel commentModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var username = this.User.Identity.GetUserName();
+                var userId = this.User.Identity.GetUserId();
+                var comment = new Comment()
+                {
+                    AuthorId = userId,
+                    Text = commentModel.Comment,
+                    RecipeId = commentModel.RecipeId,
+                    CreatedOn = DateTime.Now
+                };
 
+                this.Data.Comments.Add(comment);
+                this.Data.SaveChanges();
+
+                var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn };
+
+                return PartialView("_CommentPartial", viewModel);
+            }
+
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ModelState.Values.First().ToString());
+        }
+
+        public ActionResult Upvote(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var canVote = !this.Data.Likes.All().Any(x => x.RecipeId == id && x.AuthorId == userId);
+
+            if (canVote)
+            {
+                this.Data.Recipes.Find(id).Likes.Add(new Like
+                {
+                    RecipeId = id,
+                    AuthorId = userId,
+                    IsPositive = true
+                });
+
+                this.Data.SaveChanges();
+            }
+
+            var votes = this.Data.Recipes.Find(id).Likes.Where(x => x.IsPositive).Count();
+
+            return Content(votes.ToString());
+        }
         private void GetTagsForRecipe(CreateRecipeViewModel recipe, Recipe newRecipe)
         {
             var tagNames = Regex.Split(recipe.Name, @"\W+").ToList();
@@ -166,87 +217,6 @@
                 }
             }
         }
-
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        public ActionResult PostComment(SubmitCommentViewModel commentModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var username = this.User.Identity.GetUserName();
-                var userId = this.User.Identity.GetUserId();
-                var comment = new Comment()
-                {
-                    AuthorId = userId,
-                    Text = commentModel.Comment,
-                    RecipeId = commentModel.RecipeId,
-                    CreatedOn = DateTime.Now
-                };
-
-                this.Data.Comments.Add(comment);
-
-                this.Data.SaveChanges();
-
-                var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn };
-                return PartialView("_CommentPartial", viewModel);
-            }
-
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ModelState.Values.First().ToString());
-        }
-
-        public ActionResult Upvote(int id)
-        {
-            var userId = User.Identity.GetUserId();
-
-            var canVote = !this.Data.Likes.All().Any(x => x.RecipeId == id && x.AuthorId == userId);
-
-            if (canVote)
-            {
-                this.Data.Recipes.Find(id).Likes.Add(new Like
-                {
-                    RecipeId = id,
-                    AuthorId = userId,
-                    IsPositive = true
-                });
-
-                this.Data.SaveChanges();
-            }
-
-            var votes = this.Data.Recipes.Find(id).Likes.Where(x => x.IsPositive).Count();
-
-            return Content(votes.ToString());
-        }
-
-        //public ActionResult Search(SubmitSearchModel submitModel)
-        //{
-        //    var result = this.Data.Laptops.All();
-
-        //    if (!string.IsNullOrEmpty(submitModel.ModelSearch))
-        //    {
-        //        result = result.Where(x => x.Model.ToLower().Contains(submitModel.ModelSearch.ToLower()));
-        //    }
-
-        //    if (submitModel.ManufSearch != "All")
-        //    {
-        //        result = result.Where(x => x.Manufacturer.Name == submitModel.ManufSearch);
-        //    }
-
-        //    if (submitModel.PriceSearch != 0)
-        //    {
-        //        result = result.Where(x => x.Price < submitModel.PriceSearch);
-        //    }
-
-        //    var endResult = result.Select(x => new LaptopViewModel
-        //    {
-        //        Id = x.Id,
-        //        Model = x.Model,
-        //        Manufacturer = x.Manufacturer.Name,
-        //        ImageUrl = x.ImageUrl,
-        //        Price = x.Price
-        //    });
-
-        //    return View(endResult);
-        //}
 
         //private void IncreaseViewCount(Recipe recipe)
         //{

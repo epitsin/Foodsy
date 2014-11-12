@@ -4,8 +4,9 @@
     using System.Collections.Generic;
 
     using Foodsy.Data.Models;
+    using Foodsy.Web.Infrastructure.Mapping;
 
-    public class ChallengeViewModel
+    public class DetailedChallengeViewModel : IMapFrom<Challenge>
     {
         public int Id { get; set; }
 

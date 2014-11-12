@@ -218,7 +218,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Actions\ActionViewModel.cs" />
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
-    <Compile Include="ViewModels\Challenges\ChallengeViewModel.cs" />
+    <Compile Include="ViewModels\Articles\CreateArticleViewModel.cs" />
+    <Compile Include="ViewModels\Challenges\AllChallengesViewModel.cs" />
+    <Compile Include="ViewModels\Challenges\DetailedChallengeViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Comment\SubmitCommentViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuType.cs" />
@@ -672,6 +674,7 @@
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Areas\Recipes\Views\Recipes\_RecipeLikeCountPartial.cshtml" />
+    <Content Include="Views\Articles\_AllArticlesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

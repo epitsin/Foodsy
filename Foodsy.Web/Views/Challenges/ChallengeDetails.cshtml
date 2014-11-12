@@ -1,4 +1,4 @@
-﻿﻿@model Foodsy.Web.ViewModels.Challenges.ChallengeViewModel
+﻿﻿@model Foodsy.Web.ViewModels.Challenges.DetailedChallengeViewModel
 
 <div class="page_container">
     <div class="wrap">
@@ -29,7 +29,7 @@
                                 <ul class="links" id="participants">
                                     @foreach (var participant in Model.Participants)
                                     {
-                                        @Html.Partial("_ChallengeParticipantsPartial", participant)
+                                        @Html.Partial("_ChallengeParticipantsPartial", participant.UserName)
                                     }
                                 </ul>
                                 @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)

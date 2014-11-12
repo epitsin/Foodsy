@@ -12,6 +12,8 @@ using Foodsy.Data.Models;
 
 namespace Foodsy.Web.Controllers
 {
+    using AutoMapper.QueryableExtensions;
+
     public class ChallengesController : BaseController
     {
         public ChallengesController(IFoodsyData data)
@@ -21,40 +23,19 @@ namespace Foodsy.Web.Controllers
 
         public ActionResult AllChallenges()
         {
-            var challenges = this.Data.Challenges.All().Select(x => new ChallengeViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                Start = x.Start,
-                Finish = x.Finish,
-                ChallengeType = x.ChallengeType,
-                Participants = x.Participants,
-                Recipes = x.Recipes
-            }).OrderBy(x => x.Id);
-            ;
+            var challenges = this.Data.Challenges.All().AsQueryable().Project().To<AllChallengesViewModel>();
+
             return View(challenges);
         }
 
         public ActionResult ChallengeDetails(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var challenge = this.Data.Challenges.Find(id);
-            
-            var challengeModel = new ChallengeViewModel
-            {
-                Id = challenge.Id,
-                Title = challenge.Title,
-                Description = challenge.Description,
-                Start = challenge.Start,
-                Finish = challenge.Finish,
-                ChallengeType = challenge.ChallengeType,
-                Participants = challenge.Participants,
-                Recipes = challenge.Recipes
-            };
+            var challenge = this.Data.Challenges
+                .All()
+                .Where(x=>x.Id == id)
+                .Project()
+                .To<DetailedChallengeViewModel>()
+                .FirstOrDefault();           
 
             if (this.CurrentUser != null)
             {
@@ -71,7 +52,7 @@ namespace Foodsy.Web.Controllers
                 return HttpNotFound();
             }
 
-            return View(challengeModel);
+            return View(challenge);
         }
 
         public ActionResult Join(int id)
@@ -87,7 +68,7 @@ namespace Foodsy.Web.Controllers
                 this.Data.SaveChanges();
             }
 
-            return PartialView("_ChallengeParticipantsPartial", this.CurrentUser);
+            return PartialView("_ChallengeParticipantsPartial", this.CurrentUser.UserName);
         }
     }
 }

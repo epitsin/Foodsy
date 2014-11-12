@@ -6,17 +6,25 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Foodsy.Web;
 using Foodsy.Web.Controllers;
+using Foodsy.Data;
 
 namespace Foodsy.Web.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
+        private IFoodsyData data;
+
+        public HomeControllerTest(IFoodsyData data)
+        {
+            this.data = data;
+        }
+
         [TestMethod]
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(data);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -29,7 +37,7 @@ namespace Foodsy.Web.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(data);
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -42,7 +50,7 @@ namespace Foodsy.Web.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(data);
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;

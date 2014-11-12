@@ -1,0 +1,23 @@
+﻿﻿@model IList<Foodsy.Web.ViewModels.Articles.ArticleViewModel>
+
+<div class="col-md-8">
+    @foreach (var article in Model)
+    {
+        <div class="post">
+            <h2 class="title"><span><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></span></h2>
+            <img src="@article.ImageUrl" />
+            <div class="post_info">
+                <div class="fleft">On <span>@Html.DisplayFor(x => article.CreatedOn)</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                <div class="clear"></div>
+            </div>
+            <p>@article.Text</p>
+            <a href="@Url.Action("ArticleDetails", new { id = article.Id })" class="arrow_link">Read more</a>
+        </div>
+    }
+    @for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        <a class="btn send_btn" href="@Url.Action("AllArticles", new { id = i })">@i</a>
+    }
+    <br />
+    <br />
+</div>

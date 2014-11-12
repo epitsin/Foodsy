@@ -12,7 +12,6 @@ namespace Foodsy.Web.App_Start
     using Ninject.Web.Common;
     using Foodsy.Data;
     using Foodsy.Data.Repositories;
-    using Foodsy.Data.Contracts.Repository;
     using System.Data.Entity;
 
     public static class NinjectWebCommon
@@ -72,7 +71,7 @@ namespace Foodsy.Web.App_Start
             kernel.Bind(typeof(IDeletableEntityRepository<>))
                 .To(typeof(DeletableEntityRepository<>));
 
-            kernel.Bind(typeof(Foodsy.Data.Contracts.Repository.IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind(typeof(Foodsy.Data.Repositories.IRepository<>)).To(typeof(GenericRepository<>));
         }
     }
 }

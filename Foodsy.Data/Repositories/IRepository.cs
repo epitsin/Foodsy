@@ -1,6 +1,8 @@
 ﻿namespace Foodsy.Data.Repositories
 {
+    using System;
     using System.Linq;
+    using System.Linq.Expressions;
 
     public interface IRepository<T> where T : class
     {
@@ -12,10 +14,12 @@
 
         void Update(T entity);
 
-        T Delete(T entity);
+        void Delete(T entity);
 
-        T Delete(object id);
+        void Delete(object id);
 
-        int SaveChanges();
+        void Detach(T entity);
+
+        void UpdateValues(Expression<Func<T, object>> entity);
     }
 }

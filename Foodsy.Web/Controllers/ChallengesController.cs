@@ -55,7 +55,7 @@ namespace Foodsy.Web.Controllers
             return View(challenge);
         }
 
-        public ActionResult Join(int id)
+        public ActionResult Join(object id)
         {
             var challenge = this.Data.Challenges.Find(id);
 

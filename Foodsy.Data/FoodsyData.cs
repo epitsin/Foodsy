@@ -6,10 +6,11 @@
 
     using Foodsy.Data.Repositories;
     using Foodsy.Data.Models;
+    using Foodsy.Data.Contracts.Models;
 
     public class FoodsyData : IFoodsyData
     {
-        private DbContext context;
+        private IFoodsyDbContext context;
 
         private IDictionary<Type, object> repositories;
 
@@ -18,10 +19,18 @@
         {
         }
 
-        public FoodsyData(DbContext context)
+        public FoodsyData(IFoodsyDbContext context)
         {
             this.context = context;
             this.repositories = new Dictionary<Type, object>();
+        }
+
+        public IFoodsyDbContext Context
+        {
+            get
+            {
+                return this.context;
+            }
         }
 
         public IRepository<User> Users
@@ -131,11 +140,23 @@
 
             if (!this.repositories.ContainsKey(typeOfRepository))
             {
-                var newRepository = Activator.CreateInstance(typeof(Repository<T>), this.context);
+                var newRepository = Activator.CreateInstance(typeof(GenericRepository<T>), this.context);
                 this.repositories.Add(typeOfRepository, newRepository);
             }
 
             return (IRepository<T>)this.repositories[typeOfRepository];
         }
+
+        private IDeletableEntityRepository<T> GetDeletableEntityRepository<T>() where T : class, IDeletableEntity
+        {
+            if (!this.repositories.ContainsKey(typeof(T)))
+            {
+                var type = typeof(DeletableEntityRepository<T>);
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
+            }
+
+            return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
+        }
+
     }
 }

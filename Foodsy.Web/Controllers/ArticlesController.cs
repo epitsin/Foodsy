@@ -1,16 +1,16 @@
-﻿using Foodsy.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using Foodsy.Web.ViewModels.Articles;
-using Foodsy.Data.Models;
-using System.Text.RegularExpressions;
-
-namespace Foodsy.Web.Controllers
+﻿namespace Foodsy.Web.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Models;
+    using Foodsy.Web.ViewModels.Articles;
+
     public class ArticlesController : BaseController
     {
         private const int PageSize = 2;

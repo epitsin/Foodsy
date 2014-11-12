@@ -5,6 +5,8 @@
 
     public interface IFoodsyData
     {
+        IFoodsyDbContext Context { get; }
+
         IRepository<User> Users { get; }
 
         IRepository<Foodsy.Data.Models.Action> Actions { get; }

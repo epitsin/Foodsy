@@ -1,12 +1,10 @@
-﻿namespace Foodsy.Web.ViewModels.Articles
+﻿namespace Foodsy.Web.Areas.Administration.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-
     using Foodsy.Data.Models;
+    using Foodsy.Web.Areas.Administration.Models.Base;
     using Foodsy.Web.Infrastructure.Mapping;
 
-    public class ArticleViewModel : IMapFrom<Article>
+    public class ArticleViewModel : AdministrationViewModel, IMapFrom<Article>
     {
         public int Id { get; set; }
 
@@ -15,9 +13,5 @@
         public string Text { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public ICollection<Tag> Tags { get; set; }
     }
 }

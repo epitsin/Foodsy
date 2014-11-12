@@ -1,9 +1,10 @@
 ﻿namespace Foodsy.Data.Models
 {
+    using Foodsy.Data.Contracts.Models;
     using System;
     using System.Collections.Generic;
 
-    public class Article
+    public class Article : DeletableEntity
     {
         private ICollection<Tag> tags;
 

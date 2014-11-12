@@ -111,6 +111,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foodsy.Data.Contracts\Foodsy.Data.Contracts.csproj">
+      <Project>{b7ce91d8-5675-498c-96c1-c60eed43b404}</Project>
+      <Name>Foodsy.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foodsy.Data.Models\Foodsy.Data.Models.csproj">
+      <Project>{f6c01c08-5539-4f6f-85e7-78c53313461a}</Project>
+      <Name>Foodsy.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foodsy.Data\Foodsy.Data.csproj">
+      <Project>{dc5a4412-b3ee-4b00-9903-370f3fb74b57}</Project>
+      <Name>Foodsy.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foodsy.Web\Foodsy.Web.csproj">
       <Project>{40E49835-F3C6-47A8-A417-850F579ABE21}</Project>
       <Name>Foodsy.Web</Name>

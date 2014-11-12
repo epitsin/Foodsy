@@ -16,6 +16,8 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
         {
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult FavouriteRecipes()
         {
             var userId = this.User.Identity.GetUserId();

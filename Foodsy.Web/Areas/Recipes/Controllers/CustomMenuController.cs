@@ -1,16 +1,15 @@
-﻿using Foodsy.Data;
-using Foodsy.Data.Models;
-using Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
-using Foodsy.Web.Controllers;
-
-namespace Foodsy.Web.Areas.Recipes.Controllers
+﻿namespace Foodsy.Web.Areas.Recipes.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu;
+    using Foodsy.Web.Controllers;
+
     public class CustomMenuController : BaseController
     {
         public CustomMenuController(IFoodsyData data)
@@ -18,11 +17,15 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
         {
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult GetInformation()
         {
-            return View();
+                return View();
         }
 
+        [Authorize]
+        [HttpPost]
         public ActionResult GenerateMenu(CustomMenuViewModel model)
         {
             if (ModelState.IsValid)
@@ -42,7 +45,7 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                 {
                     meals = this.SelectMeals(BMR + 100, (x => x.Fats), null);
                 }
-                else if (model.Type == CustomMenuType.LowCarb)
+                else if (model.Type == CustomMenuType.HighProtein)
                 {
                     meals = this.SelectMeals(BMR, (x => x.Proteins), null);
                 }
@@ -88,14 +91,13 @@ namespace Foodsy.Web.Areas.Recipes.Controllers
                     int usedValue = 0;
                     if (j - currentRecipe.Calories >= 0)
                     {
-                        //usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + currentRecipe.Carbohydrates; //TODO: CHANGE THIS WHEN YOU KNOW HOW
                         if (category == null)
                         {
                             usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
                         }
                         else
                         {
-                            if(currentRecipe.Category == category)
+                            if (currentRecipe.Category == category)
                             {
                                 usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
                             }

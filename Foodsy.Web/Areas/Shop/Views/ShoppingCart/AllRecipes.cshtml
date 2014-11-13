@@ -10,7 +10,7 @@
     .Name("grid")
     .Columns(cols =>
     {
-        cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Id).Hidden();
         cols.Bound(pr => pr.Name);
         cols.Bound(pr => pr.Portions);
         cols.Bound(pr => pr.PricePerPortion).Hidden();
@@ -34,4 +34,3 @@
             .Update(update => update.Action("Update", ControllerName))
             .Destroy(destroy => destroy.Action("Destroy", ControllerName))
             ))
-);

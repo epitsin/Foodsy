@@ -16,6 +16,7 @@
     using Foodsy.Web.ViewModels.Comment;
 
     using Microsoft.AspNet.Identity;
+    using System.Collections.Generic;
 
     public class RecipesController : BaseController
     {
@@ -110,12 +111,33 @@
             return View(recipeModel);
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //public ActionResult CreateRecipe()
+        //{
+        //    var recipe = new CreateRecipeViewModel();
+        //    recipe.Actions.Add(new ActionViewModel());
+        //    return View(recipe);
+        //}
+
         public ActionResult CreateRecipe()
         {
             var recipe = new CreateRecipeViewModel();
-            recipe.Actions.Add(new ActionViewModel());
-            return View(recipe);
+            var ingredients = this.Data.Ingredients.All().ToList();
+
+            // now build the view model
+            var model = new CreateRecipeViewModel();
+            model.Actions.Add(new ActionViewModel());
+            model.Name = recipe.Name;
+            //model.SelectedIngredients = recipe.Ingredients.Select(x => x.ID);
+            model.Ingredients = ingredients
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                })
+                .ToList();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -141,15 +163,65 @@
                     GramsPerPortion = recipe.GramsPerPortion
                 };
 
+                foreach (var ingredient in recipe.SelectedIngredients)
+                {
+                    newRecipe.RecipeIngredients.Add(new RecipeIngredient
+                    {
+                        IngredientId = int.Parse(ingredient)
+                    });
+                }
+
                 this.GetTagsForRecipe(recipe, newRecipe);
 
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
+
+                return RedirectToAction("AddIngredients", new { recipeName = recipe.Name });
             }
 
-            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
+            return RedirectToAction("Error", "Home", new { area = String.Empty });
         }
-        
+
+        [HttpGet]
+        public ActionResult AddIngredients(string recipeName)
+        {
+            ViewBag.RecipeName = recipeName;
+            var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == recipeName);
+            var models = new List<AddIngredientToRecipeViewModel>();
+            foreach (var ingredient in recipe.RecipeIngredients)
+            {
+                models.Add(new AddIngredientToRecipeViewModel
+                {
+                    Name = ingredient.Ingredient.Name,
+                    Quantity = ingredient.Quantity
+                });
+            }
+
+            return View(models);
+        }
+
+        [HttpPost]
+        public ActionResult AddIngredients(List<AddIngredientToRecipeViewModel> ingredients, string name)
+        {
+                var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
+
+                //foreach (var ingredient in model.RecipeIngredients)
+                //{
+                //    recipe
+                //}
+
+                foreach (var ingredient in ingredients)
+                {
+                    var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
+                    recipeIngredient.Quantity = ingredient.Quantity;
+                }
+
+                this.Data.SaveChanges();
+
+
+                return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
+        }
+
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult PostComment(SubmitCommentViewModel commentModel)

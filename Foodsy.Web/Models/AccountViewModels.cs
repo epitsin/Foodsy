@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Foodsy.Web.Models
+﻿namespace Foodsy.Web.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
-
-namespace Foodsy.Web.Helpers
+﻿namespace Foodsy.Web.Helpers
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Html;
+
     public static class HtmlHelpers
     {
         public static IHtmlString AddLink<TModel>(this HtmlHelper<TModel> htmlHelper, string linkText, string containerElement, string counterElement, string collectionProperty, Type nestedType)
@@ -15,24 +14,31 @@ namespace Foodsy.Web.Helpers
             var ticks = DateTime.UtcNow.Ticks;
             var nestedObject = Activator.CreateInstance(nestedType);
             var partial = htmlHelper.EditorFor(x => nestedObject).ToHtmlString().JsEncode();
+
             partial = partial.Replace("id=\\\"nestedObject", "id=\\\"" + collectionProperty + "_" + ticks + "_");
             partial = partial.Replace("name=\\\"nestedObject", "name=\\\"" + collectionProperty + "[" + ticks + "]");
+
             var js = string.Format("javascript:addNestedForm('{0}','{1}','{2}','{3}');return false;", containerElement, counterElement, ticks, partial);
-            TagBuilder tb = new TagBuilder("a");
+            var tb = new TagBuilder("a");
+
             tb.Attributes.Add("href", "#");
             tb.Attributes.Add("onclick", js);
             tb.InnerHtml = linkText;
             var tag = tb.ToString(TagRenderMode.Normal);
+
             return MvcHtmlString.Create(tag);
         }
 
         private static string JsEncode(this string s)
         {
             if (string.IsNullOrEmpty(s))
+            {
                 return "";
+            }
+
             int i;
             int len = s.Length;
-            StringBuilder sb = new StringBuilder(len + 4);
+            var sb = new StringBuilder(len + 4);
             string t;
             for (i = 0; i < len; i += 1)
             {
@@ -72,6 +78,7 @@ namespace Foodsy.Web.Helpers
                         break;
                 }
             }
+
             return sb.ToString();
         }
     }

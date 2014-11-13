@@ -1,18 +1,17 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Foodsy.Web.Models;
-using Foodsy.Data.Models;
-
-namespace Foodsy.Web.Controllers
+﻿namespace Foodsy.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
     [Authorize]
     public class AccountController : Controller
     {

@@ -1,13 +1,10 @@
-﻿using Foodsy.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Foodsy.Data.Models;
-
-namespace Foodsy.Web.Controllers
+﻿namespace Foodsy.Web.Controllers
 {
+    using System.Web.Mvc;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Models;
+
     using Microsoft.AspNet.Identity;
 
     [HandleError]

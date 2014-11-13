@@ -1,0 +1,53 @@
+﻿@model IList<Foodsy.Web.Areas.Recipes.ViewModels.Recipes.AddIngredientToRecipeViewModel>
+
+<div class="row">
+    <div class="col-md-12">
+        <section id="userInformation" class="top-bottom-space">
+            <h3 class="text-center">Add ingredients to your recipe</h3>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    @using (Html.BeginForm("AddIngredients", "Recipes", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        
+                        <h2 class="text-center">@ViewBag.RecipeName</h2>
+                        string recipe = ViewBag.RecipeName;
+                        @Html.Hidden("name", recipe)
+                        
+                        <table class="table table-striped">
+                            <tr class="row">
+                                <th class="col col-md-2">
+                                    Ingredient
+                                </th>
+                                <th class="col col-md-2">
+                                    Quantity in grams
+                                </th>
+                            </tr>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr class="row">
+                                    <td class="col col-md-3">
+                                        @Html.TextBox("ingredients[" + @i + "].Name",
+                                      Model[i].Name,
+                                      new { @readonly = "readonly" })
+                                    </td>
+                                    <td class="col col-md-3">
+                                        @Html.TextBox("ingredients[" + @i + "].Quantity",
+                                      Model[i].Quantity)
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="row">
+                                <td class="col col-md-6">
+                                    <input type="submit" value="Submit" class="btn send_btn"/>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

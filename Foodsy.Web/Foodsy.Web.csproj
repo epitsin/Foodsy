@@ -205,6 +205,7 @@
     <Compile Include="Areas\Administration\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Recipes\AddIngredientToRecipeViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
@@ -214,7 +215,6 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChallengesController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Areas\Recipes\Controllers\CustomMenuController.cs" />
     <Compile Include="Areas\Recipes\Controllers\FavouriteRecipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -625,6 +625,7 @@
     <Content Include="Areas\Shop\Views\ShoppingCart\AllRecipes.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Category.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\MealType.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\AddIngredients.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -719,7 +720,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Recipes\Models\" />
-    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

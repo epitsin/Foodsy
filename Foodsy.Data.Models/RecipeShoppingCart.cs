@@ -1,5 +1,7 @@
 ﻿namespace Foodsy.Data.Models
 {
+    using System.ComponentModel;
+
     using Foodsy.Data.Contracts.Models;
 
     public class RecipeShoppingCart : DeletableEntity
@@ -14,6 +16,7 @@
 
         public virtual ShoppingCart ShoppingCart { get; set; }
 
+        [DefaultValue(1)]
         public int Portions { get; set; }
     }
 }

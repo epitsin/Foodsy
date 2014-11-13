@@ -1,18 +1,13 @@
-﻿using Foodsy.Data;
-using Foodsy.Web.ViewModels.Challenges;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Foodsy.Data.Models;
-
-namespace Foodsy.Web.Controllers
+﻿namespace Foodsy.Web.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
     using AutoMapper.QueryableExtensions;
+
+    using Foodsy.Data;
+    using Foodsy.Web.ViewModels.Challenges;
 
     public class ChallengesController : BaseController
     {

@@ -5,6 +5,7 @@
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
+    using System.Web.Mvc;
 
     public class CreateRecipeViewModel
     {
@@ -29,5 +30,9 @@
         public ICollection<ActionViewModel> Actions { get; set; }
 
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+
+        public IEnumerable<string> SelectedIngredients { get; set; }
+
+        public IEnumerable<SelectListItem> Ingredients { get; set; }
     }
 }

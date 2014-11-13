@@ -30,15 +30,15 @@
         @Html.TextBoxFor(m => m.GramsPerPortion, new { @class = "form-control", type = "number" })
     </div>
 </div>
-
-@*<ol id="ingredients" class="with-numbers col-md-offset-3">
-    @Html.EditorFor(m => m.RecipeIngredients)
-</ol>*@
-
+<div class="form-group">
+    @Html.LabelFor(m => m.Ingredients, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.ListBoxFor(m => m.SelectedIngredients, Model.Ingredients, new { @class = "form-control" })
+    </div>
+</div>
 <ol id="actions" class="with-numbers col-md-offset-3">
     @Html.EditorFor(m => m.Actions)
 </ol>
 <div class="col-md-offset-4">
     @Foodsy.Web.Helpers.HtmlHelpers.AddLink(Html, "Add more steps", "#actions", ".action", "Actions", typeof(Foodsy.Web.Areas.Recipes.ViewModels.Actions.ActionViewModel))
 </div>
-

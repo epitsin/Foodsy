@@ -1,12 +1,9 @@
-﻿using Foodsy.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Foodsy.Web.Controllers
+﻿namespace Foodsy.Web.Controllers
 {
+    using System.Web.Mvc;
+
+    using Foodsy.Data;
+
     public class HomeController : BaseController
     {
         public HomeController(IFoodsyData data)

@@ -1354,3 +1354,9 @@ a {
 .control-label{
     font-size: 16px;
 }
+
+.image-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

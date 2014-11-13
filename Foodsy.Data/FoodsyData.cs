@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
 
     using Foodsy.Data.Repositories;
     using Foodsy.Data.Models;
@@ -165,6 +164,5 @@
 
             return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
-
     }
 }

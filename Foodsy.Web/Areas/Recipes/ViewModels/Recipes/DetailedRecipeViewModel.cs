@@ -53,6 +53,8 @@
         [Range(0, 2000)]
         public int Fats { get; set; }
 
+        public decimal PricePerPortion { get; set; }
+
         public User Author { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }

@@ -43,7 +43,10 @@
                                 <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
                                 <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
                                 <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
-                                <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges", new { area = String.Empty }, new { })</li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>@Html.ActionLink("Shopping Cart", "AllRecipes", "ShoppingCart", new { area = "Shop" }, new { })</li>
+                                }
                                 <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
@@ -94,7 +97,7 @@
                                     <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
                                     <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
                                     <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
-                                    <li>@Html.ActionLink("Challenges", "AllChallenges", "Challenges", new { area = String.Empty }, new { })</li>
+                                    <li>@Html.ActionLink("Shopping Cart", "AllRecipes", "ShoppingCart", new { area = "Shop" }, new { })</li>
                                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
                                 </ul>
                             </div>

@@ -8,6 +8,7 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
     using Foodsy.Data;
@@ -25,24 +26,16 @@
 
         }
 
-        //public ActionResult AllRecipes()
-        //{
-        //    var recipes = this.CurrentUser.ShoppingCart.RecipeShoppingCarts
-        //        .ToList()
-        //        .AsQueryable()
-        //        .Project()
-        //        .To<RecipeViewModel>();
-
-        //    return View(recipes);
-        //}
         public ActionResult AllRecipes()
         {
+            //var recipes = this.CurrentUser.ShoppingCart.RecipeShoppingCarts.AsQueryable().Project().To<RecipeViewModel>();
             return View();
         }
 
         protected override IEnumerable GetData()
         {
-            return this.CurrentUser.ShoppingCart.RecipeShoppingCarts.AsQueryable().Project().To<RecipeViewModel>();
+            var recipes = this.CurrentUser.ShoppingCart.RecipeShoppingCarts.AsQueryable().Project().To<RecipeViewModel>();
+            return recipes;
         }
 
         protected override T GetById<T>(object id)

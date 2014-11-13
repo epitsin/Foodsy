@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Data.Contracts", "Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Web.Infrastructure", "Foodsy.Web.Infrastructure\Foodsy.Web.Infrastructure.csproj", "{8D7CB943-9422-4FB8-9845-5B05B28D0846}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{248149E9-6264-47CE-A40E-4109A6906D8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodsy.Common", "Foodsy.Common\Foodsy.Common.csproj", "{73782F8A-A3A2-4879-894B-0B67A1272BFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{8D7CB943-9422-4FB8-9845-5B05B28D0846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D7CB943-9422-4FB8-9845-5B05B28D0846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D7CB943-9422-4FB8-9845-5B05B28D0846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73782F8A-A3A2-4879-894B-0B67A1272BFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73782F8A-A3A2-4879-894B-0B67A1272BFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73782F8A-A3A2-4879-894B-0B67A1272BFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73782F8A-A3A2-4879-894B-0B67A1272BFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +68,6 @@ Global
 		{DC5A4412-B3EE-4B00-9903-370F3FB74B57} = {28AC29DF-5C2C-4369-B868-30E70A321F28}
 		{B7CE91D8-5675-498C-96C1-C60EED43B404} = {28AC29DF-5C2C-4369-B868-30E70A321F28}
 		{8D7CB943-9422-4FB8-9845-5B05B28D0846} = {0CF01737-9ABF-46B4-89F0-3D49E3BDD42A}
+		{73782F8A-A3A2-4879-894B-0B67A1272BFA} = {248149E9-6264-47CE-A40E-4109A6906D8E}
 	EndGlobalSection
 EndGlobal

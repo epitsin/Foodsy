@@ -726,6 +726,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Foodsy.Common\Foodsy.Common.csproj">
+      <Project>{73782f8a-a3a2-4879-894b-0b67a1272bfa}</Project>
+      <Name>Foodsy.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Foodsy.Data.Contracts\Foodsy.Data.Contracts.csproj">
       <Project>{b7ce91d8-5675-498c-96c1-c60eed43b404}</Project>
       <Name>Foodsy.Data.Contracts</Name>

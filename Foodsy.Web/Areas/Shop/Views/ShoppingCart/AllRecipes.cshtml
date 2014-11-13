@@ -5,15 +5,15 @@
 
 <h2 class="text-center">Your recipes to go :)</h2>
 
-@*@(Html.Kendo()
+@(Html.Kendo()
     .Grid<RecipeViewModel>()
     .Name("grid")
     .Columns(cols =>
     {
         cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Recipe.Name);
         cols.Bound(pr => pr.Portions);
-        cols.Bound(pr => pr.Recipe);
-        cols.Bound(pr => pr.Recipe.PricePerPortion);
+        cols.Bound(pr => pr.Recipe.PricePerPortion).Hidden();
         cols.Bound(pr => pr.CreatedOn).Hidden();
         cols.Bound(pr => pr.ModifiedOn).Hidden();
         cols.Command(com => com.Edit()).Title("Edit");
@@ -33,18 +33,18 @@
             .Create(create => create.Action("Create", ControllerName))
             .Update(update => update.Action("Update", ControllerName))
             .Destroy(destroy => destroy.Action("Destroy", ControllerName))
-            ))*@
+            ))
 
-@(Html.Kendo()
+@*@(Html.Kendo()
         .ListView<RecipeViewModel>()
         .Name("listView")
         .TagName("div")
         .ClientTemplateId("template")
         .DataSource(dataSource =>
         {
-            dataSource.Read(read => read.Action("GetData", ControllerName));
+            dataSource.Read(read => read.Action("Products_Read", ControllerName, new { area = "Shop" }));
         })
-        @*.Events(e => e
+        .Events(e => e
               .DataBound(@<text>
                 function() {
                 //Handle the dataBound event inline
@@ -55,5 +55,5 @@
                 //Handle the change event inline
                 }
             </text>)
-          )*@
-)
+          ))*@
+);

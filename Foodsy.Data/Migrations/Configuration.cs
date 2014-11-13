@@ -1,11 +1,14 @@
 namespace Foodsy.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+    using Foodsy.Common;
     using Foodsy.Data.Models;
-    using System.Collections.Generic;
+
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FoodsyDbContext>
     {
@@ -19,11 +22,32 @@ namespace Foodsy.Data.Migrations
 
         protected override void Seed(FoodsyDbContext context)
         {
+            //this.userManager = new UserManager();
             this.SeedIngredients(context);
             this.SeedRecipes(context);
             this.SeedArticles(context);
             this.SeedChallenges(context);
         }
+
+        private void SeedRoles(FoodsyDbContext context)
+        {
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalContants.Admin));
+            context.SaveChanges();
+        }
+
+        //private void SeedUsers(FoodsyDbContext context)
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        var user = new User
+        //        {
+        //            Email = string.Format("{0}@{1}.com", this.random.RandomString(6, 16)),
+        //            UserName = this.random.RandomStirng(6, 16)
+        //        };
+        //        this.userManager.Create(user);
+        //    }
+        //    context.SaveChanges();
+        //}
 
         protected void SeedIngredients(FoodsyDbContext context)
         {

@@ -91,6 +91,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="top-bottom-space">
+                        @if (User.Identity.IsAuthenticated && ViewBag.CanBuy)
+                        {
+                            <div> Don't feel like cooking?</div>
+                            <div>Buy it now!</div>
+                            <div id="bought"></div>
+                            @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })
+                        }
+                    </div>
                 </div>
             </section>
         </div>

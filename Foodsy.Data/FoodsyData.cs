@@ -113,6 +113,14 @@
             }
         }
 
+        public IRepository<RecipeShoppingCart> RecipeShoppingCarts
+        {
+            get
+            {
+                return this.GetRepository<RecipeShoppingCart>();
+            }
+        }
+
         public IRepository<Tag> Tags
         {
             get

@@ -1,5 +1,6 @@
-﻿namespace Foodsy.Web.Areas.Administration.Controllers
+﻿namespace Foodsy.Web.Areas.Shop.Controllers
 {
+
     using System;
     using System.Collections;
     using System.Linq;
@@ -11,18 +12,29 @@
 
     using Foodsy.Data;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
-    using Foodsy.Web.Areas.Administration.ViewModels;
+    using Foodsy.Web.Areas.Shop.ViewModels;
 
-    using Model = Foodsy.Data.Models.Recipe;
-    using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.RecipeViewModel;
+    using Model = Foodsy.Data.Models.RecipeShoppingCart;
+    using ViewModel = Foodsy.Web.Areas.Shop.ViewModels.RecipeViewModel;
 
-    public class RecipesAdminController : KendoGridAdministrationController
+    public class ShoppingCartController : KendoGridAdministrationController
     {
-        public RecipesAdminController(IFoodsyData data)
-            : base(data)
+        public ShoppingCartController(IFoodsyData data)
+            :base(data)
         {
+
         }
 
+        //public ActionResult AllRecipes()
+        //{
+        //    var recipes = this.CurrentUser.ShoppingCart.RecipeShoppingCarts
+        //        .ToList()
+        //        .AsQueryable()
+        //        .Project()
+        //        .To<RecipeViewModel>();
+
+        //    return View(recipes);
+        //}
         public ActionResult AllRecipes()
         {
             return View();
@@ -30,7 +42,7 @@
 
         protected override IEnumerable GetData()
         {
-            return this.Data.Recipes.All().Project().To<RecipeViewModel>();
+            return this.CurrentUser.ShoppingCart.RecipeShoppingCarts.AsQueryable().Project().To<RecipeViewModel>();
         }
 
         protected override T GetById<T>(object id)

@@ -26,6 +26,10 @@
             this.views = new HashSet<View>();
         }
 
+        public int ShoppingCartId { get; set; }
+
+        public virtual ShoppingCart ShoppingCart { get; set; }
+
         public virtual ICollection<Recipe> Recipes
         {
             get

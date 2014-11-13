@@ -207,6 +207,9 @@
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
+    <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
+    <Compile Include="Areas\Shop\ShopAreaRegistration.cs" />
+    <Compile Include="Areas\Shop\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -615,6 +618,10 @@
     <Content Include="Areas\Administration\Views\RecipesAdmin\AllRecipes.cshtml" />
     <Content Include="Areas\Administration\Views\IngredientsAdmin\AllIngredients.cshtml" />
     <Content Include="Areas\Administration\Views\UsersAdmin\AllUsers.cshtml" />
+    <Content Include="Areas\Shop\Views\web.config" />
+    <Content Include="Areas\Shop\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Shop\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Shop\Views\ShoppingCart\AllRecipes.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -712,6 +719,7 @@
     <Folder Include="Areas\Administration\Views\Admin\" />
     <Folder Include="Areas\Administration\Views\KendoGridAdministration\" />
     <Folder Include="Areas\Recipes\Models\" />
+    <Folder Include="Areas\Shop\Models\" />
     <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>

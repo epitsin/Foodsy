@@ -15,6 +15,7 @@
         cols.Bound(pr => pr.Category);
         cols.Bound(pr => pr.MealType);
         cols.Bound(pr => pr.GramsPerPortion);
+        cols.Bound(pr => pr.PricePerPortion);
         cols.Bound(pr => pr.CreatedOn).Hidden();
         cols.Bound(pr => pr.ModifiedOn).Hidden();
         cols.Command(com => com.Edit()).Title("Edit");

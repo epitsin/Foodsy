@@ -19,5 +19,7 @@
         public Category Category { get; set; }
 
         public int GramsPerPortion { get; set; }
+
+        public decimal PricePerPortion { get; set; }
     }
 }

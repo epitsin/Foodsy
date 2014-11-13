@@ -14,6 +14,7 @@
         private ICollection<Challenge> challenges;
         private ICollection<View> views;
         private ICollection<Tag> tags;
+        private ICollection<RecipeShoppingCart> recipes;
 
         public Recipe()
         {
@@ -24,6 +25,7 @@
             this.challenges = new HashSet<Challenge>();
             this.views = new HashSet<View>();
             this.tags = new HashSet<Tag>();
+            this.recipes = new HashSet<RecipeShoppingCart>();
         }
 
         public int Id { get; set; }
@@ -51,6 +53,8 @@
         public int Fats { get; set; }
 
         public int GramsPerPortion { get; set; }
+
+        public decimal PricePerPortion { get; set; }
 
         public string AuthorId { get; set; }
 
@@ -137,6 +141,18 @@
             set
             {
                 this.tags = value;
+            }
+        }
+
+        public virtual ICollection<RecipeShoppingCart> RecipeShoppingCarts
+        {
+            get
+            {
+                return this.recipes;
+            }
+            set
+            {
+                this.recipes = value;
             }
         }
     }

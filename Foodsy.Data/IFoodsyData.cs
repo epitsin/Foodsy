@@ -27,6 +27,8 @@
 
         IRepository<RecipeIngredient> RecipeIngredients { get; }
 
+        IRepository<RecipeShoppingCart> RecipeShoppingCarts { get; }
+
         IRepository<Tag> Tags { get; }
 
         IRepository<View> Views { get; }

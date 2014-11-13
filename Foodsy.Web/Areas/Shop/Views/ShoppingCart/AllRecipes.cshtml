@@ -1,0 +1,59 @@
+﻿@using Foodsy.Web.Areas.Shop.ViewModels;
+@{
+    const string ControllerName = "ShoppingCart";
+}
+
+<h2 class="text-center">Your recipes to go :)</h2>
+
+@*@(Html.Kendo()
+    .Grid<RecipeViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+    {
+        cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Portions);
+        cols.Bound(pr => pr.Recipe);
+        cols.Bound(pr => pr.Recipe.PricePerPortion);
+        cols.Bound(pr => pr.CreatedOn).Hidden();
+        cols.Bound(pr => pr.ModifiedOn).Hidden();
+        cols.Command(com => com.Edit()).Title("Edit");
+        cols.Command(com => com.Destroy()).Title("Delete");
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .DataSource(data =>
+        data
+            .Ajax()
+            .Model(m => m.Id(f => f.Id))
+            .Read(read => read.Action("Read", ControllerName))
+            .Create(create => create.Action("Create", ControllerName))
+            .Update(update => update.Action("Update", ControllerName))
+            .Destroy(destroy => destroy.Action("Destroy", ControllerName))
+            ))*@
+
+@(Html.Kendo()
+        .ListView<RecipeViewModel>()
+        .Name("listView")
+        .TagName("div")
+        .ClientTemplateId("template")
+        .DataSource(dataSource =>
+        {
+            dataSource.Read(read => read.Action("GetData", ControllerName));
+        })
+        @*.Events(e => e
+              .DataBound(@<text>
+                function() {
+                //Handle the dataBound event inline
+                }
+            </text>)
+              .Change(@<text>
+                function() {
+                //Handle the change event inline
+                }
+            </text>)
+          )*@
+)

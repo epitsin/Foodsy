@@ -82,6 +82,12 @@
             {
                 var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
                 ViewBag.CanLike = canLike;
+
+                if (this.CurrentUser.ShoppingCart != null)
+                {
+                    var canBuy = !this.CurrentUser.ShoppingCart.RecipeShoppingCarts.Any(x => x.RecipeId == recipe.Id);
+                    ViewBag.CanBuy = canBuy;
+                }
             }
             else
             {
@@ -185,6 +191,20 @@
 
             return Content(votes.ToString());
         }
+
+        [HttpPost]
+        public ActionResult Buy(int id)
+        {
+            this.CurrentUser.ShoppingCart.RecipeShoppingCarts
+                .Add(new RecipeShoppingCart
+                {
+                    RecipeId = id
+                });
+            this.Data.SaveChanges();
+
+            return Content("Recipe added to shopping cart!");
+        }
+
         private void GetTagsForRecipe(CreateRecipeViewModel recipe, Recipe newRecipe)
         {
             var tagNames = Regex.Split(recipe.Name, @"\W+").ToList();

@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
-    using Foodsy.Web.Areas.Recipes.ViewModels.Comment;
     using Foodsy.Web.Infrastructure.Mapping;
-    using System.Web.Mvc;
+    using Foodsy.Web.ViewModels.Comment;
 
     public class DetailedRecipeViewModel : IMapFrom<Recipe>
     {

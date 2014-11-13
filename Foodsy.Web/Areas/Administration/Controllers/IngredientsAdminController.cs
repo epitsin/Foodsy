@@ -7,11 +7,11 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Kendo.Mvc.UI;
-
     using Foodsy.Data;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
+
+    using Kendo.Mvc.UI;
 
     using Model = Foodsy.Data.Models.Ingredient;
     using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.IngredientViewModel;

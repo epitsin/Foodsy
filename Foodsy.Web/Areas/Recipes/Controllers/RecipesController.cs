@@ -1,7 +1,6 @@
 ﻿namespace Foodsy.Web.Areas.Recipes.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
@@ -12,15 +11,16 @@
     using Foodsy.Data;
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
-    using Foodsy.Web.Areas.Recipes.ViewModels.Comment;
     using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
     using Foodsy.Web.Controllers;
+    using Foodsy.Web.ViewModels.Comment;
 
     using Microsoft.AspNet.Identity;
 
     public class RecipesController : BaseController
     {
         private const int PageSize = 9;
+
         public RecipesController(IFoodsyData data)
             : base(data)
         {
@@ -245,30 +245,5 @@
                 }
             }
         }
-
-        //private void IncreaseViewCount(Recipe recipe)
-        //{
-        //    if (Request.Cookies["ViewedRecipe"] != null)
-        //    {
-        //        if (Request.Cookies["ViewedRecipe"][string.Format("rId_{0}", recipe.Id)] == null)
-        //        {
-        //            HttpCookie cookie = Request.Cookies["ViewedRecipe"];
-        //            cookie[string.Format("rId_{0}", recipe.Id)] = "1";
-        //            cookie.Expires = DateTime.Now.AddDays(1);
-        //            Response.Cookies.Add(cookie);
-
-        //            recipe.ViewCount += 1;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        HttpCookie cookie = new HttpCookie("ViewedRecipe");
-        //        cookie[string.Format("rId_{0}", recipe.Id)] = "1";
-        //        cookie.Expires = DateTime.Now.AddDays(1);
-        //        Response.Cookies.Add(cookie);
-
-        //        recipe.ViewCount += 1;
-        //    }
-        //}
     }
 }

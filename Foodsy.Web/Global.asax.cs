@@ -9,6 +9,8 @@
     using Foodsy.Web.Infrastructure.Mapping;
     using Foodsy.Web.App_Start;
     using System.Web;
+    using System.Threading;
+    using System.Globalization;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -24,6 +26,9 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalFilters.Filters.Add(new HandleErrorAttribute());
+
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
             //AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
 

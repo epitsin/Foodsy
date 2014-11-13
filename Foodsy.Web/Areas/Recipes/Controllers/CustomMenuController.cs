@@ -5,9 +5,12 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
+
     using Foodsy.Data;
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu;
+    using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
     using Foodsy.Web.Controllers;
 
     public class CustomMenuController : BaseController
@@ -30,45 +33,45 @@
         {
             if (ModelState.IsValid)
             {
-                var BMR = 0;
+                var bmr = 0;
                 if (model.Gender == "Male")
                 {
-                    BMR = 65 + (14 * model.Weight) + (5 * model.Height) - (7 * model.Age);
+                    bmr = 65 + (14 * model.Weight) + (5 * model.Height) - (7 * model.Age);
                 }
                 else
                 {
-                    BMR = 665 + (10 * model.Weight) + (2 * model.Height) - (5 * model.Age);
+                    bmr = 665 + (10 * model.Weight) + (2 * model.Height) - (5 * model.Age);
                 }
 
                 var meals = new List<Recipe>();
                 if (model.Type == CustomMenuType.HighFat)
                 {
-                    meals = this.SelectMeals(BMR + 100, (x => x.Fats), null);
+                    meals = this.SelectMeals(bmr + 100, (x => x.Fats), null);
                 }
                 else if (model.Type == CustomMenuType.HighProtein)
                 {
-                    meals = this.SelectMeals(BMR, (x => x.Proteins), null);
+                    meals = this.SelectMeals(bmr, (x => x.Proteins), null);
                 }
                 else if (model.Type == CustomMenuType.LowFat)
                 {
-                    meals = this.SelectMeals(BMR, (x => x.Carbohydrates), null);
+                    meals = this.SelectMeals(bmr, (x => x.Carbohydrates), null);
                 }
                 else if (model.Type == CustomMenuType.Raw)
                 {
-                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Raw);
+                    meals = this.SelectMeals(bmr, (x => x.Calories), Category.Raw);
                 }
                 else if (model.Type == CustomMenuType.Vegetarian)
                 {
-                    meals = this.SelectMeals(BMR, (x => x.Calories), Category.Vegetarian);
+                    meals = this.SelectMeals(bmr, (x => x.Calories), Category.Vegetarian);
                 }
                 else
                 {
                     throw new ArgumentException("Invalid menu type!");
                 }
 
-                ViewBag.CustomCalories = BMR;
+                ViewBag.CustomCalories = bmr;
 
-                return View("CustomMenu", meals);
+                return View("CustomMenu", meals.AsQueryable().Project().To<CustomMenuRecipeViewModel>());
             }
 
             return RedirectToAction("GetInformation");

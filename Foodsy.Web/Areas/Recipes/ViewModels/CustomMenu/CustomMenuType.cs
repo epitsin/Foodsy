@@ -6,12 +6,16 @@
     {
         [Display(Name = "High fat diet")]
         HighFat,
+
         [Display(Name = "High protein diet")]
         HighProtein,
+
         [Display(Name = "Low fat diet")]
         LowFat,
+
         [Display(Name = "Vegetarian diet")]
         Vegetarian,
+
         [Display(Name = "Raw food diet")]
         Raw
     }

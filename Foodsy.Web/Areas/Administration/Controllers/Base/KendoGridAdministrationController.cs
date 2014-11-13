@@ -6,12 +6,14 @@
     using System.Data.Entity;
     using System.Web.Mvc;
 
-    using Foodsy.Data;
-    using Foodsy.Web.Areas.Administration.Models.Base;
     using AutoMapper;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Contracts.Models;
+    using Foodsy.Web.Areas.Administration.Models.Base;
+
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
-    using Foodsy.Data.Contracts.Models;
 
     public abstract class KendoGridAdministrationController : AdminController
     {

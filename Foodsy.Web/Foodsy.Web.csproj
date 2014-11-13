@@ -205,8 +205,8 @@
     <Compile Include="Areas\Administration\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
     <Compile Include="Areas\Shop\ShopAreaRegistration.cs" />
     <Compile Include="Areas\Shop\ViewModels\RecipeViewModel.cs" />
@@ -232,11 +232,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Actions\ActionViewModel.cs" />
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
-    <Compile Include="ViewModels\Articles\CreateArticleViewModel.cs" />
+    <Compile Include="ViewModels\Articles\AllArticlesViewModel.cs" />
     <Compile Include="ViewModels\Challenges\AllChallengesViewModel.cs" />
     <Compile Include="ViewModels\Challenges\DetailedChallengeViewModel.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Comment\CommentViewModel.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Comment\SubmitCommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuType.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\IngredientViewModel.cs" />
@@ -623,6 +623,8 @@
     <Content Include="Areas\Shop\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Shop\Views\ShoppingCart\AllRecipes.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Category.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\MealType.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -712,15 +714,11 @@
     <Content Include="Scripts\kendo\jquery.min.map" />
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
-    <Content Include="Areas\Recipes\Views\Recipes\_RecipeLikeCountPartial.cshtml" />
     <Content Include="Views\Articles\_AllArticlesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Admin\" />
-    <Folder Include="Areas\Administration\Views\KendoGridAdministration\" />
     <Folder Include="Areas\Recipes\Models\" />
-    <Folder Include="Areas\Shop\Models\" />
     <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>

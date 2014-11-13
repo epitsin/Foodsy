@@ -8,12 +8,11 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Kendo.Mvc.Extensions;
-    using Kendo.Mvc.UI;
-
     using Foodsy.Data;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Shop.ViewModels;
+
+    using Kendo.Mvc.UI;
 
     using Model = Foodsy.Data.Models.RecipeShoppingCart;
     using ViewModel = Foodsy.Web.Areas.Shop.ViewModels.RecipeViewModel;
@@ -28,7 +27,6 @@
 
         public ActionResult AllRecipes()
         {
-            //var recipes = this.CurrentUser.ShoppingCart.RecipeShoppingCarts.AsQueryable().Project().To<RecipeViewModel>();
             return View();
         }
 

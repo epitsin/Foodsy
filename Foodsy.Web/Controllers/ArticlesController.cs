@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -10,6 +9,8 @@
     using Foodsy.Data;
     using Foodsy.Data.Models;
     using Foodsy.Web.ViewModels.Articles;
+    using Foodsy.Web.ViewModels.Comment;
+    using Microsoft.AspNet.Identity;
 
     public class ArticlesController : BaseController
     {

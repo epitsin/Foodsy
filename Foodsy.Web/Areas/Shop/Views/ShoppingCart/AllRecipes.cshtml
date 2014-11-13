@@ -34,26 +34,4 @@
             .Update(update => update.Action("Update", ControllerName))
             .Destroy(destroy => destroy.Action("Destroy", ControllerName))
             ))
-
-@*@(Html.Kendo()
-        .ListView<RecipeViewModel>()
-        .Name("listView")
-        .TagName("div")
-        .ClientTemplateId("template")
-        .DataSource(dataSource =>
-        {
-            dataSource.Read(read => read.Action("Products_Read", ControllerName, new { area = "Shop" }));
-        })
-        .Events(e => e
-              .DataBound(@<text>
-                function() {
-                //Handle the dataBound event inline
-                }
-            </text>)
-              .Change(@<text>
-                function() {
-                //Handle the change event inline
-                }
-            </text>)
-          ))*@
 );

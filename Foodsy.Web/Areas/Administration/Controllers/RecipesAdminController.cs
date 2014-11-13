@@ -7,11 +7,11 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Kendo.Mvc.UI;
-
     using Foodsy.Data;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
+
+    using Kendo.Mvc.UI;
 
     using Model = Foodsy.Data.Models.Recipe;
     using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.RecipeViewModel;
@@ -36,15 +36,6 @@
         protected override T GetById<T>(object id)
         {
             return this.Data.Recipes.Find(id) as T;
-        }
-
-        [HttpPost]
-        public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
-        {
-            var dbModel = base.Create<Model>(model);
-            if (dbModel != null)
-                model.Id = dbModel.Id;
-            return this.GridOperation(model, request);
         }
 
         [HttpPost]

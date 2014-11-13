@@ -1,4 +1,4 @@
-﻿namespace Foodsy.Web.Areas.Recipes.ViewModels.Comment
+﻿namespace Foodsy.Web.ViewModels.Comment
 {
     using System;
 

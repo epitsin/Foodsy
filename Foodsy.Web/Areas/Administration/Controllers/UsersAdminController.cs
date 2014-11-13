@@ -7,11 +7,11 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Kendo.Mvc.UI;
-
     using Foodsy.Data;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
+
+    using Kendo.Mvc.UI;
 
     using Model = Foodsy.Data.Models.User;
     using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.UserViewModel;
@@ -46,13 +46,6 @@
                 model.Id = dbModel.Id;
             return this.GridOperation(model, request);
         }
-
-        //[HttpPost]
-        //public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
-        //{
-        //    base.Update<Model, ViewModel>(model, model.Id);
-        //    return this.GridOperation(model, request);
-        //}
 
         [HttpPost]
         public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, ViewModel model)

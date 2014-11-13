@@ -8,12 +8,12 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Kendo.Mvc.UI;
-
     using Foodsy.Data;
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Administration.Controllers.Base;
     using Foodsy.Web.Areas.Administration.ViewModels;
+
+    using Kendo.Mvc.UI;
 
     using Model = Foodsy.Data.Models.Article;
     using ViewModel = Foodsy.Web.Areas.Administration.ViewModels.ArticleViewModel;

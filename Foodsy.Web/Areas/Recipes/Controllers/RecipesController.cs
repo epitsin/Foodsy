@@ -171,8 +171,6 @@
                     });
                 }
 
-                this.GetTagsForRecipe(recipe, newRecipe);
-
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
 
@@ -205,19 +203,15 @@
         {
                 var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
 
-                //foreach (var ingredient in model.RecipeIngredients)
-                //{
-                //    recipe
-                //}
-
                 foreach (var ingredient in ingredients)
                 {
                     var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
                     recipeIngredient.Quantity = ingredient.Quantity;
                 }
 
-                this.Data.SaveChanges();
 
+                this.GetTagsForRecipe(recipe);
+                this.Data.SaveChanges();
 
                 return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
         }
@@ -285,7 +279,7 @@
             return Content("Recipe added to shopping cart!");
         }
 
-        private void GetTagsForRecipe(CreateRecipeViewModel recipe, Recipe newRecipe)
+        private void GetTagsForRecipe(Recipe recipe)
         {
             var tagNames = Regex.Split(recipe.Name, @"\W+").ToList();
 
@@ -294,12 +288,12 @@
                 if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
                 {
                     var newTag = new Tag { Name = tag.ToLower() };
-                    newTag.Recipes.Add(newRecipe);
+                    newTag.Recipes.Add(recipe);
                     this.Data.Tags.Add(newTag);
                 }
                 else
                 {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Recipes.Add(newRecipe);
+                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Recipes.Add(recipe);
                 }
             }
 
@@ -308,12 +302,12 @@
                 if (!this.Data.Tags.All().Any(x => x.Name == ingredient.Ingredient.Name.ToLower()))
                 {
                     var newTag = new Tag { Name = ingredient.Ingredient.Name.ToLower() };
-                    newTag.Recipes.Add(newRecipe);
+                    newTag.Recipes.Add(recipe);
                     this.Data.Tags.Add(newTag);
                 }
                 else
                 {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower()).Recipes.Add(newRecipe);
+                    this.Data.Tags.All().FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower()).Recipes.Add(recipe);
                 }
             }
         }

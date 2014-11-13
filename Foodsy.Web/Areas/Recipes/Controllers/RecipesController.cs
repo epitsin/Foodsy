@@ -75,7 +75,8 @@
                 RecipeIngredients = recipe.RecipeIngredients,
                 Views = recipe.Views,
                 Author = recipe.Author,
-                Tags = recipe.Tags
+                Tags = recipe.Tags,
+                PricePerPortion = recipe.PricePerPortion
             };
 
             if (this.CurrentUser != null)
@@ -88,10 +89,17 @@
                     var canBuy = !this.CurrentUser.ShoppingCart.RecipeShoppingCarts.Any(x => x.RecipeId == recipe.Id);
                     ViewBag.CanBuy = canBuy;
                 }
+                else
+                {
+                    this.CurrentUser.ShoppingCart = new ShoppingCart();
+                    this.Data.SaveChanges();
+                    ViewBag.CanBuy = true;
+                }
             }
             else
             {
                 ViewBag.CanLike = false;
+                ViewBag.CanBuy = false;
             }
 
             if (recipe == null)

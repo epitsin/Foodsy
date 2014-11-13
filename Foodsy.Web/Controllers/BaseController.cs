@@ -10,6 +10,7 @@ namespace Foodsy.Web.Controllers
 {
     using Microsoft.AspNet.Identity;
 
+    [HandleError]
     public abstract class BaseController : Controller
     {
         private User currentUser;

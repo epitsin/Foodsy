@@ -77,7 +77,8 @@
                 Views = recipe.Views,
                 Author = recipe.Author,
                 Tags = recipe.Tags,
-                PricePerPortion = recipe.PricePerPortion
+                PricePerPortion = recipe.PricePerPortion,
+                GramsPerPortion = recipe.GramsPerPortion
             };
 
             if (this.CurrentUser != null)
@@ -110,14 +111,6 @@
 
             return View(recipeModel);
         }
-
-        //[HttpGet]
-        //public ActionResult CreateRecipe()
-        //{
-        //    var recipe = new CreateRecipeViewModel();
-        //    recipe.Actions.Add(new ActionViewModel());
-        //    return View(recipe);
-        //}
 
         public ActionResult CreateRecipe()
         {
@@ -202,15 +195,14 @@
         public ActionResult AddIngredients(List<AddIngredientToRecipeViewModel> ingredients, string name)
         {
                 var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
-
                 foreach (var ingredient in ingredients)
                 {
                     var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
                     recipeIngredient.Quantity = ingredient.Quantity;
                 }
 
-
                 this.GetTagsForRecipe(recipe);
+                this.GetCalories(recipe);
                 this.Data.SaveChanges();
 
                 return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
@@ -277,6 +269,18 @@
             this.Data.SaveChanges();
 
             return Content("Recipe added to shopping cart!");
+        }
+
+        private void GetCalories(Recipe recipe)
+        {
+            foreach (var ingredient in recipe.RecipeIngredients)
+            {
+                recipe.Calories += ingredient.Quantity * ingredient.Ingredient.Calories / 100;
+                recipe.Proteins += ingredient.Quantity * ingredient.Ingredient.Proteins / 100;
+                recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
+                recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
+                recipe.CaloriesPerPortion = recipe.Calories * recipe.GramsPerPortion / 100;
+            }
         }
 
         private void GetTagsForRecipe(Recipe recipe)

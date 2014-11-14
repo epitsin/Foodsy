@@ -2,12 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Infrastructure.Mapping;
-    using System.Web.Mvc;
-    using System.ComponentModel.DataAnnotations;
-    using Foodsy.Common.CustomAttributes;
 
     public class DetailedChallengeViewModel : IMapFrom<Challenge>
     {

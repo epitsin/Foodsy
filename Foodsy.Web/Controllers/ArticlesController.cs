@@ -67,7 +67,6 @@
                 .Project()
                 .To<ArticleViewModel>()
                 .ToList();
-            ViewBag.Pages = Math.Ceiling((double)articlesFound.Count() / PageSize);
 
             if (articlesFound.Count == 0)
             {
@@ -86,7 +85,6 @@
                 .Project()
                 .To<ArticleViewModel>()
                 .ToList();
-            ViewBag.Pages = Math.Ceiling((double)articlesFound.Count() / PageSize);
 
             if (articlesFound.Count == 0)
             {

@@ -56,8 +56,6 @@
                 .To<AllRecipesViewModel>()
                 .ToList();
 
-            ViewBag.Pages = Math.Ceiling((double)recipes.Count() / PageSize);
-
             if (recipes.Count == 0)
             {
                 return Content(GlobalContants.NoRecipes);
@@ -84,30 +82,6 @@
 
                 this.Data.SaveChanges();
             }
-
-            //var comments = recipe.Comments.AsQueryable().Project().To<CommentViewModel>().ToList();
-            //var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
-            //var recipeModel = new DetailedRecipeViewModel
-            //{
-            //    Id = recipe.Id,
-            //    Name = recipe.Name,
-            //    Description = recipe.Description,
-            //    ImageUrl = recipe.ImageUrl,
-            //    CreatedOn = recipe.CreatedOn,
-            //    Actions = actions,
-            //    Comments = comments,
-            //    CaloriesPerPortion = recipe.CaloriesPerPortion,
-            //    Carbohydrates = recipe.Carbohydrates,
-            //    Fats = recipe.Fats,
-            //    Proteins = recipe.Proteins,
-            //    Likes = recipe.Likes,
-            //    RecipeIngredients = recipe.RecipeIngredients,
-            //    Views = recipe.Views,
-            //    Author = recipe.Author,
-            //    Tags = recipe.Tags,
-            //    PricePerPortion = recipe.PricePerPortion,
-            //    GramsPerPortion = recipe.GramsPerPortion
-            //};
 
             var recipeModel = Mapper.Map<DetailedRecipeViewModel>(recipe);
 

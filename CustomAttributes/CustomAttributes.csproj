@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73782F8A-A3A2-4879-894B-0B67A1272BFA}</ProjectGuid>
+    <ProjectGuid>{CEA9DB77-4A62-4FE9-864D-942403F3EEA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Foodsy.Common</RootNamespace>
-    <AssemblyName>Foodsy.Common</AssemblyName>
+    <RootNamespace>CustomAttributes</RootNamespace>
+    <AssemblyName>CustomAttributes</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomAttributes\DateTimeRangeAttribute.cs" />
-    <Compile Include="GlobalContants.cs" />
+    <Compile Include="DateTimeRangeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

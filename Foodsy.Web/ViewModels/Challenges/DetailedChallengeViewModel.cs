@@ -5,19 +5,31 @@
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Infrastructure.Mapping;
+    using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
+    using Foodsy.Common.CustomAttributes;
 
     public class DetailedChallengeViewModel : IMapFrom<Challenge>
     {
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string Title { get; set; }
 
+        [Required]
+        [StringLength(2000, MinimumLength = 20)]
         public string Description { get; set; }
 
-        public DateTime? Start { get; set; }
+        [Required]
+        //[DateTimeRangeAttribute(1000, 1000)]
+        public DateTime Start { get; set; }
 
-        public DateTime? Finish { get; set; }
+        [Required]
+        public DateTime Finish { get; set; }
 
+        [Required]
         public ChallengeType ChallengeType { get; set; }
 
         public virtual ICollection<Recipe> Recipes { get; set; }

@@ -20,9 +20,9 @@
 
         public string Description { get; set; }
 
-        public DateTime? Start { get; set; }
+        public DateTime Start { get; set; }
 
-        public DateTime? Finish { get; set; }
+        public DateTime Finish { get; set; }
 
         public ChallengeType ChallengeType { get; set; }
 

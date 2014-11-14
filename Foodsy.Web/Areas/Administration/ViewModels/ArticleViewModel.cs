@@ -1,7 +1,6 @@
 ﻿namespace Foodsy.Web.Areas.Administration.ViewModels
 {
     using System.Web.Mvc;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Foodsy.Data.Models;
@@ -10,11 +9,6 @@
 
     public class ArticleViewModel : AdministrationViewModel, IMapFrom<Article>
     {
-        public ArticleViewModel()
-        {
-            //this.Tags = new List<Tag>();
-        }
-
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
@@ -28,7 +22,5 @@
 
         [Required]
         public string ImageUrl { get; set; }
-
-        //public ICollection<Tag> Tags { get; set; }
     }
 }

@@ -27,7 +27,9 @@
             if (image != null)
             {
                 image.SaveAs(Server.MapPath("~/Content/img/") + image.FileName);
-                var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
+                var recipe = this.Data.Recipes
+                    .All()
+                    .FirstOrDefault(x => x.Name == name);
                 recipe.ImageUrl = "/Content/img/" + image.FileName;
 
                 this.Data.SaveChanges();

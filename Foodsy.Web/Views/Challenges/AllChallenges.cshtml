@@ -5,13 +5,7 @@
         <div class="wrap">
             <div class="container inner_content">
                 <div id="options">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="btn send_btn" href="@Url.Action("CreateChallenge", "Challenges", new { area = String.Empty })">Create challenge</a>
-                    }
-
                     @Html.Partial("_ChallengeTypePartial")
-
                     <div class="clear"></div>
                 </div>
                 <div class="row">
@@ -28,6 +22,7 @@
 @section scripts{
     <script>
         function changeColour(modelName) {
+            $(".sorting").removeClass("selected");
             $("#" + modelName).addClass("selected");
         }
     </script>

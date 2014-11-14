@@ -34,6 +34,7 @@
             if (ModelState.IsValid)
             {
                 var bmr = 0;
+                ViewBag.CustomCalories = bmr;
                 if (model.Gender == "Male")
                 {
                     bmr = 65 + (14 * model.Weight) + (5 * model.Height) - (7 * model.Age);
@@ -69,9 +70,9 @@
                     throw new ArgumentException("Invalid menu type!");
                 }
 
-                ViewBag.CustomCalories = bmr;
+                var mealModels = meals.AsQueryable().Project().To<CustomMenuRecipeViewModel>();
 
-                return View("CustomMenu", meals.AsQueryable().Project().To<CustomMenuRecipeViewModel>());
+                return View("CustomMenu", mealModels);
             }
 
             return RedirectToAction("GetInformation");

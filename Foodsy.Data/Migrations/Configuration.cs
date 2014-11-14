@@ -127,13 +127,10 @@ namespace Foodsy.Data.Migrations
             foreach (var relationship in relationships)
             {
                 var ingredient = relationship.Ingredient;
-                banica.Calories += ingredient.Calories * relationship.Quantity / 100;
                 banica.Proteins += ingredient.Proteins;
                 banica.Carbohydrates += ingredient.Carbohydrates;
                 banica.Fats += ingredient.Fats;
             }
-
-            banica.CaloriesPerPortion = banica.Calories * banica.GramsPerPortion / 100;
 
             context.Recipes.Add(banica);
 
@@ -176,13 +173,10 @@ namespace Foodsy.Data.Migrations
             foreach (var relationship in relationshipsMusaka)
             {
                 var ingredient = relationship.Ingredient;
-                musaka.Calories += ingredient.Calories * relationship.Quantity / 100;
                 musaka.Proteins += ingredient.Proteins;
                 musaka.Carbohydrates += ingredient.Carbohydrates;
                 musaka.Fats += ingredient.Fats;
             }
-
-            musaka.CaloriesPerPortion = musaka.Calories * musaka.GramsPerPortion / 100;
 
             context.Recipes.Add(musaka);
 

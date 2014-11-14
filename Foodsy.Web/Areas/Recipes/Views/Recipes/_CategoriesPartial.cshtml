@@ -1,7 +1,6 @@
 ﻿@using Foodsy.Data.Models;
 
 <ul id="filters" class="option-set" data-option-key="filter">
-    <li><a href="#filter" data-option-value="*" class="btn dark_btn selected">All</a></li>
     @{
         Array values = Enum.GetValues(typeof(Category));
         var items = new List<System.Web.UI.WebControls.ListItem>(values.Length);
@@ -14,10 +13,15 @@
                 Value = ((int)i).ToString()
             });
         }
+    }    
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li><a class="btn send_btn" href="@Url.Action("CreateRecipe")">Create recipe</a></li>
     }
 
     @foreach (var item in items)
     {
-        <li>@Ajax.ActionLink(item.Text, "Sort", new { id = item.Value }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "all-recipes", HttpMethod = "Post", OnSuccess = "( function() { changeColour(Meat); })" }, new { id = item.Text, @class = "btn dark_btn" })</li>
+        <li>@Ajax.ActionLink(item.Text, "Sort", new { id = item.Value }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "all-recipes", HttpMethod = "Post", OnSuccess = "changeColour(" + item.Value + ")" }, new { id = item.Value, @class = "btn dark_btn sorting" })</li>
     }
 </ul>

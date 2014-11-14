@@ -18,7 +18,11 @@
 
         public ActionResult IngredientDetails(int? id)
         {
-            var allIngredienits = this.Data.Ingredients.All().AsQueryable().Project().To<IngredientViewModel>();
+            var allIngredienits = this.Data.Ingredients
+                .All()
+                .AsQueryable()
+                .Project()
+                .To<IngredientViewModel>();
             var ingredient = allIngredienits.FirstOrDefault(x=>x.Id == id);
 
             return View(ingredient);

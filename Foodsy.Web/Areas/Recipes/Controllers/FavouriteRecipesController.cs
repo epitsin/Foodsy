@@ -28,10 +28,18 @@
             int pageNumber = id.GetValueOrDefault(1);
 
             var userId = this.User.Identity.GetUserId();
-            var recipes = this.Data.Recipes.All().Where(x => x.Likes.Select(l => l.AuthorId).Contains(userId));
+            var recipes = this.Data.Recipes
+                .All()
+                .Where(x => x.Likes.Select(l => l.AuthorId)
+                    .Contains(userId));
 
-            var recipeModels = recipes.Project().To<AllRecipesViewModel>().OrderBy(x => x.Id);
-            var recipesOnPage = recipeModels.Skip((pageNumber - 1) * PageSize).Take(PageSize);
+            var recipeModels = recipes
+                .Project()
+                .To<AllRecipesViewModel>()
+                .OrderBy(x => x.Id);
+            var recipesOnPage = recipeModels
+                .Skip((pageNumber - 1) * PageSize)
+                .Take(PageSize);
 
             ViewBag.Pages = Math.Ceiling((double)recipeModels.Count() / PageSize);
 

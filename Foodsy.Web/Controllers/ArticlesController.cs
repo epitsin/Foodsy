@@ -23,19 +23,23 @@
         public ActionResult AllArticles(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);
-            var allArticles = this.Data.Articles.All().Project().To<ArticleViewModel>().OrderBy(x => x.CreatedOn);
+            var allArticles = this.Data.Articles
+                .All()
+                .Project()
+                .To<ArticleViewModel>()
+                .OrderBy(x => x.CreatedOn);
             ViewBag.RecentArticles = allArticles.Take(3);
 
-            var tags = this.Data.Tags.All().OrderBy(x => x.Articles.Count);
+            var tags = this.Data.Tags
+                .All()
+                .OrderBy(x => x.Articles.Count);
             ViewBag.Tags = tags.Take(12);
 
-            var articles = allArticles.Skip((pageNumber - 1) * PageSize).Take(PageSize).ToList();
+            var articles = allArticles
+                .Skip((pageNumber - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
             ViewBag.Pages = Math.Ceiling((double)allArticles.Count() / PageSize);
-
-            if (articles.Count == 0)
-            {
-                return Content(GlobalContants.NoArticles);
-            }
 
             return View(articles);
         }
@@ -56,7 +60,12 @@
         [HttpPost]
         public ActionResult Search(string text)
         {
-            var articlesFound = this.Data.Articles.All().Where(x => x.Title.Contains(text) || x.Text.Contains(text)).Project().To<ArticleViewModel>().ToList();
+            var articlesFound = this.Data.Articles
+                .All()
+                .Where(x => x.Title.Contains(text) || x.Text.Contains(text))
+                .Project()
+                .To<ArticleViewModel>()
+                .ToList();
             ViewBag.Pages = Math.Ceiling((double)articlesFound.Count() / PageSize);
 
             if (articlesFound.Count == 0)
@@ -70,7 +79,12 @@
         [HttpPost]
         public ActionResult Sort(string tagName)
         {
-            var articlesFound = this.Data.Articles.All().Where(x => x.Tags.Any(y => y.Name == tagName)).Project().To<ArticleViewModel>().ToList();
+            var articlesFound = this.Data.Articles
+                .All()
+                .Where(x => x.Tags.Any(y => y.Name == tagName))
+                .Project()
+                .To<ArticleViewModel>()
+                .ToList();
             ViewBag.Pages = Math.Ceiling((double)articlesFound.Count() / PageSize);
 
             if (articlesFound.Count == 0)

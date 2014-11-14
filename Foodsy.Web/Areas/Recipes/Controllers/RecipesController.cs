@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
     using Foodsy.Common;
@@ -33,23 +34,28 @@
         {
             int pageNumber = id.GetValueOrDefault(1);
 
-            var allRecipes = this.Data.Recipes.All().Project().To<AllRecipesViewModel>().OrderBy(x => x.Id);
+            var allRecipes = this.Data.Recipes
+                .All()
+                .Project()
+                .To<AllRecipesViewModel>()
+                .OrderBy(x => x.Id);
 
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);
             ViewBag.Pages = Math.Ceiling((double)allRecipes.Count() / PageSize);
-
-            if (recipes.Count() == 0)
-            {
-                return Content(GlobalContants.NoRecipes);
-            }
-
+            
             return View(recipes);
         }
 
         public ActionResult Sort(int id)
         {
             var category = (Category)id;
-            var recipes = this.Data.Recipes.All().Where(x => x.Category == category).Project().To<AllRecipesViewModel>().ToList();
+            var recipes = this.Data.Recipes
+                .All()
+                .Where(x => x.Category == category)
+                .Project()
+                .To<AllRecipesViewModel>()
+                .ToList();
+
             ViewBag.Pages = Math.Ceiling((double)recipes.Count() / PageSize);
 
             if (recipes.Count == 0)
@@ -79,29 +85,31 @@
                 this.Data.SaveChanges();
             }
 
-            var comments = recipe.Comments.AsQueryable().Project().To<CommentViewModel>().ToList();
-            var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
-            var recipeModel = new DetailedRecipeViewModel
-            {
-                Id = recipe.Id,
-                Name = recipe.Name,
-                Description = recipe.Description,
-                ImageUrl = recipe.ImageUrl,
-                CreatedOn = recipe.CreatedOn,
-                Actions = actions,
-                Comments = comments,
-                CaloriesPerPortion = recipe.CaloriesPerPortion,
-                Carbohydrates = recipe.Carbohydrates,
-                Fats = recipe.Fats,
-                Proteins = recipe.Proteins,
-                Likes = recipe.Likes,
-                RecipeIngredients = recipe.RecipeIngredients,
-                Views = recipe.Views,
-                Author = recipe.Author,
-                Tags = recipe.Tags,
-                PricePerPortion = recipe.PricePerPortion,
-                GramsPerPortion = recipe.GramsPerPortion
-            };
+            //var comments = recipe.Comments.AsQueryable().Project().To<CommentViewModel>().ToList();
+            //var actions = recipe.Actions.AsQueryable().Project().To<ActionViewModel>().ToList();
+            //var recipeModel = new DetailedRecipeViewModel
+            //{
+            //    Id = recipe.Id,
+            //    Name = recipe.Name,
+            //    Description = recipe.Description,
+            //    ImageUrl = recipe.ImageUrl,
+            //    CreatedOn = recipe.CreatedOn,
+            //    Actions = actions,
+            //    Comments = comments,
+            //    CaloriesPerPortion = recipe.CaloriesPerPortion,
+            //    Carbohydrates = recipe.Carbohydrates,
+            //    Fats = recipe.Fats,
+            //    Proteins = recipe.Proteins,
+            //    Likes = recipe.Likes,
+            //    RecipeIngredients = recipe.RecipeIngredients,
+            //    Views = recipe.Views,
+            //    Author = recipe.Author,
+            //    Tags = recipe.Tags,
+            //    PricePerPortion = recipe.PricePerPortion,
+            //    GramsPerPortion = recipe.GramsPerPortion
+            //};
+
+            var recipeModel = Mapper.Map<DetailedRecipeViewModel>(recipe);
 
             if (this.CurrentUser != null)
             {
@@ -159,7 +167,12 @@
         {
             if (ModelState.IsValid)
             {
-                var actions = recipe.Actions.AsQueryable().Project().To<Foodsy.Data.Models.Action>().ToList();
+                var actions = recipe.Actions
+                    .AsQueryable()
+                    .Project()
+                    .To<Foodsy.Data.Models.Action>()
+                    .ToList();
+
                 foreach (var action in actions)
                 {
                     this.Data.Actions.Add(action);
@@ -176,7 +189,7 @@
                     Actions = actions,
                     GramsPerPortion = recipe.GramsPerPortion
                 };
-
+                
                 foreach (var ingredient in recipe.SelectedIngredients)
                 {
                     newRecipe.RecipeIngredients.Add(new RecipeIngredient
@@ -198,7 +211,9 @@
         public ActionResult AddIngredients(string recipeName)
         {
             ViewBag.RecipeName = recipeName;
-            var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == recipeName);
+            var recipe = this.Data.Recipes
+                .All()
+                .FirstOrDefault(x => x.Name == recipeName);
             var models = new List<AddIngredientToRecipeViewModel>();
             foreach (var ingredient in recipe.RecipeIngredients)
             {
@@ -215,7 +230,9 @@
         [HttpPost]
         public ActionResult AddIngredients(List<AddIngredientToRecipeViewModel> ingredients, string name)
         {
-                var recipe = this.Data.Recipes.All().FirstOrDefault(x => x.Name == name);
+                var recipe = this.Data.Recipes
+                    .All()
+                    .FirstOrDefault(x => x.Name == name);
                 foreach (var ingredient in ingredients)
                 {
                     var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
@@ -296,11 +313,9 @@
         {
             foreach (var ingredient in recipe.RecipeIngredients)
             {
-                recipe.Calories += ingredient.Quantity * ingredient.Ingredient.Calories / 100;
                 recipe.Proteins += ingredient.Quantity * ingredient.Ingredient.Proteins / 100;
                 recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
                 recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
-                recipe.CaloriesPerPortion = recipe.Calories * recipe.GramsPerPortion / 100;
             }
         }
 
@@ -318,7 +333,10 @@
                 }
                 else
                 {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Recipes.Add(recipe);
+                    this.Data.Tags
+                        .All()
+                        .FirstOrDefault(x => x.Name == tag.ToLower())
+                        .Recipes.Add(recipe);
                 }
             }
 
@@ -332,7 +350,10 @@
                 }
                 else
                 {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower()).Recipes.Add(recipe);
+                    this.Data.Tags
+                        .All()
+                        .FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower())
+                        .Recipes.Add(recipe);
                 }
             }
         }

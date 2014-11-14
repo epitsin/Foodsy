@@ -42,9 +42,21 @@
 
         public Category Category { get; set; }
 
-        public int Calories { get; set; }
+        public int Calories
+        {
+            get
+            {
+                return this.CaloriesPerPortion / this.GramsPerPortion * 100;
+            }
+        }
 
-        public int CaloriesPerPortion { get; set; }
+        public int CaloriesPerPortion
+        {
+            get
+            {
+                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
+            }
+        }
 
         public int Proteins { get; set; }
 

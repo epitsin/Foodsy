@@ -5,13 +5,7 @@
         <div class="wrap">
             <div class="container inner_content">
                 <div id="options">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a class="btn send_btn" href="@Url.Action("CreateRecipe")">Create recipe</a>
-                    }
-
                     @Html.Partial("_CategoriesPartial")
-
                     <div class="clear"></div>
                 </div>
                 <div id="all-recipes">
@@ -25,6 +19,7 @@
 @section scripts{
     <script>
         function changeColour(modelName) {
+            $(".sorting").removeClass("selected");
             $("#" + modelName).addClass("selected");
         }
     </script>

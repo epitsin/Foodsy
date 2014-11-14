@@ -7,9 +7,11 @@
                 <div class="col-md-8 col-md-offset-4">
                     @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
+                        
                         <h2>@ViewBag.RecipeName</h2>
+                        
                         string recipe = ViewBag.RecipeName;
                         @Html.Hidden("name", recipe)
                         <input type="file" name="image" />

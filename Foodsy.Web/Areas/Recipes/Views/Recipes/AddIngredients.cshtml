@@ -9,7 +9,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     @using (Html.BeginForm("AddIngredients", "Recipes", FormMethod.Post))
                     {
-                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
 
                         <h2 class="text-center">@ViewBag.RecipeName</h2>

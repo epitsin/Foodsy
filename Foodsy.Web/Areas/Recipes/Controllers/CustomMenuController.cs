@@ -29,6 +29,7 @@
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GenerateMenu(CustomMenuViewModel model)
         {
             if (ModelState.IsValid)

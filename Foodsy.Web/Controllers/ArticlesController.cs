@@ -58,6 +58,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Search(string text)
         {
             var articlesFound = this.Data.Articles

@@ -22,6 +22,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UploadImage(HttpPostedFileBase image, string name)
         {
             if (image != null)

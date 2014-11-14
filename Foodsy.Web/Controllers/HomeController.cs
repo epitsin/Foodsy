@@ -33,9 +33,10 @@
             var feedback = new Feedback();
             return View(feedback);
         }
-        
+
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Contact(Feedback model)
         {
             string text = "<html> <head> </head>" +

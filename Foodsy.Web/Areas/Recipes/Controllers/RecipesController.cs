@@ -163,6 +163,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateRecipe(CreateRecipeViewModel recipe)
         {
             if (ModelState.IsValid)
@@ -228,6 +229,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddIngredients(List<AddIngredientToRecipeViewModel> ingredients, string name)
         {
                 var recipe = this.Data.Recipes

@@ -16,10 +16,21 @@
                     <div id="fields">
                         @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contact-form" }))
                         {
+                            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+
                             @Html.TextBoxFor(model => model.Name, new { @class = "col-md-7 form-control bottom-space", placeholder = "Name" })
+                            @Html.ValidationMessageFor(m => m.Name, string.Empty, new { @class = "text-danger col-md-offset-1" })
+                            
                             @Html.TextBoxFor(model => model.Email, new { @class = "col-md-7 form-control bottom-space", placeholder = "Email" })
+                            @Html.ValidationMessageFor(m => m.Email, string.Empty, new { @class = "text-danger col-md-offset-1" })
+                            
                             @Html.TextBoxFor(model => model.Subject, new { @class = "col-md-7 form-control bottom-space", placeholder = "Subject" })
+                            @Html.ValidationMessageFor(m => m.Subject, string.Empty, new { @class = "text-danger col-md-offset-1" })
+                            
                             @Html.TextAreaFor(model => model.Message, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
+                            @Html.ValidationMessageFor(m => m.Message, string.Empty, new { @class = "text-danger col-md-offset-1" })
+                            
                             <div class="clear"></div>
                             <input class="btn dark_btn" type="reset" value="Clear" />
                             <input class="btn send_btn" type="submit" value="Send" />

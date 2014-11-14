@@ -11,8 +11,10 @@
                     <div class="widget">
                         @using (Ajax.BeginForm("Search", "Articles", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }))
                         {
-                            @Html.TextBox("text")
+                            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                             @Html.AntiForgeryToken()
+                            
+                            @Html.TextBox("text")
                             <input type="submit" class="btn dark_btn" value="Search" />
                         }
                     </div>

@@ -60,9 +60,11 @@
                     <h4>Leave a comment</h4>
                     using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
                     {
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                    
                         @Html.Hidden("RecipeId", Model.Id)
                         @Html.TextArea("comment", new { @class = "form-control bottom-space" })
-                        @Html.AntiForgeryToken()
                         <input type="reset" class="btn dark_btn" value="Clear form" />
                         <input type="submit" class="btn send_btn" value="Post Comment" />
                     }

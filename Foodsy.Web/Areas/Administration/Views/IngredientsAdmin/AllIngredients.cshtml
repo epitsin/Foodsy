@@ -8,7 +8,7 @@
     .Name("grid")
     .Columns(cols =>
     {
-        cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Id).Hidden();
         cols.Bound(pr => pr.Name);
         cols.Bound(pr => pr.Proteins);
         cols.Bound(pr => pr.Carbohydrates);

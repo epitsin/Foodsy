@@ -45,7 +45,10 @@
         {
             var dbModel = base.Create<Model>(model);
             if (dbModel != null)
+            {
                 model.Id = dbModel.Id;
+                this.GetTagsForArticle(dbModel);
+            }
             return this.GridOperation(model, request);
         }
 
@@ -68,9 +71,9 @@
             return this.GridOperation(model, request);
         }
 
-        private void GetTagsForArticle(ArticleViewModel article, Article newArticle)
+        private void GetTagsForArticle(Article newArticle)
         {
-            var tagNames = Regex.Split(article.Title, @"\W+").ToList();
+            var tagNames = Regex.Split(newArticle.Title, @"\W+").ToList();
 
             foreach (var tag in tagNames)
             {
@@ -85,6 +88,8 @@
                     this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(newArticle);
                 }
             }
+
+            this.Data.SaveChanges();
         }
     }
 }

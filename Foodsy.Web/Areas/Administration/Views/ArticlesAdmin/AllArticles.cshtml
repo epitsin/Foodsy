@@ -8,7 +8,7 @@
     .Name("grid")
     .Columns(cols =>
     {
-        cols.Bound(pr => pr.Id);
+        cols.Bound(pr => pr.Id).Hidden();
         cols.Bound(pr => pr.Title);
         cols.Bound(pr => pr.Text);
         cols.Bound(pr => pr.ImageUrl);

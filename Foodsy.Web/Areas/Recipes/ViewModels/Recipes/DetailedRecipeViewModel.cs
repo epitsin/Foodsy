@@ -43,22 +43,28 @@
         [Display(Name = "Meal type")]
         public MealType MealType { get; set; }
 
+        [Required]
         [Display(Name = "Grams per portion")]
         [Range(10, 1000)]
         public int GramsPerPortion { get; set; }
 
+        [Required]
         [Range(10, 2000)]
         public int CaloriesPerPortion { get; set; }
 
+        [Required]
         [Range(0, 2000)]
         public int Proteins { get; set; }
 
+        [Required]
         [Range(0, 2000)]
         public int Carbohydrates { get; set; }
 
+        [Required]
         [Range(0, 2000)]
         public int Fats { get; set; }
 
+        [Required]
         [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 

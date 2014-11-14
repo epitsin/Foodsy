@@ -1,5 +1,9 @@
 ﻿namespace Foodsy.Web.Areas.Shop.ViewModels
 {
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
@@ -9,12 +13,19 @@
 
     public class RecipeViewModel : AdministrationViewModel, IMapFrom<RecipeShoppingCart>, IHaveCustomMappings
     {
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
+        [Required]
+        [Range(0, 30)]
+        [DefaultValue(1)]
         public int Portions { get; set; }
 
+        [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 
         public void CreateMappings(IConfiguration configuration)

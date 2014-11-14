@@ -1,8 +1,13 @@
 ﻿namespace Foodsy.Web.Controllers
 {
+    using System;
+    using System.Net.Mail;
     using System.Web.Mvc;
 
     using Foodsy.Data;
+    using Foodsy.Data.Models;
+
+    using Postal;
 
     public class HomeController : BaseController
     {
@@ -22,13 +27,73 @@
             return View();
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
-            return View();
+            var feedback = new Feedback();
+            return View(feedback);
+        }
+        
+
+        [HttpPost]
+        public ActionResult Contact(Feedback model)
+        {
+            string text = "<html> <head> </head>" +
+            " <body style= \" font-size:12px; font-family: Arial\">" +
+            model.Message +
+            "</body></html>";
+
+            SendEmail("epitsin@yahoo.com", text);
+
+            var feedback = new Feedback();
+            return View(feedback);
+        }
+
+
+        public static bool SendEmail(string sentTo, string text)
+        {
+            MailMessage msg = new MailMessage();
+
+            msg.From = new MailAddress("epitsin@yahoo.com");
+            msg.To.Add(sentTo);
+            msg.Subject = "Try to send email from asp project";
+            msg.Body = text;
+            msg.Priority = MailPriority.High;
+            msg.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient("smtp.yahoo.com", 25);
+
+
+
+            client.UseDefaultCredentials = true;
+            //client.EnableSsl = false;
+            //client.Credentials = new NetworkCredential("TestLogin", "TestPassword");
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+
+            try
+            {
+                client.Send(msg);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public ActionResult Error()
         {
+            return View();
+        }
+
+        public ActionResult SendEmail()
+        {
+            dynamic email = new Email("Example");
+            email.To = "epitsin@yahoo.com";
+            email.From = "epitsin@gmail.com";
+            email.Message = "Strong typed message";
+            email.Send();
             return View();
         }
     }

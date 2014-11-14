@@ -1,6 +1,7 @@
 ﻿namespace Foodsy.Web.Areas.Recipes.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
@@ -8,6 +9,7 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using Foodsy.Common;
     using Foodsy.Data;
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
@@ -16,7 +18,6 @@
     using Foodsy.Web.ViewModels.Comment;
 
     using Microsoft.AspNet.Identity;
-    using System.Collections.Generic;
 
     public class RecipesController : BaseController
     {
@@ -27,6 +28,7 @@
         {
         }
 
+        [HttpGet]
         public ActionResult AllRecipes(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);
@@ -36,9 +38,29 @@
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);
             ViewBag.Pages = Math.Ceiling((double)allRecipes.Count() / PageSize);
 
+            if (recipes.Count() == 0)
+            {
+                return Content(GlobalContants.NoRecipes);
+            }
+
             return View(recipes);
         }
 
+        public ActionResult Sort(int id)
+        {
+            var category = (Category)id;
+            var recipes = this.Data.Recipes.All().Where(x => x.Category == category).Project().To<AllRecipesViewModel>().ToList();
+            ViewBag.Pages = Math.Ceiling((double)recipes.Count() / PageSize);
+
+            if (recipes.Count == 0)
+            {
+                return Content(GlobalContants.NoRecipes);
+            }
+
+            return PartialView("_AllRecipesPartial", recipes);
+        }
+
+        [HttpGet]
         public ActionResult RecipeDetails(int? id)
         {
             if (id == null)
@@ -112,16 +134,15 @@
             return View(recipeModel);
         }
 
+        [HttpGet]
         public ActionResult CreateRecipe()
         {
             var recipe = new CreateRecipeViewModel();
             var ingredients = this.Data.Ingredients.All().ToList();
 
-            // now build the view model
             var model = new CreateRecipeViewModel();
             model.Actions.Add(new ActionViewModel());
             model.Name = recipe.Name;
-            //model.SelectedIngredients = recipe.Ingredients.Select(x => x.ID);
             model.Ingredients = ingredients
                 .Select(x => new SelectListItem
                 {

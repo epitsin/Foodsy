@@ -6,7 +6,9 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using Foodsy.Common;
     using Foodsy.Data;
+    using Foodsy.Data.Models;
     using Foodsy.Web.ViewModels.Challenges;
 
     public class ChallengesController : BaseController
@@ -18,7 +20,12 @@
 
         public ActionResult AllChallenges()
         {
-            var challenges = this.Data.Challenges.All().AsQueryable().Project().To<AllChallengesViewModel>();
+            var challenges = this.Data.Challenges.All().AsQueryable().Project().To<AllChallengesViewModel>().ToList();
+
+            if (challenges.Count == 0)
+            {
+                return Content(GlobalContants.NoChallenges);
+            }
 
             return View(challenges);
         }
@@ -27,10 +34,10 @@
         {
             var challenge = this.Data.Challenges
                 .All()
-                .Where(x=>x.Id == id)
+                .Where(x => x.Id == id)
                 .Project()
                 .To<DetailedChallengeViewModel>()
-                .FirstOrDefault();           
+                .FirstOrDefault();
 
             if (this.CurrentUser != null)
             {
@@ -50,7 +57,7 @@
             return View(challenge);
         }
 
-        public ActionResult Join(object id)
+        public ActionResult Join(int id)
         {
             var challenge = this.Data.Challenges.Find(id);
 
@@ -64,6 +71,19 @@
             }
 
             return PartialView("_ChallengeParticipantsPartial", this.CurrentUser.UserName);
+        }
+
+        public ActionResult Sort(int id)
+        {
+            var category = (ChallengeType)id;
+            var challenges = this.Data.Challenges.All().Where(x => x.ChallengeType == category).Project().To < AllChallengesViewModel>().ToList();
+
+            if(challenges.Count == 0)
+            {
+                return Content(GlobalContants.NoChallenges);
+            }
+
+            return PartialView("_AllChallengesPartial", challenges);
         }
     }
 }

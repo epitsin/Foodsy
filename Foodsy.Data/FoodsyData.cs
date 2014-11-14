@@ -80,6 +80,14 @@
             }
         }
 
+        public IRepository<Feedback> Feedbacks
+        {
+            get
+            {
+                return this.GetRepository<Feedback>();
+            }
+        }
+
         public IRepository<Like> Likes
         {
             get

@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Foodsy.Web
+﻿namespace Foodsy.Web
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Static",
+                url: "{action}",
+                defaults: new { controller = "Home" },
+                namespaces: new[] { "Foodsy.Web.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "Default",

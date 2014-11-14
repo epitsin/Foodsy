@@ -15,18 +15,8 @@
                     <div class="clear"></div>
                 </div>
                 <div class="row">
-                    <div class="projects">
-                        @foreach (var challenge in Model)
-                        {
-                            <div class="col-md-6 element category01 isotope-item" data-category="category01">
-                                <div class="item_description">
-                                    <h3>
-                                        <a href="@Url.Action("ChallengeDetails", "Challenges", new { area = String.Empty,       challenge.Id })">>@challenge.Title</a>
-                                    </h3>
-                                    <div class="descr">@challenge.Description</div>
-                                </div>
-                            </div>
-                        }
+                    <div class="projects" id="challenges">
+                        @Html.Partial("_AllChallengesPartial", Model)
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -34,3 +24,12 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        function changeColour(modelName) {
+            $("#" + modelName).addClass("selected");
+        }
+    </script>
+}
+

@@ -1,4 +1,6 @@
-﻿<div class="wrap">
+﻿@model Foodsy.Data.Models.Feedback
+
+<div class="wrap">
     <div class="container">
         <section>
             <div class="row">
@@ -13,16 +15,17 @@
                     <div class="contact_form">
                         <div id="note"></div>
                         <div id="fields">
-                            <form id="ajax-contact-form" action="">
-                                <input class="col-md-7 form-control bottom-space" type="text" name="name" value="" placeholder="Name (required)" />
-                                <input class="col-md-7 form-control bottom-space" type="text" name="email" value="" placeholder="Email (required)" />
-                                <input class="col-md-7 form-control bottom-space" type="text" name="subject" value="" placeholder="Subject" />
-                                <textarea name="message" id="message" class="col-md-8 form-control bottom-space" placeholder="Message"></textarea>
+                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contact-form" }))
+                            {
+                                @Html.TextBoxFor(model => model.Name, new { @class = "col-md-7 form-control bottom-space", placeholder = "Name" })
+                                @Html.TextBoxFor(model => model.Email, new { @class = "col-md-7 form-control bottom-space", placeholder = "Email" })
+                                @Html.TextBoxFor(model => model.Subject, new { @class = "col-md-7 form-control bottom-space", placeholder = "Subject" })
+                                @Html.TextAreaFor(model => model.Message, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
                                 <div class="clear"></div>
-                                <input type="reset" class="btn dark_btn" value="Clear form" />
-                                <input type="submit" class="btn send_btn" value="Submit" />
+                                <input class="btn dark_btn" type="reset" value="Clear" />
+                                <input class="btn send_btn" type="submit" value="Send" />
                                 <div class="clear"></div>
-                            </form>
+                            }
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ namespace Foodsy.Data.Migrations
     using Foodsy.Data.Models;
 
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Text.RegularExpressions;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FoodsyDbContext>
     {
@@ -194,31 +195,38 @@ namespace Foodsy.Data.Migrations
             {
                 return;
             }
-
-            context.Articles.Add(new Article
+            var first = new Article
             {
                 Title = "Some title",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg"
-            });
-
-            context.Articles.Add(new Article
+            };
+            var second = new Article
             {
                 Title = "Another title",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/black-water-glass-strawberry.jpg"
-            });
-
-            context.Articles.Add(new Article
+            };
+            var third = new Article
             {
                 Title = "Another another title",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/blueberries_1600x900_sc.jpg"
-            });
+            };
 
+            context.Articles.Add(first);
+            this.GetTagsForArticle(context, first);
+            context.SaveChanges();
+
+            context.Articles.Add(first);
+            this.GetTagsForArticle(context, second);
+            context.SaveChanges();
+
+            context.Articles.Add(first);
+            this.GetTagsForArticle(context, third);
             context.SaveChanges();
         }
 
@@ -246,6 +254,25 @@ namespace Foodsy.Data.Migrations
             });
 
             context.SaveChanges();
+        }
+
+        private void GetTagsForArticle(FoodsyDbContext context, Article àrticle)
+        {
+            var tagNames = Regex.Split(àrticle.Title, @"\W+").ToList();
+
+            foreach (var tag in tagNames)
+            {
+                if (!context.Tags.Any(x => x.Name == tag.ToLower()))
+                {
+                    var newTag = new Tag { Name = tag.ToLower() };
+                    newTag.Articles.Add(àrticle);
+                    context.Tags.Add(newTag);
+                }
+                else
+                {
+                    context.Tags.FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(àrticle);
+                }
+            }
         }
     }
 }

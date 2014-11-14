@@ -7,7 +7,13 @@
             <h2 class="title"><span><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></span></h2>
             <img src="@article.ImageUrl" />
             <div class="post_info">
-                <div class="fleft">On <span>@Html.DisplayFor(x => article.CreatedOn)</span> / Tags <a href="#">Works</a>, <a href="#">Personal</a></div>
+                <div class="fleft">
+                    On <span>@Html.DisplayFor(x => article.CreatedOn)</span> / Tags
+                    @foreach (var tag in article.Tags)
+                    {
+                        <a href="#">@tag.Name </a>
+                    }
+                </div>
                 <div class="clear"></div>
             </div>
             <p>@article.Text</p>

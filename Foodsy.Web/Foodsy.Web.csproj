@@ -102,6 +102,12 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Postal">
+      <HintPath>..\packages\Postal.Mvc5.1.2.0\lib\net45\Postal.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -626,6 +632,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Category.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\MealType.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\AddIngredients.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\_AllRecipesPartial.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -699,11 +706,11 @@
     <Content Include="Views\Articles\ArticleDetails.cshtml" />
     <Content Include="Areas\Recipes\Views\CustomMenu\GetInformation.cshtml" />
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
-    <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\_CategoriesPartial.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\CreateRecipe.cshtml" />
     <Content Include="Areas\Recipes\Views\Images\UploadImage.cshtml" />
     <Content Include="Views\Challenges\AllChallenges.cshtml" />
-    <Content Include="Views\Shared\_ChallengeTypePartial.cshtml" />
+    <Content Include="Views\Challenges\_ChallengeTypePartial.cshtml" />
     <Content Include="Views\Challenges\ChallengeDetails.cshtml" />
     <Content Include="Areas\Recipes\Views\CustomMenu\CustomMenu.cshtml" />
     <Content Include="Areas\Recipes\Views\FavouriteRecipes\FavouriteRecipes.cshtml" />
@@ -716,6 +723,10 @@
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Views\Articles\_AllArticlesPartial.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Emails\Example.cshtml" />
+    <Content Include="Views\Challenges\_AllChallengesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

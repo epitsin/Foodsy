@@ -1,35 +1,33 @@
 ﻿@model Foodsy.Data.Models.Feedback
 
-<div class="wrap">
-    <div class="container">
-        <section>
-            <div class="row">
-                <div class="col-md-4">
-                    <h2 class="title"><span>Contact Info</span></h2>
-                    <div id="map"><iframe width="100%" height="310" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src='https://www.google.com/maps/place/%D0%A1%D0%BE%D1%84%D0%B8%D1%8F,+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F/@("@")42.6954322,23.3239467,11z/data=!3m1!4b1!4m2!3m1!1s0x40aa8682cb317bf5:0x400a01269bf5e60?hl=bg'></iframe></div>
-                    <p>Sofia<br />Bulgaria</p>
-                    <p>Phone: 0888 88 88 88<br />Email: <a href="mailto:epitsin@gmail.com">epitsin@gmail.com</a><br />Web: <a href="https://github.com/epitsin">Github Profile</a></p>
-                </div>
-                <div class="col-md-8">
-                    <h2 class="title"><span>Get In Touch</span></h2>
-                    <div class="contact_form">
-                        <div id="note"></div>
-                        <div id="fields">
-                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contact-form" }))
-                            {
-                                @Html.TextBoxFor(model => model.Name, new { @class = "col-md-7 form-control bottom-space", placeholder = "Name" })
-                                @Html.TextBoxFor(model => model.Email, new { @class = "col-md-7 form-control bottom-space", placeholder = "Email" })
-                                @Html.TextBoxFor(model => model.Subject, new { @class = "col-md-7 form-control bottom-space", placeholder = "Subject" })
-                                @Html.TextAreaFor(model => model.Message, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
-                                <div class="clear"></div>
-                                <input class="btn dark_btn" type="reset" value="Clear" />
-                                <input class="btn send_btn" type="submit" value="Send" />
-                                <div class="clear"></div>
-                            }
-                        </div>
+<div class="container">
+    <section>
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="title"><span>Contact Info</span></h2>
+                <div id="map"><iframe width="100%" height="310" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src='https://www.google.com/maps/place/%D0%A1%D0%BE%D1%84%D0%B8%D1%8F,+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F/@("@")42.6954322,23.3239467,11z/data=!3m1!4b1!4m2!3m1!1s0x40aa8682cb317bf5:0x400a01269bf5e60?hl=bg'></iframe></div>
+                <p>Sofia<br />Bulgaria</p>
+                <p>Phone: 0888 88 88 88<br />Email: <a href="mailto:epitsin@gmail.com">epitsin@gmail.com</a><br />Web: <a href="https://github.com/epitsin">Github Profile</a></p>
+            </div>
+            <div class="col-md-7">
+                <h2 class="title"><span>Get In Touch</span></h2>
+                <div class="contact_form">
+                    <div id="note"></div>
+                    <div id="fields">
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "contact-form" }))
+                        {
+                            @Html.TextBoxFor(model => model.Name, new { @class = "col-md-7 form-control bottom-space", placeholder = "Name" })
+                            @Html.TextBoxFor(model => model.Email, new { @class = "col-md-7 form-control bottom-space", placeholder = "Email" })
+                            @Html.TextBoxFor(model => model.Subject, new { @class = "col-md-7 form-control bottom-space", placeholder = "Subject" })
+                            @Html.TextAreaFor(model => model.Message, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
+                            <div class="clear"></div>
+                            <input class="btn dark_btn" type="reset" value="Clear" />
+                            <input class="btn send_btn" type="submit" value="Send" />
+                            <div class="clear"></div>
+                        }
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 </div>

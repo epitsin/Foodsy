@@ -1,48 +1,40 @@
 ﻿﻿@model Foodsy.Web.ViewModels.Challenges.DetailedChallengeViewModel
 
-<div class="page_container">
-    <div class="wrap">
-        <div class="container">
-            <section>
-                <h2 class="page-header text-center">@Model.Title</h2>
-                <div class="row pad5">
-                    <div class="col-md-8">
-                        <div class="post">
-                            <div class="post_info">
-                                <div class="fleft">From <span>@Html.DisplayFor(x => Model.Start)</span> / To <span>@Html.DisplayFor(x => Model.Finish)</span> / Tags <a href="">Works</a>, <a href="">Personal</a></div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>@Model.Description</p>
-                            <h3 class="title"><span>These are the recipes:</span></h3>
-                            <ul class="links">
-                                @foreach (var recipe in Model.Recipes)
-                                {
-                                    <li><a href="@Url.Action("RecipeDetails", "Recipes", new { area = "Recipes", recipe.Id })">@recipe.Name</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="sidebar" style="padding-top:60px;">
-                            <div class="widget">
-                                <h2 class="title"><span>The enthusiasts who have joined:</span></h2>
-                                <ul class="links" id="participants">
-                                    @foreach (var participant in Model.Participants)
-                                    {
-                                        @Html.Partial("_ChallengeParticipantsPartial", participant.UserName)
-                                    }
-                                </ul>
-                                @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)
-                                {
-                                    @Ajax.ActionLink("Join", "Join", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "participants", HttpMethod = "Post", OnSuccess = "hideJoinButton" }, new { id = "join-button", @class = "btn send_btn" })
-                                }
-                            </div>
-                        </div>
-                    </div>
+<div class="container">
+    <section>
+        <h2 class="page-header text-center">@Model.Title</h2>
+        <div class="col-md-8">
+            <div class="post">
+                <div class="post_info">
+                    <div class="fleft">From <span>@Html.DisplayFor(x => Model.Start)</span> / To <span>@Html.DisplayFor(x => Model.Finish)</span></div>
+                    <div class="clear"></div>
                 </div>
-            </section>
+                <p>@Model.Description</p>
+                <h3 class="title"><span>These are the recipes:</span></h3>
+                <ul class="links">
+                    @foreach (var recipe in Model.Recipes)
+                    {
+                        <li><a href="@Url.Action("RecipeDetails", "Recipes", new { area = "Recipes", recipe.Id })">@recipe.Name</a></li>
+                    }
+                </ul>
+            </div>
         </div>
-    </div>
+        <div class="col-md-4">
+            <div class="sidebar">
+                <h2 class="title"><span>The enthusiasts:</span></h2>
+                <ul class="links" id="participants">
+                    @foreach (var participant in Model.Participants)
+                    {
+                        @Html.Partial("_ChallengeParticipantsPartial", participant.UserName)
+                    }
+                </ul>
+                @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)
+                {
+                    @Ajax.ActionLink("Join", "Join", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "participants", HttpMethod = "Post", OnSuccess = "hideJoinButton" }, new { id = "join-button", @class = "btn send_btn" })
+                }
+            </div>
+        </div>
+    </section>
 </div>
 
 

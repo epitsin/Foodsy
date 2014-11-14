@@ -15,15 +15,23 @@
             this.RecipeIngredients = new List<RecipeIngredient>();
         }
 
+        [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Required]
+        [StringLength(5000, MinimumLength = 20)]
         public string Description { get; set; }
 
+        [Required]
         public Category Category { get; set; }
 
+        [Required]
         [Display(Name = "Meal type")]
         public MealType MealType { get; set; }
 
+        [Required]
+        [Range(5, 2000)]
         [Display(Name = "Grams per portion")]
         public int GramsPerPortion { get; set; }
 

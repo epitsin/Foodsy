@@ -1,19 +1,15 @@
 ﻿﻿@model IEnumerable<Foodsy.Web.ViewModels.Challenges.AllChallengesViewModel>
 
 <div class="container">
-    <div class="page_container">
-        <div class="wrap">
-            <div class="container inner_content">
-                <div id="options">
-                    @Html.Partial("_ChallengeTypePartial")
-                    <div class="clear"></div>
-                </div>
-                <div class="row">
-                    <div class="projects" id="challenges">
-                        @Html.Partial("_AllChallengesPartial", Model)
-                        <div class="clear"></div>
-                    </div>
-                </div>
+    <div class="container inner_content">
+        <div id="options">
+            @Html.Partial("_ChallengeTypePartial")
+            <div class="clear"></div>
+        </div>
+        <div class="row top-bottom-space">
+            <div id="challenges">
+                @Html.Partial("_AllChallengesPartial", Model)
+                <div class="clear"></div>
             </div>
         </div>
     </div>

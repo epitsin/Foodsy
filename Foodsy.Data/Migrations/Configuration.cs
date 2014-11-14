@@ -88,7 +88,8 @@ namespace Foodsy.Data.Migrations
                 Category = Category.Vegetarian,
                 MealType = MealType.Breakfast,
                 CreatedOn = DateTime.Now,
-                ImageUrl = "/Content/img/beer-tomato-food-knife-still-life_1920x1080_sc.jpg"
+                ImageUrl = "/Content/img/beer-tomato-food-knife-still-life_1920x1080_sc.jpg",
+                GramsPerPortion = 200
             };
 
             var batter = new Ingredient { Name = "Batter", Proteins = 0, Carbohydrates = 30, Fats = 5 };
@@ -141,7 +142,8 @@ namespace Foodsy.Data.Migrations
                 Category = Category.Meat,
                 MealType = MealType.MainMeal,
                 CreatedOn = DateTime.Now,
-                ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg"
+                ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg",
+                GramsPerPortion = 200
             };
 
             var potato = new Ingredient { Name = "Potato", Proteins = 0, Carbohydrates = 30, Fats = 0 };
@@ -153,19 +155,19 @@ namespace Foodsy.Data.Migrations
             {
                 Ingredient = potato,
                 Recipe = musaka,
-                Quantity = 200 //240
+                Quantity = 200 
             });
             relationshipsMusaka.Add(new RecipeIngredient
             {
                 Ingredient = meat,
                 Recipe = musaka,
-                Quantity = 150 //585
+                Quantity = 150 
             });
             relationshipsMusaka.Add(new RecipeIngredient
             {
                 Ingredient = carrots,
                 Recipe = musaka,
-                Quantity = 50 //30
+                Quantity = 50 
             });
 
             musaka.RecipeIngredients = relationshipsMusaka;

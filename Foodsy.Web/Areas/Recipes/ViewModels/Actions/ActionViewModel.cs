@@ -7,8 +7,11 @@
 
     public class ActionViewModel : IMapFrom<Action>
     {
+        [Required]
+        [StringLength(100, MinimumLength = 10)]
         public string Text { get; set; }
 
+        [Required]
         [Display(Name="Step")]
         public string ParentActions { get; set; }
 

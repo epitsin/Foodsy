@@ -26,22 +26,28 @@
         [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Required]
+        [StringLength(5000, MinimumLength = 20)]
         public string Description { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
+        [Required]
         public DateTime CreatedOn { get; set; }
 
+        [Required]
         public Category Category { get; set; }
 
+        [Required]
         [Display(Name = "Meal type")]
         public MealType MealType { get; set; }
 
         [Display(Name = "Grams per portion")]
-        [Range(0, 1000)]
+        [Range(10, 1000)]
         public int GramsPerPortion { get; set; }
 
-        [Range(0, 2000)]
+        [Range(10, 2000)]
         public int CaloriesPerPortion { get; set; }
 
         [Range(0, 2000)]
@@ -53,6 +59,7 @@
         [Range(0, 2000)]
         public int Fats { get; set; }
 
+        [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 
         public User Author { get; set; }

@@ -1,6 +1,6 @@
 ﻿@using Foodsy.Data.Models;
 
-<ul id="filters" class="option-set" data-option-key="filter">
+<ul id="filters" class="option-set">
     @{
         Array values = Enum.GetValues(typeof(ChallengeType));
         var items = new List<System.Web.UI.WebControls.ListItem>(values.Length);

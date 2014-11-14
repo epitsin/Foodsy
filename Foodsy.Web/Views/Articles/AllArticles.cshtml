@@ -1,47 +1,51 @@
 ﻿﻿@model IList<Foodsy.Web.ViewModels.Articles.ArticleViewModel>
 
-<div class="wrap">
-    <div class="container">
-        <section>
-            <div class="row">
-                <div id="articles">
-                    @Html.Partial("_AllArticlesPartial", Model)
-                </div>
-                <div class="col-md-4">
-                    <div class="sidebar">
-                        <div class="widget">
-                            @using (Ajax.BeginForm("Search", "Articles", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }))
+<div class="container">
+    <section>
+        <div class="row">
+            <div id="articles">
+                @Html.Partial("_AllArticlesPartial", Model)
+            </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <div class="widget">
+                        @using (Ajax.BeginForm("Search", "Articles", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }))
+                        {
+                            @Html.TextBox("text")
+                            @Html.AntiForgeryToken()
+                            <input type="submit" class="btn dark_btn" value="Search" />
+                        }
+                    </div>
+                    <div class="widget">
+                        <h2 class="title">
+                            <span>Recent posts</span>
+                        </h2>
+                        <ul class="recent_post">
+                            @foreach (var article in ViewBag.RecentArticles)
                             {
-                                @Html.TextBox("text")
-                                @Html.AntiForgeryToken()
-                                <input type="submit" class="btn dark_btn" value="Search" />
+                                <li>
+                                    <div>
+                                        <a href="@Url.Action("ArticleDetails", new { id = article.Id })">
+                                            @article.Title
+                                        </a>
+                                    </div>
+                                    @article.CreatedOn
+                                    <div class="clear"></div>
+                                </li>
                             }
-                        </div>
-                        <div class="widget">
-                            <h2 class="title"><span>Recent posts</span></h2>
-                            <ul class="recent_post">
-                                @foreach (var article in ViewBag.RecentArticles)
-                                {
-                                    <li>
-                                        <div><a href="@Url.Action("ArticleDetails", new { id = article.Id })">@article.Title</a></div>
-                                        @article.CreatedOn
-                                        <div class="clear"></div>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                        <div class="widget tags">
-                            <h2 class="title"><span>Tags</span></h2>
-                            @foreach (var tag in ViewBag.Tags)
-                            {
-                                @*<a href="#">@tag.Name</a>
-                                <li>@Ajax.ActionLink(item.Text, "Sort", new { id = item.Value }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "challenges", HttpMethod = "Post", OnSuccess = "( function() { changeColour(Detox); })" }, new { id = item.Text, @class = "btn dark_btn" })</li>*@
-                                @Ajax.ActionLink((string)tag.Name, "Sort", new { tagName = tag.Name }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }, null)
-                            }
-                        </div>
+                        </ul>
+                    </div>
+                    <div class="widget tags">
+                        <h2 class="title">
+                            <span>Tags</span>
+                        </h2>
+                        @foreach (var tag in ViewBag.Tags)
+                        {
+                            @Ajax.ActionLink((string)tag.Name, "Sort", new { tagName = tag.Name }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }, null)
+                        }
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 </div>

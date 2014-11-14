@@ -1,110 +1,99 @@
 ﻿@model Foodsy.Web.Areas.Recipes.ViewModels.Recipes.DetailedRecipeViewModel
 
-<div class="page_container">
-    <div class="wrap">
-        <div class="container">
-            <section>
-                <h2 class="page-header text-center">@Model.Name</h2>
-                <div class="row pad5">
-                    <div class="col-md-8">
-                        <div class="post">
-                            <img src="@Model.ImageUrl" />
-                            <div class="post_info">
-                                <div class="fleft">
-                                    On <span>@Html.DisplayFor(x => Model.CreatedOn)</span> / By
-                                    @if (Model.Author != null)
-                                    {
-                                        <span>
-                                            @Model.Author.UserName
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span>
-                                            Anonymous
-                                        </span>
-                                    }
-                                    / Tags 
-                                    @foreach (var tag in Model.Tags)
-                                    {
-                                        <a href="#">@tag.Name </a> 
-                                    }
-                                </div>
-                                <div class="fright"><a href="#">@Model.Views.Count</a> Views</div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>@Model.Description</p>
-                            <ul class="links">
-                                @foreach (var ingredient in Model.RecipeIngredients)
-                                {
-                                    <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
-                                }
-                            </ul>
-                            <div class="top-bottom-space">
-                                <p>Grams per portion: @Model.GramsPerPortion</p>
-                                <p>Calories per portion: @Model.CaloriesPerPortion</p>
-                                <p>Proteins: @Model.Proteins</p>
-                                <p>Carbs: @Model.Carbohydrates</p>
-                                <p>Fats: @Model.Fats</p>
-                            </div>
-                            <div>
-                                Likes: <span id="recipe-votes">@Model.Likes.Count</span>
-                                @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
-                                {
-                                    @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })
-                                }
-                            </div>
-                            <h4>@Model.Comments.Count comments</h4>
-                            <div>
-                                <ol id="comments">
-                                    @foreach (var comment in Model.Comments)
-                                    {
-                                        @Html.Partial("_CommentPartial", comment)
-                                    }
-                                </ol>
-                            </div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <h4>Leave a comment</h4>
-                                using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
-                                {
-                                    @Html.Hidden("RecipeId", Model.Id)
-                                    @Html.TextArea("comment", new { @class = "form-control bottom-space" })
-                                    @Html.AntiForgeryToken()
-                                    <input type="reset" class="btn dark_btn" value="Clear form" />
-                                    <input type="submit" class="btn send_btn" value="Post Comment" />
-                                }
-                            }
-                        </div>
-
-                    </div>
-                    <div class="col-md-4">
-                        <div class="sidebar" style="padding-top:60px;">
-                            <div class="widget">
-                                <h2 class="title"><span>Let's prepare it together!</span></h2>
-                                <ol class="links">
-                                    @foreach (var action in Model.Actions)
-                                    {
-                                        <li>@action.Text</li>
-                                    }
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="bought"></div>
-                    <div id="buy-form" class="top-bottom-space">
-                        @if (User.Identity.IsAuthenticated && Model.PricePerPortion != 0m && ViewBag.CanBuy)
+<div class="container">
+    <section>
+        <h2 class="page-header text-center">@Model.Name</h2>
+        <div class="col-md-8">
+            <div class="post">
+                <img src="@Model.ImageUrl" />
+                <div class="post_info">
+                    <div class="fleft">
+                        On <span>@Html.DisplayFor(x => Model.CreatedOn)</span> / By
+                        @if (Model.Author != null)
                         {
-                            <div> Don't feel like cooking?</div>
-                            <div>Buy it now!</div>
-                            <div><strong>Only @Model.PricePerPortion $</strong></div>
-                            @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideBuyButton" }, new { id = "like-button", @class = "btn send_btn" })
+                            <span>
+                                @Model.Author.UserName
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Anonymous
+                            </span>
                         }
                     </div>
+                    <div class="fright"><a href="#">@Model.Views.Count</a> Views</div>
+                    <div class="clear"></div>
                 </div>
-            </section>
+                <p>@Model.Description</p>
+                <ul class="links">
+                    @foreach (var ingredient in Model.RecipeIngredients)
+                    {
+                        <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
+                    }
+                </ul>
+                <div class="top-bottom-space">
+                    <p>Grams per portion: @Model.GramsPerPortion</p>
+                    <p>Calories per portion: @Model.CaloriesPerPortion</p>
+                    <p>Proteins: @Model.Proteins</p>
+                    <p>Carbs: @Model.Carbohydrates</p>
+                    <p>Fats: @Model.Fats</p>
+                </div>
+                <div>
+                    Likes: <span id="recipe-votes">@Model.Likes.Count</span>
+                    @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
+                    {
+                        @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })
+                    }
+                </div>
+                <div id="comments">
+                    <h4>@Model.Comments.Count comments</h4>
+                    <ol>
+                        @foreach (var comment in Model.Comments)
+                        {
+                            @Html.Partial("_CommentPartial", comment)
+                        }
+                    </ol>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <h4>Leave a comment</h4>
+                    using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
+                    {
+                        @Html.Hidden("RecipeId", Model.Id)
+                        @Html.TextArea("comment", new { @class = "form-control bottom-space" })
+                        @Html.AntiForgeryToken()
+                        <input type="reset" class="btn dark_btn" value="Clear form" />
+                        <input type="submit" class="btn send_btn" value="Post Comment" />
+                    }
+                }
+            </div>
+
         </div>
-    </div>
+        <div class="col-md-4">
+            <div class="sidebar" style="padding-top:60px;">
+                <div class="widget">
+                    <h2 class="title"><span>Let's prepare it together!</span></h2>
+                    <ol class="links">
+                        @foreach (var action in Model.Actions)
+                        {
+                            <li>@action.Text</li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div id="bought"></div>
+        <div id="buy-form" class="top-bottom-space">
+            @if (User.Identity.IsAuthenticated && Model.PricePerPortion != 0m && ViewBag.CanBuy)
+            {
+                <div> Don't feel like cooking?</div>
+                <div>Buy it now!</div>
+                <div><strong>Only @Model.PricePerPortion $</strong></div>
+                @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideBuyButton" }, new { id = "like-button", @class = "btn send_btn" })
+            }
+        </div>
+    </section>
 </div>
 
 

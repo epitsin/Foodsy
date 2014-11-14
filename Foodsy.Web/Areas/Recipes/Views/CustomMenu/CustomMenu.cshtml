@@ -1,38 +1,34 @@
 ﻿@model IEnumerable<Foodsy.Web.Areas.Recipes.ViewModels.Recipes.CustomMenuRecipeViewModel>
 
 <div class="container">
-    <div class="page_container">
-        <div class="wrap">
-            <div class="container inner_content">
-                <h2 class="text-center top-bottom-space">You need @ViewBag.CustomCalories calories per day. Here is your recommended menu:</h2>
-                <div class="row">
-                    <div class="projects">
-                        @foreach (var recipe in Model)
-                        {
-                            <div class="row">
-                                <div class="col-md-6 element">
-                                    <div class="hover_img">
-                                        <img src="@recipe.ImageUrl" alt="" />
-                                        <span class="portfolio_zoom"><a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a></span>
-                                        <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", "Recipes", new { recipe.Id })">View item</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 element">
-                                    <div class="item_description">
-                                        <h3><a href="@Url.Action("RecipeDetails", "Recipes", new { @recipe.Id })">@recipe.Name</a></h3>
-                                        <div class="descr">@recipe.Description</div>
-                                        <h5>Grams of portion: <span class="descr-heading">@recipe.GramsPerPortion</span></h5>
-                                        <h5>Calories per portion: <span class="descr-heading">@recipe.CaloriesPerPortion</span></h5>
-                                        <h5>Proteins: <span class="descr-heading">@recipe.Proteins</span></h5>  
-                                        <h5>Carbohydrates: <span class="descr-heading">@recipe.Carbohydrates</span></h5>  
-                                        <h5>Fats: <span class="descr-heading">@recipe.Fats</span></h5>  
-                                    </div>
-                                </div>
+    <div class="container inner_content">
+        <h2 class="text-center top-bottom-space">You need @ViewBag.CustomCalories calories per day. Here is your recommended menu:</h2>
+        <div class="row">
+            <div class="projects">
+                @foreach (var recipe in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-6 element">
+                            <div class="hover_img">
+                                <img src="@recipe.ImageUrl" alt="" />
+                                <span class="portfolio_zoom"><a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a></span>
+                                <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", "Recipes", new { recipe.Id })">View item</a></span>
                             </div>
-                        }
-                        <div class="clear"></div>
+                        </div>
+                        <div class="col-md-6 element">
+                            <div class="item_description">
+                                <h3><a href="@Url.Action("RecipeDetails", "Recipes", new { @recipe.Id })">@recipe.Name</a></h3>
+                                <div class="descr">@recipe.Description</div>
+                                <h5>Grams of portion: <span class="descr-heading">@recipe.GramsPerPortion</span></h5>
+                                <h5>Calories per portion: <span class="descr-heading">@recipe.CaloriesPerPortion</span></h5>
+                                <h5>Proteins: <span class="descr-heading">@recipe.Proteins</span></h5>
+                                <h5>Carbohydrates: <span class="descr-heading">@recipe.Carbohydrates</span></h5>
+                                <h5>Fats: <span class="descr-heading">@recipe.Fats</span></h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
+                <div class="clear"></div>
             </div>
         </div>
     </div>

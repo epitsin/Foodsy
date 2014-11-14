@@ -24,7 +24,7 @@
         [HttpGet]
         public ActionResult GetInformation()
         {
-                return View();
+            return View();
         }
 
         [Authorize]
@@ -34,7 +34,6 @@
             if (ModelState.IsValid)
             {
                 var bmr = 0;
-                ViewBag.CustomCalories = bmr;
                 if (model.Gender == "Male")
                 {
                     bmr = 65 + (14 * model.Weight) + (5 * model.Height) - (7 * model.Age);
@@ -71,6 +70,7 @@
                 }
 
                 var mealModels = meals.AsQueryable().Project().To<CustomMenuRecipeViewModel>();
+                ViewBag.CustomCalories = bmr;
 
                 return View("CustomMenu", mealModels);
             }

@@ -63,44 +63,42 @@
     @RenderBody()
 
     <div class="footer_bottom bottom">
-        <div class="wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="foot_logo">
-                            <a href="@Url.Action("Index", "Home")">
-                                <img src="@Url.Content("~/Content/img/logo2.png")" />
-                            </a>
-                        </div>
-                        <div class="copyright"><a href="https://github.com/epitsin">&copy; 2014 Elena Pitsin</a></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="foot_logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/Content/img/logo2.png")" />
+                        </a>
                     </div>
-                    <div class="col-md-7">
-                        <div class="foot_right_block">
-                            <div class="fright">
-                                <form action="#" method="post">
-                                    <input class="inp_search" name="name" type="text" value="Search the Site" />
-                                </form>
-                            </div>
-                            <div class="follow_us">
-                                <ul>
-                                    <li><a href="https://www.facebook.com/" class="facebook">Facebook</a></li>
-                                    <li><a href="https://www.tumblr.com/" class="tumbrl">Tumbrl</a></li>
-                                    <li><a href="https://twitter.com/" class="twitter">Twitter</a></li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
+                    <div class="copyright"><a href="https://github.com/epitsin">&copy; 2014 Elena Pitsin</a></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="foot_right_block">
+                        <div class="fright">
+                            <form action="#" method="post">
+                                <input class="inp_search" name="name" type="text" value="Search the Site" />
+                            </form>
+                        </div>
+                        <div class="follow_us">
+                            <ul>
+                                <li><a href="https://www.facebook.com/" class="facebook">Facebook</a></li>
+                                <li><a href="https://www.tumblr.com/" class="tumbrl">Tumbrl</a></li>
+                                <li><a href="https://twitter.com/" class="twitter">Twitter</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
 
-                            <div class="clear"></div>
-                            <div class="foot_menu">
-                                <ul>
-                                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, new { })</li>
-                                    <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
-                                    <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
-                                    <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
-                                    <li>@Html.ActionLink("Shopping Cart", "AllRecipes", "ShoppingCart", new { area = "Shop" }, new { })</li>
-                                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
-                                </ul>
-                            </div>
+                        <div class="clear"></div>
+                        <div class="foot_menu">
+                            <ul>
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("Recipes", "AllRecipes", "Recipes", new { area = "Recipes" }, new { })</li>
+                                <li>@Html.ActionLink("Healthy", "AllArticles", "Articles", new { area = String.Empty }, new { })</li>
+                                <li>@Html.ActionLink("Shopping Cart", "AllRecipes", "ShoppingCart", new { area = "Shop" }, new { })</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

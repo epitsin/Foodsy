@@ -1,29 +1,21 @@
 ﻿@model Foodsy.Web.ViewModels.Articles.ArticleViewModel
 
-<div class="page_container">
-    <div class="wrap">
-        <div class="container">
-            <section>
-                <h2 class="text-center">@Model.Title</h2>
-                <div class="row pad5">
-                    <div class="span8">
-                        <div class="post">
-                            <img src="@Model.ImageUrl" />
-                            <div class="post_info">
-                                <div class="fleft">
-                                    On <span>@Html.DisplayFor(x => Model.CreatedOn)</span> / Tags
-                                    @foreach (var tag in Model.Tags)
-                                    {
-                                        <a href="#">@tag.Name </a>
-                                    }
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <p>@Model.Text</p>
-                        </div>
-                    </div>
+<div class="container">
+    <section>
+        <h2 class="text-center">@Model.Title</h2>
+        <div class="post">
+            <img src="@Model.ImageUrl" />
+            <div class="post_info">
+                <div class="fleft">
+                    On <span>@Html.DisplayFor(x => Model.CreatedOn)</span> / Tags
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <span>@tag.Name </span>
+                    }
                 </div>
-            </section>
+                <div class="clear"></div>
+            </div>
+            <p>@Model.Text</p>
         </div>
-    </div>
+    </section>
 </div>

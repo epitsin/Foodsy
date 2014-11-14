@@ -239,7 +239,6 @@
                     recipeIngredient.Quantity = ingredient.Quantity;
                 }
 
-                this.GetTagsForRecipe(recipe);
                 this.GetCalories(recipe);
                 this.Data.SaveChanges();
 
@@ -316,45 +315,6 @@
                 recipe.Proteins += ingredient.Quantity * ingredient.Ingredient.Proteins / 100;
                 recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
                 recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
-            }
-        }
-
-        private void GetTagsForRecipe(Recipe recipe)
-        {
-            var tagNames = Regex.Split(recipe.Name, @"\W+").ToList();
-
-            foreach (var tag in tagNames)
-            {
-                if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
-                {
-                    var newTag = new Tag { Name = tag.ToLower() };
-                    newTag.Recipes.Add(recipe);
-                    this.Data.Tags.Add(newTag);
-                }
-                else
-                {
-                    this.Data.Tags
-                        .All()
-                        .FirstOrDefault(x => x.Name == tag.ToLower())
-                        .Recipes.Add(recipe);
-                }
-            }
-
-            foreach (var ingredient in recipe.RecipeIngredients)
-            {
-                if (!this.Data.Tags.All().Any(x => x.Name == ingredient.Ingredient.Name.ToLower()))
-                {
-                    var newTag = new Tag { Name = ingredient.Ingredient.Name.ToLower() };
-                    newTag.Recipes.Add(recipe);
-                    this.Data.Tags.Add(newTag);
-                }
-                else
-                {
-                    this.Data.Tags
-                        .All()
-                        .FirstOrDefault(x => x.Name == ingredient.Ingredient.Name.ToLower())
-                        .Recipes.Add(recipe);
-                }
             }
         }
     }

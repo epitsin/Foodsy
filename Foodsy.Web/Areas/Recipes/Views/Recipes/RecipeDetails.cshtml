@@ -39,6 +39,7 @@
                     <p>Carbs: @Model.Carbohydrates</p>
                     <p>Fats: @Model.Fats</p>
                 </div>
+                <h3>The chance that this is going to be the next hit: @ViewBag.Rate %</h3>
                 <div>
                     Likes: <span id="recipe-votes">@Model.Likes.Count</span>
                     @if (User.Identity.IsAuthenticated && ViewBag.CanLike)

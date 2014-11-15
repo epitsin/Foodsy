@@ -29,6 +29,7 @@
         }
 
         [HttpGet]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Contact()
         {
             var feedback = new Message();

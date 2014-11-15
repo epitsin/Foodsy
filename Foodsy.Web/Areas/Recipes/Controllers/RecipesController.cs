@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
     using AutoMapper;
@@ -42,7 +41,7 @@
 
             var recipes = allRecipes.Skip((pageNumber - 1) * PageSize).Take(PageSize);
             ViewBag.Pages = Math.Ceiling((double)allRecipes.Count() / PageSize);
-            
+
             return View(recipes);
         }
 
@@ -113,6 +112,8 @@
                 return HttpNotFound();
             }
 
+            ViewBag.Rate = this.LikeProbability(recipe);
+
             return View(recipeModel);
         }
 
@@ -164,7 +165,7 @@
                     Actions = actions,
                     GramsPerPortion = recipe.GramsPerPortion
                 };
-                
+
                 foreach (var ingredient in recipe.SelectedIngredients)
                 {
                     newRecipe.RecipeIngredients.Add(new RecipeIngredient
@@ -206,19 +207,19 @@
         [ValidateAntiForgeryToken]
         public ActionResult AddIngredients(List<AddIngredientViewModel> ingredients, string name)
         {
-                var recipe = this.Data.Recipes
-                    .All()
-                    .FirstOrDefault(x => x.Name == name);
-                foreach (var ingredient in ingredients)
-                {
-                    var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
-                    recipeIngredient.Quantity = ingredient.Quantity;
-                }
+            var recipe = this.Data.Recipes
+                .All()
+                .FirstOrDefault(x => x.Name == name);
+            foreach (var ingredient in ingredients)
+            {
+                var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
+                recipeIngredient.Quantity = ingredient.Quantity;
+            }
 
-                this.GetCalories(recipe);
-                this.Data.SaveChanges();
+            this.GetCalories(recipe);
+            this.Data.SaveChanges();
 
-                return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
+            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
         }
 
         [Authorize]
@@ -292,6 +293,90 @@
                 recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
                 recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
             }
+        }
+
+        private int LikeProbability(Recipe myRecipe)
+        {
+            var sortedIngredients = new Dictionary<int, double>();
+            var sortedCategories = new Dictionary<int, double>();
+            var allRecipes = this.Data.Recipes.All().ToList();
+
+            foreach (var recipe in allRecipes)
+            {
+                double coef = 0d;
+                if (recipe.Likes.Count != 0)
+                {
+                    coef = (double)recipe.Likes.Count / recipe.Views.Count;
+                }
+
+                if (sortedCategories.ContainsKey((int)recipe.Category))
+                {
+                    sortedCategories[(int)recipe.Category] += coef;
+                }
+                else
+                {
+                    sortedCategories.Add((int)recipe.Category, coef);
+                }
+
+                foreach (var ingredient in recipe.RecipeIngredients)
+                {
+                    if (sortedIngredients.ContainsKey(ingredient.IngredientId))
+                    {
+                        sortedIngredients[ingredient.IngredientId] += coef;
+                    }
+                    else
+                    {
+                        sortedIngredients.Add(ingredient.IngredientId, coef);
+                    }
+                }
+            }
+
+            var minCountOfSteps = this.Data.Recipes
+                .All()
+                .OrderBy(x => x.Actions.Count)
+                .FirstOrDefault()
+                .Actions
+                .Count;
+
+            double myIngredientCoef = 0d;
+            foreach (var ingredient in myRecipe.RecipeIngredients)
+            {
+                if (sortedIngredients.ContainsKey(ingredient.IngredientId))
+                {
+                    myIngredientCoef += sortedIngredients[ingredient.IngredientId];
+                }
+            }
+
+            double highestIngredientCoef = 0d;
+            var reversedIngredients = sortedIngredients.OrderByDescending(x => x.Value);
+            int count = 0;
+            foreach (var ingredient in reversedIngredients)
+            {
+                if (count >= myRecipe.RecipeIngredients.Count)
+                {
+                    break;
+                }
+
+                highestIngredientCoef += ingredient.Value;
+                count += 1;
+            }
+
+            double finalIngredientCoef = myIngredientCoef / highestIngredientCoef;
+            double highestCategoryCoef = sortedCategories.OrderByDescending(x => x.Value).FirstOrDefault().Value;
+            double finalCategoryCoef = sortedCategories[(int)myRecipe.Category] / highestCategoryCoef;
+            double finalActionsCoef = 0;
+            if (myRecipe.Actions.Count <= minCountOfSteps)
+            {
+                finalActionsCoef = 1;
+            }
+            else if (minCountOfSteps != 0)
+            {
+                finalActionsCoef = (double)minCountOfSteps / myRecipe.Actions.Count;
+            }
+
+            int finalCoef = (int)((finalActionsCoef + finalCategoryCoef + finalIngredientCoef) / 3 * 100);
+
+            return finalCoef;
         }
     }
 }

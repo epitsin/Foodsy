@@ -27,7 +27,7 @@
                 .All()
                 .Project()
                 .To<ArticleViewModel>()
-                .OrderBy(x => x.CreatedOn);
+                .OrderByDescending(x => x.CreatedOn);
             ViewBag.RecentArticles = allArticles.Take(3);
 
             var tags = this.Data.Tags

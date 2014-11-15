@@ -732,6 +732,8 @@
     <Content Include="Views\Challenges\EditorTemplates\CreateChallengeViewModel.cshtml" />
     <Content Include="Views\Challenges\CreateChallenge.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Articles\_TagsPartial.cshtml" />
+    <Content Include="Views\Articles\_RecentPostsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

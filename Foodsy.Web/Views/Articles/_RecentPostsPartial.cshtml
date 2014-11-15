@@ -1,0 +1,20 @@
+﻿<div class="widget">
+    <h2 class="title">
+        <span>Recent posts</span>
+    </h2>
+    <ul class="recent_post">
+        @foreach (var article in ViewBag.RecentArticles)
+        {
+            <li>
+                <div>
+                    <a href="@Url.Action("ArticleDetails", new { id = article.Id })">
+                        @article.Title
+                    </a>
+                </div>
+                @article.CreatedOn
+                <div class="clear"></div>
+            </li>
+        }
+    </ul>
+</div>
+

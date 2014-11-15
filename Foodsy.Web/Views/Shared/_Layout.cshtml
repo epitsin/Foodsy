@@ -50,7 +50,7 @@
                                     <li>@Html.ActionLink("Shopping Cart", "AllRecipes", "ShoppingCart", new { area = "Shop" }, new { })</li>
                                 }
                                 <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = String.Empty }, new { })</li>
-                                @if (User.Identity.IsAuthenticated)
+                                @if (User.IsInRole("Admin"))
                                 {
                                     <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, new { })</li>
                                 }

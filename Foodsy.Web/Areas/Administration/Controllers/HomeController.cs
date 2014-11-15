@@ -3,12 +3,12 @@
     using System.Web.Mvc;
 
     using Foodsy.Data;
-    using Foodsy.Web.Controllers;
+    using Foodsy.Web.Areas.Administration.Controllers.Base;
 
-    public class HomeController : BaseController
+    public class HomeController : AdminController
     {
         public HomeController(IFoodsyData data)
-            :base(data)
+            : base(data)
         {
 
         }

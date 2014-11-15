@@ -4,12 +4,13 @@ namespace Foodsy.Data.Migrations
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     using Foodsy.Common;
     using Foodsy.Data.Models;
 
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Text.RegularExpressions;
+    using Microsoft.AspNet.Identity;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FoodsyDbContext>
     {
@@ -23,32 +24,30 @@ namespace Foodsy.Data.Migrations
 
         protected override void Seed(FoodsyDbContext context)
         {
-            //this.userManager = new UserManager();
+            this.SeedRolesAndUsers(context);
             this.SeedIngredients(context);
             this.SeedRecipes(context);
             this.SeedArticles(context);
             this.SeedChallenges(context);
         }
 
-        private void SeedRoles(FoodsyDbContext context)
+        private void SeedRolesAndUsers(FoodsyDbContext context)
         {
-            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalContants.Admin));
-            context.SaveChanges();
-        }
+            if (!context.Users.Any())
+            {
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                roleManager.Create(new IdentityRole(GlobalContants.Admin));
+                roleManager.Create(new IdentityRole(GlobalContants.User));
 
-        //private void SeedUsers(FoodsyDbContext context)
-        //{
-        //    for (int i = 0; i < 5; i++)
-        //    {
-        //        var user = new User
-        //        {
-        //            Email = string.Format("{0}@{1}.com", this.random.RandomString(6, 16)),
-        //            UserName = this.random.RandomStirng(6, 16)
-        //        };
-        //        this.userManager.Create(user);
-        //    }
-        //    context.SaveChanges();
-        //}
+                var userManager = new UserManager<User>(new UserStore<User>(context));
+                var user = new User { UserName = "epitsin@gmail.com" };
+                userManager.Create(user, "123123");
+                userManager.AddToRole(user.Id, "Admin");
+                userManager.AddToRole(user.Id, "User");
+
+                context.SaveChanges();
+            }
+        }
 
         protected void SeedIngredients(FoodsyDbContext context)
         {

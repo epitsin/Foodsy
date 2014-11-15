@@ -18,34 +18,10 @@
                             <input type="submit" class="btn dark_btn" value="Search" />
                         }
                     </div>
-                    <div class="widget">
-                        <h2 class="title">
-                            <span>Recent posts</span>
-                        </h2>
-                        <ul class="recent_post">
-                            @foreach (var article in ViewBag.RecentArticles)
-                            {
-                                <li>
-                                    <div>
-                                        <a href="@Url.Action("ArticleDetails", new { id = article.Id })">
-                                            @article.Title
-                                        </a>
-                                    </div>
-                                    @article.CreatedOn
-                                    <div class="clear"></div>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="widget tags">
-                        <h2 class="title">
-                            <span>Tags</span>
-                        </h2>
-                        @foreach (var tag in ViewBag.Tags)
-                        {
-                            @Ajax.ActionLink((string)tag.Name, "Sort", new { tagName = tag.Name }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }, null)
-                        }
-                    </div>
+
+                    @Html.Partial("_RecentPostsPartial")
+                   
+                    @Html.Partial("_TagsPartial")
                 </div>
             </div>
         </div>

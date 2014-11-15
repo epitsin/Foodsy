@@ -1,0 +1,10 @@
+﻿<div class="widget tags">
+    <h2 class="title">
+        <span>Tags</span>
+    </h2>
+    @foreach (var tag in ViewBag.Tags)
+    {
+        @Ajax.ActionLink((string)tag.Name, "Sort", new { tagName = tag.Name }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }, null)
+    }
+</div>
+

@@ -17,11 +17,14 @@
 
         }
 
+        [HttpGet]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult About()
         {

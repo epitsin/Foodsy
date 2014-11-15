@@ -249,6 +249,7 @@
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\IngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CreateRecipeViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\DetailedRecipeViewModel.cs" />
+    <Compile Include="ViewModels\Tags\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />

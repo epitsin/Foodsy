@@ -13,15 +13,15 @@
                         {
                             @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                             @Html.AntiForgeryToken()
-                            
+
                             @Html.TextBox("text")
                             <input type="submit" class="btn dark_btn" value="Search" />
                         }
                     </div>
 
-                    @Html.Partial("_RecentPostsPartial")
-                   
-                    @Html.Partial("_TagsPartial")
+                    @Html.Action("RecentArticles")
+
+                    @Html.Action("Tags")
                 </div>
             </div>
         </div>

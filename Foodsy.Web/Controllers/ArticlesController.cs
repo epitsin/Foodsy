@@ -9,6 +9,7 @@
     using Foodsy.Common;
     using Foodsy.Data;
     using Foodsy.Web.ViewModels.Articles;
+    using Foodsy.Web.ViewModels.Tags;
 
     public class ArticlesController : BaseController
     {
@@ -25,15 +26,9 @@
             int pageNumber = id.GetValueOrDefault(1);
             var allArticles = this.Data.Articles
                 .All()
+                .OrderByDescending(x => x.CreatedOn)
                 .Project()
-                .To<ArticleViewModel>()
-                .OrderByDescending(x => x.CreatedOn);
-            ViewBag.RecentArticles = allArticles.Take(3);
-
-            var tags = this.Data.Tags
-                .All()
-                .OrderBy(x => x.Articles.Count);
-            ViewBag.Tags = tags.Take(12);
+                .To<ArticleViewModel>();
 
             var articles = allArticles
                 .Skip((pageNumber - 1) * PageSize)
@@ -42,6 +37,36 @@
             ViewBag.Pages = Math.Ceiling((double)allArticles.Count() / PageSize);
 
             return View(articles);
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        [OutputCache(Duration = 1800)]
+        public ActionResult RecentArticles()
+        {
+            var articles = this.Data.Articles
+                .All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(3)
+                .Project()
+                .To<ArticleViewModel>();
+
+            return PartialView("_RecentPostsPartial", articles);
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        [OutputCache(Duration = 1800)]
+        public ActionResult Tags()
+        {
+            var tags = this.Data.Tags
+                .All()
+                .OrderBy(x => x.Articles.Count)
+                .Take(12)
+                .Project()
+                .To<TagViewModel>();
+
+            return PartialView("_TagsPartial", tags);
         }
 
         [HttpGet]

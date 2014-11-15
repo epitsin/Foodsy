@@ -23,6 +23,7 @@
 
         [Authorize]
         [HttpGet]
+        [OutputCache(Duration = 10, VaryByParam = "none")]
         public ActionResult FavouriteRecipes(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);

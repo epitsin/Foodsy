@@ -1,9 +1,11 @@
-﻿<div class="widget">
+﻿@model IEnumerable<Foodsy.Web.ViewModels.Articles.ArticleViewModel>
+
+<div class="widget">
     <h2 class="title">
         <span>Recent posts</span>
     </h2>
     <ul class="recent_post">
-        @foreach (var article in ViewBag.RecentArticles)
+        @foreach (var article in Model)
         {
             <li>
                 <div>

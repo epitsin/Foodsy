@@ -1,8 +1,11 @@
 ﻿namespace Foodsy.Web.ViewModels.Articles
 {
-
     using System.ComponentModel.DataAnnotations;
-    public class AllArticlesViewModel
+
+    using Foodsy.Data.Models;
+    using Foodsy.Web.Infrastructure.Mapping;
+
+    public class AllArticlesViewModel : IMapFrom<Article>
     {
         [Required]
         [StringLength(100, MinimumLength = 3)]

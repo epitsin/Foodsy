@@ -12,7 +12,7 @@
     public class HomeController : BaseController
     {
         public HomeController(IFoodsyData data)
-            :base(data)
+            : base(data)
         {
 
         }
@@ -22,6 +22,7 @@
             return View();
         }
 
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult About()
         {
             return View();

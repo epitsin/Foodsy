@@ -1,0 +1,25 @@
+﻿@model Foodsy.Web.ViewModels.Challenges.CreateChallengeViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Let's challenge people!</h2>
+        <section id="userInformation" class="top-bottom-space">
+            @using (Html.BeginForm("CreateChallenge", "Challenges", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                @Html.AntiForgeryToken()
+
+                <h3 class="text-center">What's the goal?</h3>
+                <hr />
+
+                @Html.EditorForModel()
+
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" class="btn send_btn" value="Share" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>

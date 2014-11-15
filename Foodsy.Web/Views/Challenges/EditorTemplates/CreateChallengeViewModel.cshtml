@@ -1,0 +1,46 @@
+﻿@using System.Web.Mvc.Html;
+@using Kendo.Mvc.UI;
+
+@model Foodsy.Web.ViewModels.Challenges.CreateChallengeViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Title, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+    @Html.ValidationMessageFor(m => m.Title, string.Empty, new { @class = "text-danger col-md-offset-1" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    @Html.ValidationMessageFor(m => m.Description, string.Empty, new { @class = "text-danger col-md-offset-1" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.ChallengeType, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.EnumDropDownListFor(m => m.ChallengeType, new { @class = "form-control" })
+    </div>
+    @Html.ValidationMessageFor(m => m.ChallengeType, string.Empty, new { @class = "text-danger col-md-offset-1" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Start, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.Kendo().DateTimePickerFor(m => m.Start).Name("Start").HtmlAttributes(new { required = "required" })
+    </div>
+    @Html.ValidationMessageFor(m => m.Start, string.Empty, new { @class = "text-danger col-md-offset-1" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Finish, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.Kendo().DateTimePickerFor(m => m.Finish).Name("Finish").HtmlAttributes(new { required = "required" })
+    </div>
+    @Html.ValidationMessageFor(m => m.Finish, string.Empty, new { @class = "text-danger col-md-offset-1" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Recipes, new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        @Html.ListBoxFor(m => m.SelectedRecipes, Model.Recipes, new { @class = "form-control" })
+    </div>
+</div>

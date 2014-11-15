@@ -18,6 +18,7 @@
         {
         }
 
+        [HttpGet]
         public ActionResult AllChallenges()
         {
             var challenges = this.Data.Challenges
@@ -26,10 +27,11 @@
                 .Project()
                 .To<AllChallengesViewModel>()
                 .ToList();
-            
+
             return View(challenges);
         }
 
+        [HttpGet]
         public ActionResult ChallengeDetails(int? id)
         {
             var challenge = this.Data.Challenges
@@ -56,6 +58,54 @@
             }
 
             return View(challenge);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult CreateChallenge()
+        {
+            var recipes = this.Data.Recipes.All().ToList();
+
+            var model = new CreateChallengeViewModel();
+            model.Recipes = recipes
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                })
+                .ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateChallenge(CreateChallengeViewModel challenge)
+        {
+            if (ModelState.IsValid)
+            {
+                var newChallenge = new Challenge
+                {
+                    Title = challenge.Title,
+                    Description = challenge.Description,
+                    ChallengeType = challenge.ChallengeType,
+                    Start = challenge.Start,
+                    Finish = challenge.Finish
+                };
+
+                foreach (var recipe in challenge.SelectedRecipes)
+                {
+                    newChallenge.Recipes.Add(this.Data.Recipes.Find(int.Parse(recipe)));
+                }
+
+                this.Data.Challenges.Add(newChallenge);
+                this.Data.SaveChanges();
+
+                return RedirectToAction("ChallengeDetails", new { id = newChallenge.Id });
+            }
+
+            return RedirectToAction("Error", "Home", new { area = String.Empty });
         }
 
         public ActionResult Join(int id)

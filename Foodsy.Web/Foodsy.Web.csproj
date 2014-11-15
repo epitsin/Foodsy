@@ -240,6 +240,7 @@
     <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
     <Compile Include="ViewModels\Articles\AllArticlesViewModel.cs" />
     <Compile Include="ViewModels\Challenges\AllChallengesViewModel.cs" />
+    <Compile Include="ViewModels\Challenges\CreateChallengeViewModel.cs" />
     <Compile Include="ViewModels\Challenges\DetailedChallengeViewModel.cs" />
     <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
@@ -633,6 +634,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\MealType.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\AddIngredients.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\_AllRecipesPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -727,6 +729,9 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Example.cshtml" />
     <Content Include="Views\Challenges\_AllChallengesPartial.cshtml" />
+    <Content Include="Views\Challenges\EditorTemplates\CreateChallengeViewModel.cshtml" />
+    <Content Include="Views\Challenges\CreateChallenge.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

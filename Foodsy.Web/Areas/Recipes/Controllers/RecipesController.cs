@@ -117,14 +117,13 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateRecipe()
         {
-            var recipe = new CreateRecipeViewModel();
             var ingredients = this.Data.Ingredients.All().ToList();
 
             var model = new CreateRecipeViewModel();
             model.Actions.Add(new ActionViewModel());
-            model.Name = recipe.Name;
             model.Ingredients = ingredients
                 .Select(x => new SelectListItem
                 {
@@ -137,6 +136,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult CreateRecipe(CreateRecipeViewModel recipe)
         {

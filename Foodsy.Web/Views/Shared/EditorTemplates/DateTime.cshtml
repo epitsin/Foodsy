@@ -1,0 +1,14 @@
+﻿@model DateTime?
+<div class='input-group date'>
+    <span class="input-group-sm">
+        @Html.TextBox("", Model.HasValue ? Model.Value.ToString("d") : String.Empty, new { @class = "datePicker" })
+    </span>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('.datePicker').datepicker();
+        });
+    </script>
+}

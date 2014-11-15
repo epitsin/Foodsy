@@ -2,6 +2,7 @@
 {
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Web.Mvc;
 
     using AutoMapper;
@@ -28,12 +29,17 @@
         [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 
+        [UIHint("FileUpload")]
+        [Required]
+        public string ImageUrl { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
-            //throw new System.NotImplementedException();
-            //configuration.CreateMap<Recipe, RecipeViewModel>()
-            //    .ForMember(m => m.Name, opt => opt.MapFrom(t => t.Recipe.Name))
-            //    .ForMember(m => m.PricePerPortion, opt => opt.MapFrom(t => t.Recipe.PricePerPortion));
+            configuration.CreateMap<RecipeShoppingCart, RecipeViewModel>()
+                .ForMember(m => m.Name, opt => opt.MapFrom(t => t.Recipe.Name))
+                .ForMember(m => m.PricePerPortion, opt => opt.MapFrom(t => t.Recipe.PricePerPortion))
+                .ForMember(m => m.ImageUrl, opt => opt.MapFrom(t => t.Recipe.ImageUrl))
+                .ReverseMap();
         }
     }
 }

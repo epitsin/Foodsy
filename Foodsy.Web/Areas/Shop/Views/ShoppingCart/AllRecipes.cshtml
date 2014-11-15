@@ -11,6 +11,8 @@
     .Columns(cols =>
     {
         cols.Bound(pr => pr.Id).Hidden();
+        //cols.Bound(pr => pr.ImageUrl).ClientTemplate("<img src='" + Url.Content("~/Content/img/") + "#=ImageUrl#' alt='#=Name #' Title='#=Name #' height='62' width='62'/>");
+        cols.Bound(pr => pr.ImageUrl).ClientTemplate("<img src='" + "#=ImageUrl#' alt='#=Name #' Title='#=Name #' height='62' width='62'/>");
         cols.Bound(pr => pr.Name);
         cols.Bound(pr => pr.Portions);
         cols.Bound(pr => pr.PricePerPortion).HtmlAttributes(new { editable = false });

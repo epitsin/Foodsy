@@ -11,11 +11,10 @@
     .Columns(cols =>
     {
         cols.Bound(pr => pr.Id).Hidden();
-        //cols.Bound(pr => pr.ImageUrl).ClientTemplate("<img src='" + Url.Content("~/Content/img/") + "#=ImageUrl#' alt='#=Name #' Title='#=Name #' height='62' width='62'/>");
-        cols.Bound(pr => pr.ImageUrl).ClientTemplate("<img src='" + "#=ImageUrl#' alt='#=Name #' Title='#=Name #' height='62' width='62'/>");
+        cols.Bound(pr => pr.ImageUrl).ClientTemplate("<img src='" + "#=ImageUrl#' alt='#=Name #' Title='#=Name #' height='100' width='150'/>");
         cols.Bound(pr => pr.Name);
         cols.Bound(pr => pr.Portions);
-        cols.Bound(pr => pr.PricePerPortion).HtmlAttributes(new { editable = false });
+        cols.Bound(pr => pr.PricePerPortion);
         cols.Bound(pr => pr.CreatedOn).Hidden();
         cols.Bound(pr => pr.ModifiedOn).Hidden();
         cols.Command(com => com.Edit()).Title("Edit");
@@ -30,7 +29,13 @@
     .DataSource(data =>
         data
             .Ajax()
-            .Model(m => m.Id(f => f.Id))
+                .Model(model =>
+                {
+                    model.Id(product => product.Id);
+                    model.Field(product => product.PricePerPortion).Editable(false);
+                    model.Field(product => product.ImageUrl).Editable(false);
+                    model.Field(product => product.Name).Editable(false);
+                })
             .Read(read => read.Action("Read", ControllerName))
             .Create(create => create.Action("Create", ControllerName))
             .Update(update => update.Action("Update", ControllerName))

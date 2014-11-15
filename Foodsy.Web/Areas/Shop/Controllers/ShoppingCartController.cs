@@ -38,7 +38,7 @@
 
         protected override T GetById<T>(object id)
         {
-            return this.Data.Recipes.Find(id) as T;
+            return this.Data.RecipeShoppingCarts.Find(id) as T;
         }
 
         [HttpPost]
@@ -62,7 +62,7 @@
         {
             if (model != null && ModelState.IsValid)
             {
-                this.Data.Recipes.Delete(model.Id);
+                this.Data.RecipeShoppingCarts.Delete(model.Id);
                 this.Data.SaveChanges();
             }
 

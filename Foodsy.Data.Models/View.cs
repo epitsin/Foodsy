@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Foodsy.Data.Models
+﻿namespace Foodsy.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class View
     {
+        [Key]
         public int Id { get; set; }
 
         public string AuthorId { get; set; }

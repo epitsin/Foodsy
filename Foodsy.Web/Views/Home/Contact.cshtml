@@ -1,4 +1,4 @@
-﻿@model Foodsy.Data.Models.Feedback
+﻿@model Foodsy.Data.Models.Message
 
 <div class="container">
     <section>
@@ -28,8 +28,8 @@
                             @Html.TextBoxFor(model => model.Subject, new { @class = "col-md-7 form-control bottom-space", placeholder = "Subject" })
                             @Html.ValidationMessageFor(m => m.Subject, string.Empty, new { @class = "text-danger col-md-offset-1" })
                             
-                            @Html.TextAreaFor(model => model.Message, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
-                            @Html.ValidationMessageFor(m => m.Message, string.Empty, new { @class = "text-danger col-md-offset-1" })
+                            @Html.TextAreaFor(model => model.Text, new { @class = "col-md-8 form-control bottom-space", placeholder = "Your message here..." })
+                            @Html.ValidationMessageFor(m => m.Text, string.Empty, new { @class = "text-danger col-md-offset-1" })
                             
                             <div class="clear"></div>
                             <input class="btn dark_btn" type="reset" value="Clear" />

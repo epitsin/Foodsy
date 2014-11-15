@@ -30,23 +30,23 @@
         [HttpGet]
         public ActionResult Contact()
         {
-            var feedback = new Feedback();
+            var feedback = new Message();
             return View(feedback);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Contact(Feedback model)
+        public ActionResult Contact(Message model)
         {
             string text = "<html> <head> </head>" +
             " <body style= \" font-size:12px; font-family: Arial\">" +
-            model.Message +
+            model.Text +
             "</body></html>";
 
             SendEmail("epitsin@yahoo.com", text);
 
-            var feedback = new Feedback();
+            var feedback = new Message();
             return View(feedback);
         }
 

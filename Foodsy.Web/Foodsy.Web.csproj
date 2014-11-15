@@ -211,7 +211,7 @@
     <Compile Include="Areas\Administration\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Recipes\AddIngredientToRecipeViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Recipes\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
@@ -635,6 +635,7 @@
     <Content Include="Areas\Recipes\Views\Recipes\AddIngredients.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\_AllRecipesPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ImageUrl.cshtml" />
+    <Content Include="Areas\Recipes\Views\Shared\DisplayTemplates\AllRecipesViewModel.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

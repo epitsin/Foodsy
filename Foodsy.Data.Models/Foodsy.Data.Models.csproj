@@ -63,7 +63,6 @@
     <Compile Include="Challenge.cs" />
     <Compile Include="ChallengeType.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="Feedback.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Like.cs" />

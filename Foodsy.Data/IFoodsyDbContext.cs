@@ -18,8 +18,6 @@
 
         IDbSet<Ingredient> Ingredients { get; set; }
 
-        IDbSet<Feedback> Feedbacks { get; set; }
-
         IDbSet<Like> Likes { get; set; }
 
         IDbSet<Message> Messages { get; set; }

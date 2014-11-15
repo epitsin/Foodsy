@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Foodsy.Data.Contracts.Models;
 
@@ -26,20 +27,30 @@
             this.recipes = new HashSet<RecipeShoppingCart>();
         }
 
+        [Key]
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Required]
+        [StringLength(5000, MinimumLength = 10)]
         public string Description { get; set; }
 
+        //[Required]
         public string ImageUrl { get; set; }
 
+        [Required]
         public DateTime CreatedOn { get; set; }
-        
+
+        [Required]
         public MealType MealType { get; set; }
 
+        [Required]
         public Category Category { get; set; }
 
+        [Range(0, 2000)]
         public int Calories
         {
             get
@@ -48,6 +59,7 @@
             }
         }
 
+        [Range(0, 2000)]
         public int CaloriesPerPortion
         {
             get
@@ -56,14 +68,23 @@
             }
         }
 
+        [Required]
+        [Range(0, 2000)]
         public int Proteins { get; set; }
 
+        [Required]
+        [Range(0, 2000)]
         public int Carbohydrates { get; set; }
 
+        [Required]
+        [Range(0, 2000)]
         public int Fats { get; set; }
 
+        [Required]
+        [Range(5, 2000)]
         public int GramsPerPortion { get; set; }
 
+        [Range(0, 200)]
         public decimal PricePerPortion { get; set; }
 
         public string AuthorId { get; set; }

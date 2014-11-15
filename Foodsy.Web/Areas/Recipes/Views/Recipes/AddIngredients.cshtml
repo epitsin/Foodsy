@@ -1,4 +1,4 @@
-﻿@model IList<Foodsy.Web.Areas.Recipes.ViewModels.Recipes.AddIngredientToRecipeViewModel>
+﻿@model IList<Foodsy.Web.Areas.Recipes.ViewModels.Recipes.AddIngredientViewModel>
 
 <div class="row">
     <div class="col-md-12">
@@ -29,12 +29,12 @@
                             {
                                 <tr class="row">
                                     <td class="col col-md-2">
-                                        @Html.TextBox("ingredients[" + @i + "].Name",
+                                        @Html.TextBox("ingredients[" + i + "].Name",
                                       Model[i].Name,
                                       new { @readonly = "readonly", @class = "form-control" })
                                     </td>
                                     <td class="col col-md-2">
-                                        @Html.TextBox("ingredients[" + @i + "].Quantity",
+                                        @Html.TextBox("ingredients[" + i + "].Quantity",
                                    Model[i].Quantity, new { @class = "form-control" })
                                     </td>
                                 </tr>

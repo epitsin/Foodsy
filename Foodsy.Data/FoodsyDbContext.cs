@@ -29,8 +29,6 @@ using Foodsy.Data.Contracts.CodeFirstConventions;
 
         public IDbSet<Ingredient> Ingredients { get; set; }
 
-        public IDbSet<Feedback> Feedbacks { get; set; }
-
         public IDbSet<Like> Likes { get; set; }
 
         public IDbSet<Message> Messages { get; set; }

@@ -22,7 +22,6 @@
         public string Description { get; set; }
 
         [Required]
-        //[DateTimeRangeAttribute(1000, 1000)]
         public DateTime Start { get; set; }
 
         [Required]

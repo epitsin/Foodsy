@@ -1,7 +1,10 @@
 ﻿namespace Foodsy.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class RecipeIngredient
     {
+        [Key]
         public int Id { get; set; }
 
         public int RecipeId { get; set; }

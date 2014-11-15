@@ -47,23 +47,23 @@
                 var meals = new List<Recipe>();
                 if (model.Type == CustomMenuType.HighFat)
                 {
-                    meals = this.SelectMeals(bmr + 100, (x => x.Fats), null);
+                    meals = this.SelectMeals(bmr + 50, (x => x.Fats), null);
                 }
                 else if (model.Type == CustomMenuType.HighProtein)
                 {
-                    meals = this.SelectMeals(bmr, (x => x.Proteins), null);
+                    meals = this.SelectMeals(bmr + 50, (x => x.Proteins), null);
                 }
                 else if (model.Type == CustomMenuType.LowFat)
                 {
-                    meals = this.SelectMeals(bmr, (x => x.Carbohydrates), null);
+                    meals = this.SelectMeals(bmr + 50, (x => x.Carbohydrates), null);
                 }
                 else if (model.Type == CustomMenuType.Raw)
                 {
-                    meals = this.SelectMeals(bmr, (x => x.Calories), Category.Raw);
+                    meals = this.SelectMeals(bmr + 50, (x => x.Calories), Category.Raw);
                 }
                 else if (model.Type == CustomMenuType.Vegetarian)
                 {
-                    meals = this.SelectMeals(bmr, (x => x.Calories), Category.Vegetarian);
+                    meals = this.SelectMeals(bmr + 50, (x => x.Calories), Category.Vegetarian);
                 }
                 else
                 {
@@ -94,17 +94,17 @@
                 {
                     int notUsedValue = dynamicMatrix[i - 1, j];
                     int usedValue = 0;
-                    if (j - currentRecipe.Calories >= 0)
+                    if (j - currentRecipe.CaloriesPerPortion >= 0)
                     {
                         if (category == null)
                         {
-                            usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
+                            usedValue = dynamicMatrix[i - 1, j - currentRecipe.CaloriesPerPortion] + action(currentRecipe);
                         }
                         else
                         {
                             if (currentRecipe.Category == category)
                             {
-                                usedValue = dynamicMatrix[i - 1, j - currentRecipe.Calories] + action(currentRecipe);
+                                usedValue = dynamicMatrix[i - 1, j - currentRecipe.CaloriesPerPortion] + action(currentRecipe);
                             }
                         }
                     }
@@ -112,7 +112,7 @@
                     if (usedValue >= notUsedValue && usedValue != 0)
                     {
                         dynamicMatrix[i, j] = usedValue;
-                        backtrackMatrix[i, j] = j - currentRecipe.Calories;
+                        backtrackMatrix[i, j] = j - currentRecipe.CaloriesPerPortion;
                     }
                     else
                     {

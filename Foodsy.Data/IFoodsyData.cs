@@ -19,8 +19,6 @@
 
         IRepository<Ingredient> Ingredients { get; }
 
-        IRepository<Feedback> Feedbacks { get; }
-
         IRepository<Like> Likes { get; }
 
         IRepository<Message> Messages { get; }

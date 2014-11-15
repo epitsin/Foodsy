@@ -189,10 +189,10 @@
             var recipe = this.Data.Recipes
                 .All()
                 .FirstOrDefault(x => x.Name == recipeName);
-            var models = new List<AddIngredientToRecipeViewModel>();
+            var models = new List<AddIngredientViewModel>();
             foreach (var ingredient in recipe.RecipeIngredients)
             {
-                models.Add(new AddIngredientToRecipeViewModel
+                models.Add(new AddIngredientViewModel
                 {
                     Name = ingredient.Ingredient.Name,
                     Quantity = ingredient.Quantity
@@ -204,7 +204,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddIngredients(List<AddIngredientToRecipeViewModel> ingredients, string name)
+        public ActionResult AddIngredients(List<AddIngredientViewModel> ingredients, string name)
         {
                 var recipe = this.Data.Recipes
                     .All()

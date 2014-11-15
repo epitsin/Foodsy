@@ -3,10 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class AddIngredientToRecipeViewModel
+    public class AddIngredientViewModel
     {
         [Required]
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]

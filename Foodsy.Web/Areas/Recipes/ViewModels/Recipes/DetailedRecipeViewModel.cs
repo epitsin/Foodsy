@@ -45,7 +45,7 @@
 
         [Required]
         [Display(Name = "Grams per portion")]
-        [Range(10, 1000)]
+        [Range(5, 2000)]
         public int GramsPerPortion { get; set; }
 
         [Required]
@@ -64,7 +64,6 @@
         [Range(0, 2000)]
         public int Fats { get; set; }
 
-        [Required]
         [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 

@@ -212,7 +212,7 @@
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Recipes\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Recipes\AddIngredientViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
@@ -634,7 +634,7 @@
     <Content Include="Areas\Shop\Views\ShoppingCart\AllRecipes.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Category.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\MealType.cshtml" />
-    <Content Include="Areas\Recipes\Views\Recipes\AddIngredients.cshtml" />
+    <Content Include="Areas\Recipes\Views\Ingredients\AddIngredients.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\_AllRecipesPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <Content Include="Areas\Recipes\Views\Shared\DisplayTemplates\AllRecipesViewModel.cshtml" />

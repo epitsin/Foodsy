@@ -176,57 +176,12 @@
                 this.Data.Recipes.Add(newRecipe);
                 this.Data.SaveChanges();
 
-                return RedirectToAction("AddIngredients", new { recipeName = recipe.Name });
+                return RedirectToAction("AddIngredients", "Ingredients", new { recipeName = recipe.Name });
             }
 
             recipe.Ingredients = this.populator.GetIngredients();
 
             return View(recipe);
-        }
-
-        [HttpGet]
-        public ActionResult AddIngredients(string recipeName)
-        {
-            ViewBag.RecipeName = recipeName;
-            var recipe = this.Data.Recipes
-                .All()
-                .FirstOrDefault(x => x.Name == recipeName);
-            var models = new List<AddIngredientViewModel>();
-            foreach (var ingredient in recipe.RecipeIngredients)
-            {
-                models.Add(new AddIngredientViewModel
-                {
-                    Name = ingredient.Ingredient.Name,
-                    Quantity = ingredient.Quantity
-                });
-            }
-
-            return View(models);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddIngredients(List<AddIngredientViewModel> ingredients, string name)
-        {
-            if (ingredients.Count != 0 && ModelState.IsValid)
-            {
-                var recipe = this.Data.Recipes
-                    .All()
-                    .FirstOrDefault(x => x.Name == name);
-                foreach (var ingredient in ingredients)
-                {
-                    var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
-                    recipeIngredient.Quantity = ingredient.Quantity;
-                }
-
-                this.GetCalories(recipe);
-                this.Data.SaveChanges();
-
-                return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
-            }
-
-            //ingredients = this.populator.GetIngredients();
-            return View(ingredients);
         }
         
         [HttpPost]
@@ -264,16 +219,6 @@
             this.Data.SaveChanges();
 
             return Content("Recipe added to shopping cart!");
-        }
-
-        private void GetCalories(Recipe recipe)
-        {
-            foreach (var ingredient in recipe.RecipeIngredients)
-            {
-                recipe.Proteins += ingredient.Quantity * ingredient.Ingredient.Proteins / 100;
-                recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
-                recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
-            }
         }
 
         private int LikeProbability(Recipe myRecipe)

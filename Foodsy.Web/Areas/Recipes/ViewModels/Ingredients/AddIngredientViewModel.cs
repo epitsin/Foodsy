@@ -1,4 +1,4 @@
-﻿namespace Foodsy.Web.Areas.Recipes.ViewModels.Recipes
+﻿namespace Foodsy.Web.Areas.Recipes.ViewModels.Ingredients
 {
     using System;
     using System.ComponentModel.DataAnnotations;

@@ -1,4 +1,4 @@
-﻿@model IList<Foodsy.Web.Areas.Recipes.ViewModels.Recipes.AddIngredientViewModel>
+﻿@model IList<Foodsy.Web.Areas.Recipes.ViewModels.Ingredients.AddIngredientViewModel>
 
 <div class="row">
     <div class="col-md-12">
@@ -7,7 +7,7 @@
             <hr />
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-2">
-                    @using (Html.BeginForm("AddIngredients", "Recipes", FormMethod.Post))
+                    @using (Html.BeginForm("AddIngredients", "Ingredients", FormMethod.Post))
                     {
                         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()

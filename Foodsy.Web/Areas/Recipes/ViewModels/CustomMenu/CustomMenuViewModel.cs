@@ -3,6 +3,8 @@ namespace Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Foodsy.Web.Areas.Recipes.Models;
+
     public class CustomMenuViewModel
     {
         [Required]

@@ -25,7 +25,7 @@
                 <ul class="links" id="participants">
                     @foreach (var participant in Model.Participants)
                     {
-                        @Html.Partial("_ChallengeParticipantsPartial", participant.UserName)
+                        @Html.Partial("_ChallengeParticipantsPartial", participant)
                     }
                 </ul>
                 @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)

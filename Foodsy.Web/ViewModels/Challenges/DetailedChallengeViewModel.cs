@@ -3,12 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Web.Mvc;
+
+    using AutoMapper;
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Infrastructure.Mapping;
 
-    public class DetailedChallengeViewModel : IMapFrom<Challenge>
+    public class DetailedChallengeViewModel : IMapFrom<Challenge>, IHaveCustomMappings
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -30,8 +33,14 @@
         [Required]
         public ChallengeType ChallengeType { get; set; }
 
-        public virtual ICollection<Recipe> Recipes { get; set; }
+        public virtual ICollection<RecipeViewModel> Recipes { get; set; }
 
-        public virtual ICollection<User> Participants { get; set; }
+        public virtual ICollection<string> Participants { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<Challenge, DetailedChallengeViewModel>()
+                .ForMember(m => m.Participants, opt => opt.MapFrom(t => t.Participants.Select(x => x.UserName)));
+        }
     }
 }

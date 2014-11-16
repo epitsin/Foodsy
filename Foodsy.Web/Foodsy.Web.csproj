@@ -245,11 +245,12 @@
     <Compile Include="ViewModels\Challenges\DetailedChallengeViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Comments\SubmitCommentViewModel.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuType.cs" />
+    <Compile Include="Areas\Recipes\Models\CustomMenuType.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\IngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CreateRecipeViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\DetailedRecipeViewModel.cs" />
+    <Compile Include="ViewModels\Challenges\RecipeViewModel.cs" />
     <Compile Include="ViewModels\Tags\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -761,7 +762,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Recipes\Models\" />
     <Folder Include="Areas\Recipes\Views\Comments\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 
     using Foodsy.Data;
     using Foodsy.Data.Models;
+    using Foodsy.Web.Areas.Recipes.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu;
     using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
     using Foodsy.Web.Controllers;

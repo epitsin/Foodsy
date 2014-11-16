@@ -5,18 +5,18 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
+    using AutoMapper;
+
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
     using Foodsy.Web.Areas.Recipes.ViewModels.Comments;
     using Foodsy.Web.Infrastructure.Mapping;
 
-    public class DetailedRecipeViewModel : IMapFrom<Recipe>
+    public class DetailedRecipeViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
         public DetailedRecipeViewModel()
         {
             this.Actions = new List<ActionViewModel>();
-            this.Views = new List<View>();
-            this.Tags = new List<Tag>();
         }
 
         [HiddenInput(DisplayValue = false)]
@@ -67,6 +67,10 @@
         [Range(1, 200)]
         public decimal PricePerPortion { get; set; }
 
+        public int Likes { get; set; }
+
+        public int Views { get; set; }
+
         public User Author { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
@@ -74,12 +78,14 @@
         [UIHint("Action")]
         public ICollection<ActionViewModel> Actions { get; set; }
 
-        public ICollection<Like> Likes { get; set; }
-
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
 
-        public ICollection<View> Views { get; set; }
-
-        public ICollection<Tag> Tags { get; set; }
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<Recipe, DetailedRecipeViewModel>()
+                .ForMember(m => m.Likes, opt => opt.MapFrom(t => t.Likes.Count))
+                .ForMember(m => m.Views, opt => opt.MapFrom(t => t.Views.Count))
+                .ReverseMap();
+        }
     }
 }

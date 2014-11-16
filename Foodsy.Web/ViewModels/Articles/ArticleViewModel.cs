@@ -7,6 +7,7 @@
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Infrastructure.Mapping;
+    using Foodsy.Web.ViewModels.Tags;
 
     public class ArticleViewModel : IMapFrom<Article>
     {
@@ -31,6 +32,6 @@
         [Required]
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public ICollection<TagViewModel> Tags { get; set; }
     }
 }

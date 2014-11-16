@@ -47,7 +47,7 @@
 
             if (this.CurrentUser != null)
             {
-                var canJoin = !challenge.Participants.Any(x => x.Id == this.CurrentUser.Id) &&
+                var canJoin = !challenge.Participants.Any(x => x == this.CurrentUser.UserName) &&
                                 DateTime.Now <= challenge.Start;
                 ViewBag.CanJoin = canJoin;
             }

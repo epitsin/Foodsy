@@ -22,7 +22,7 @@
                             </span>
                         }
                     </div>
-                    <div class="fright"><a href="#">@Model.Views.Count</a> Views</div>
+                    <div class="fright"><a href="#">@Model.Views</a> Views</div>
                     <div class="clear"></div>
                 </div>
                 <p>@Model.Description</p>
@@ -40,7 +40,7 @@
                         <h4>The chance that this is going to be the next hit: @ViewBag.Rate %</h4>
                     }
                     
-                    Likes: <span id="recipe-votes">@Model.Likes.Count</span>
+                    Likes: <span id="recipe-votes">@Model.Likes</span>
                     @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
                     {
                         @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })

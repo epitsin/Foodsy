@@ -79,6 +79,11 @@
                 .Project()
                 .To<ArticleViewModel>()
                 .FirstOrDefault();
+            if (article == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(article);
         }
 

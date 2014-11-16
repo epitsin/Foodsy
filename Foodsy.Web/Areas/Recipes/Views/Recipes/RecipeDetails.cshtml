@@ -27,7 +27,6 @@
                 </div>
                 <p>@Model.Description</p>
                 <hr />
-
                 <div>
                     <p><span class="red">Portion size:</span> @Model.GramsPerPortion grams</p>
                     <p><span class="red">Calories per portion:</span> @Model.CaloriesPerPortion kcal</p>
@@ -35,13 +34,12 @@
                     <p><span class="red">Carbs:</span> @Model.Carbohydrates grams</p>
                     <p><span class="red">Fats:</span> @Model.Fats grams</p>
                 </div>
-
-                @if (ViewBag.Rate != null)
-                {
-                    <h4>The chance that this is going to be the next hit: @ViewBag.Rate %</h4>
-                }
-
-                <div>
+                <div class="top-bottom-space">
+                    @if (ViewBag.Rate != null)
+                    {
+                        <h4>The chance that this is going to be the next hit: @ViewBag.Rate %</h4>
+                    }
+                    
                     Likes: <span id="recipe-votes">@Model.Likes.Count</span>
                     @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
                     {
@@ -60,7 +58,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <h4>Leave a comment</h4>
-                    using (Ajax.BeginForm("PostComment", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
+                    using (Ajax.BeginForm("PostComment", "Comments", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
                     {
                         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()

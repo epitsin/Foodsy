@@ -1,4 +1,4 @@
-﻿namespace Foodsy.Web.ViewModels.Comment
+﻿namespace Foodsy.Web.Areas.Recipes.ViewModels.Comments
 {
     using System.ComponentModel.DataAnnotations;
 

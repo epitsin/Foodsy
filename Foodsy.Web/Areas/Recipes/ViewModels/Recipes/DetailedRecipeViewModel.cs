@@ -7,8 +7,8 @@
 
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
+    using Foodsy.Web.Areas.Recipes.ViewModels.Comments;
     using Foodsy.Web.Infrastructure.Mapping;
-    using Foodsy.Web.ViewModels.Comment;
 
     public class DetailedRecipeViewModel : IMapFrom<Recipe>
     {

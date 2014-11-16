@@ -14,8 +14,8 @@
     using Foodsy.Data.Models;
     using Foodsy.Web.Areas.Recipes.ViewModels.Actions;
     using Foodsy.Web.Areas.Recipes.ViewModels.Recipes;
+    using Foodsy.Web.Infrastructure.Populators;
     using Foodsy.Web.Controllers;
-    using Foodsy.Web.ViewModels.Comment;
 
     using Microsoft.AspNet.Identity;
 
@@ -23,9 +23,12 @@
     {
         private const int PageSize = 9;
 
-        public RecipesController(IFoodsyData data)
+        private IDropDownListPopulator populator;
+
+        public RecipesController(IFoodsyData data, IDropDownListPopulator populator)
             : base(data)
         {
+            this.populator = populator;
         }
 
         [HttpGet]
@@ -73,6 +76,11 @@
             }
 
             var recipe = this.Data.Recipes.Find(id);
+            if (recipe == null)
+            {
+                return HttpNotFound();
+            }
+
             if (!recipe.Views.Any(x => x.AuthorId == User.Identity.GetUserId()))
             {
                 recipe.Views.Add(new View
@@ -120,17 +128,9 @@
         [Authorize]
         public ActionResult CreateRecipe()
         {
-            var ingredients = this.Data.Ingredients.All().ToList();
-
             var model = new CreateRecipeViewModel();
             model.Actions.Add(new ActionViewModel());
-            model.Ingredients = ingredients
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.Name,
-                })
-                .ToList();
+            model.Ingredients = this.populator.GetIngredients();
 
             return View(model);
         }
@@ -140,7 +140,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreateRecipe(CreateRecipeViewModel recipe)
         {
-            if (ModelState.IsValid)
+            if (recipe != null && ModelState.IsValid)
             {
                 var actions = recipe.Actions
                     .AsQueryable()
@@ -179,7 +179,9 @@
                 return RedirectToAction("AddIngredients", new { recipeName = recipe.Name });
             }
 
-            return RedirectToAction("Error", "Home", new { area = String.Empty });
+            recipe.Ingredients = this.populator.GetIngredients();
+
+            return View(recipe);
         }
 
         [HttpGet]
@@ -206,49 +208,27 @@
         [ValidateAntiForgeryToken]
         public ActionResult AddIngredients(List<AddIngredientViewModel> ingredients, string name)
         {
-            var recipe = this.Data.Recipes
-                .All()
-                .FirstOrDefault(x => x.Name == name);
-            foreach (var ingredient in ingredients)
+            if (ingredients.Count != 0 && ModelState.IsValid)
             {
-                var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
-                recipeIngredient.Quantity = ingredient.Quantity;
-            }
-
-            this.GetCalories(recipe);
-            this.Data.SaveChanges();
-
-            return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
-        }
-
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PostComment(SubmitCommentViewModel commentModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var username = this.User.Identity.GetUserName();
-                var userId = this.User.Identity.GetUserId();
-                var comment = new Comment()
+                var recipe = this.Data.Recipes
+                    .All()
+                    .FirstOrDefault(x => x.Name == name);
+                foreach (var ingredient in ingredients)
                 {
-                    AuthorId = userId,
-                    Text = commentModel.Comment,
-                    RecipeId = commentModel.RecipeId,
-                    CreatedOn = DateTime.Now
-                };
+                    var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
+                    recipeIngredient.Quantity = ingredient.Quantity;
+                }
 
-                this.Data.Comments.Add(comment);
+                this.GetCalories(recipe);
                 this.Data.SaveChanges();
 
-                var viewModel = new CommentViewModel { AuthorUsername = username, Text = comment.Text, CreatedOn = comment.CreatedOn };
-
-                return PartialView("_CommentPartial", viewModel);
+                return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
             }
 
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ModelState.Values.First().ToString());
+            //ingredients = this.populator.GetIngredients();
+            return View(ingredients);
         }
-
+        
         [HttpPost]
         public ActionResult Upvote(int id)
         {
@@ -362,7 +342,6 @@
                 count += 1;
             }
 
-            double highestCategoryCoef = sortedCategories.OrderByDescending(x => x.Value).FirstOrDefault().Value;
             double finalIngredientCoef = 0d;
             double finalCategoryCoef = 0d;
             if (highestIngredientCoef != 0)
@@ -370,6 +349,7 @@
                 finalIngredientCoef = myIngredientCoef / highestIngredientCoef;
             }
 
+            double highestCategoryCoef = sortedCategories.OrderByDescending(x => x.Value).FirstOrDefault().Value;
             if (finalCategoryCoef != 0)
             {
                 finalCategoryCoef = sortedCategories[(int)myRecipe.Category] / highestCategoryCoef;

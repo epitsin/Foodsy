@@ -4,15 +4,18 @@
 namespace Foodsy.Web.App_Start
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
+
+    using Foodsy.Data;
+    using Foodsy.Data.Repositories;
+    using Foodsy.Web.Infrastructure.Caching;
+    using Foodsy.Web.Infrastructure.Populators;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
-    using Foodsy.Data;
-    using Foodsy.Data.Repositories;
-    using System.Data.Entity;
 
     public static class NinjectWebCommon
     {
@@ -72,6 +75,10 @@ namespace Foodsy.Web.App_Start
                 .To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(Foodsy.Data.Repositories.IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
+
+            kernel.Bind<IDropDownListPopulator>().To<DropDownListPopulator>();
         }
     }
 }

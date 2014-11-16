@@ -210,6 +210,7 @@
     <Compile Include="Areas\Administration\ViewModels\IngredientViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\Recipes\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
@@ -242,8 +243,8 @@
     <Compile Include="ViewModels\Challenges\AllChallengesViewModel.cs" />
     <Compile Include="ViewModels\Challenges\CreateChallengeViewModel.cs" />
     <Compile Include="ViewModels\Challenges\DetailedChallengeViewModel.cs" />
-    <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
-    <Compile Include="ViewModels\Comment\SubmitCommentViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Comments\CommentViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\Comments\SubmitCommentViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuType.cs" />
     <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\IngredientViewModel.cs" />
@@ -709,7 +710,7 @@
     <Content Include="Views\Articles\AllArticles.cshtml" />
     <Content Include="Views\Articles\ArticleDetails.cshtml" />
     <Content Include="Areas\Recipes\Views\CustomMenu\GetInformation.cshtml" />
-    <Content Include="Views\Shared\_CommentPartial.cshtml" />
+    <Content Include="Areas\Recipes\Views\Shared\_CommentPartial.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\_CategoriesPartial.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\CreateRecipe.cshtml" />
     <Content Include="Areas\Recipes\Views\Images\UploadImage.cshtml" />
@@ -741,6 +742,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Recipes\Models\" />
+    <Folder Include="Areas\Recipes\Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

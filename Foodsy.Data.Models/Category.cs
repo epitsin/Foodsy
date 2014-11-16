@@ -7,7 +7,7 @@
         Vegetarian,
         Vegan,
         DairyFree,
-        GutenFree,
+        GlutenFree,
         Raw,
         Dessert,
         Alcoholic

@@ -40,6 +40,10 @@
                 .Project()
                 .To<DetailedChallengeViewModel>()
                 .FirstOrDefault();
+            if (challenge == null)
+            {
+                return HttpNotFound();
+            }
 
             if (this.CurrentUser != null)
             {
@@ -50,11 +54,6 @@
             else
             {
                 ViewBag.CanJoin = false;
-            }
-
-            if (challenge == null)
-            {
-                return HttpNotFound();
             }
 
             return View(challenge);

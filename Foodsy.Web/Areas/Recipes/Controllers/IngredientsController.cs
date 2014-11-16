@@ -19,12 +19,16 @@
         [HttpGet]
         public ActionResult IngredientDetails(int? id)
         {
-            var allIngredienits = this.Data.Ingredients
+            var ingredient = this.Data.Ingredients
                 .All()
                 .AsQueryable()
                 .Project()
-                .To<IngredientViewModel>();
-            var ingredient = allIngredienits.FirstOrDefault(x=>x.Id == id);
+                .To<IngredientViewModel>()
+                .FirstOrDefault(x => x.Id == id);
+            if (ingredient == null)
+            {
+                return HttpNotFound();
+            }
 
             return View(ingredient);
         }

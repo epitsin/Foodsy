@@ -16,6 +16,7 @@
         {
         }
 
+        [HttpGet]
         public ActionResult IngredientDetails(int? id)
         {
             var allIngredienits = this.Data.Ingredients

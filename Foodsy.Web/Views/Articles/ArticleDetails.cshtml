@@ -3,7 +3,7 @@
 <div class="container">
     <section>
         <h2 class="text-center">@Model.Title</h2>
-        <div class="post">
+        <div class="post col-md-9">
             <img src="@Model.ImageUrl" />
             <div class="post_info">
                 <div class="fleft">
@@ -16,6 +16,14 @@
                 <div class="clear"></div>
             </div>
             <p>@Model.Text</p>
+        </div>
+        <div class="col-md-3">
+            <div class="sidebar" style="padding-top:60px;">
+                <div class="widget">
+                    <h2 class="title"><span>In a nutshell!</span></h2>
+                    <div class="wordwrap">@Model.Summary</div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

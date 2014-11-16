@@ -26,20 +26,21 @@
                     <div class="clear"></div>
                 </div>
                 <p>@Model.Description</p>
-                <ul class="links">
-                    @foreach (var ingredient in Model.RecipeIngredients)
-                    {
-                        <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
-                    }
-                </ul>
-                <div class="top-bottom-space">
-                    <p>Grams per portion: @Model.GramsPerPortion</p>
-                    <p>Calories per portion: @Model.CaloriesPerPortion</p>
-                    <p>Proteins: @Model.Proteins</p>
-                    <p>Carbs: @Model.Carbohydrates</p>
-                    <p>Fats: @Model.Fats</p>
+                <hr />
+
+                <div>
+                    <p><span class="red">Portion size:</span> @Model.GramsPerPortion grams</p>
+                    <p><span class="red">Calories per portion:</span> @Model.CaloriesPerPortion kcal</p>
+                    <p><span class="red">Proteins:</span> @Model.Proteins grams</p>
+                    <p><span class="red">Carbs:</span> @Model.Carbohydrates grams</p>
+                    <p><span class="red">Fats:</span> @Model.Fats grams</p>
                 </div>
-                <h3>The chance that this is going to be the next hit: @ViewBag.Rate %</h3>
+
+                @if (ViewBag.Rate != null)
+                {
+                    <h4>The chance that this is going to be the next hit: @ViewBag.Rate %</h4>
+                }
+
                 <div>
                     Likes: <span id="recipe-votes">@Model.Likes.Count</span>
                     @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
@@ -63,7 +64,7 @@
                     {
                         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
-                    
+
                         @Html.Hidden("RecipeId", Model.Id)
                         @Html.TextArea("comment", new { @class = "form-control bottom-space" })
                         <input type="reset" class="btn dark_btn" value="Clear form" />
@@ -77,6 +78,15 @@
             <div class="sidebar" style="padding-top:60px;">
                 <div class="widget">
                     <h2 class="title"><span>Let's prepare it together!</span></h2>
+                    <ul class="links">
+                        @foreach (var ingredient in Model.RecipeIngredients)
+                        {
+                            <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
+                        }
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h2 class="title"><span>It's easy to do it!</span></h2>
                     <ol class="links">
                         @foreach (var action in Model.Actions)
                         {

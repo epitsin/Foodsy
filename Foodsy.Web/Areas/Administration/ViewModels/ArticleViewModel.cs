@@ -17,6 +17,10 @@
         public string Title { get; set; }
 
         [Required]
+        [StringLength(200, MinimumLength = 10)]
+        public string Summary { get; set; }
+
+        [Required]
         [StringLength(15000, MinimumLength = 20)]
         public string Text { get; set; }
 

@@ -11,9 +11,6 @@
         [StringLength(500, MinimumLength = 10)]
         public string Text { get; set; }
 
-        [Required]
-        public string ParentActions { get; set; }
-
         public int RecipeId { get; set; }
 
         public virtual Recipe Recipe { get; set; }

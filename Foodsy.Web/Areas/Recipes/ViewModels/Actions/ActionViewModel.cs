@@ -11,9 +11,5 @@
         [StringLength(500, MinimumLength = 10)]
         public string Text { get; set; }
 
-        [Required]
-        [Display(Name="Step")]
-        public string ParentActions { get; set; }
-
     }
 }

@@ -73,19 +73,22 @@
 
         private void GetTagsForArticle(Article newArticle)
         {
-            var tagNames = Regex.Split(newArticle.Title, @"\W+").ToList();
-
-            foreach (var tag in tagNames)
+            var tagsSummary = Regex.Split(newArticle.Summary, @"\W+").ToList();
+            tagsSummary.AddRange(Regex.Split(newArticle.Title, @"\W+").ToList());
+            foreach (var tag in tagsSummary)
             {
-                if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
+                if (tag.Length >= 3)
                 {
-                    var newTag = new Tag { Name = tag.ToLower() };
-                    newTag.Articles.Add(newArticle);
-                    this.Data.Tags.Add(newTag);
-                }
-                else
-                {
-                    this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(newArticle);
+                    if (!this.Data.Tags.All().Any(x => x.Name == tag.ToLower()))
+                    {
+                        var newTag = new Tag { Name = tag.ToLower() };
+                        newTag.Articles.Add(newArticle);
+                        this.Data.Tags.Add(newTag);
+                    }
+                    else
+                    {
+                        this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(newArticle);
+                    }
                 }
             }
 

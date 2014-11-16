@@ -193,6 +193,7 @@ namespace Foodsy.Data.Migrations
             var first = new Article
             {
                 Title = "Some title",
+                Summary = "Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. ",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg"
@@ -200,6 +201,7 @@ namespace Foodsy.Data.Migrations
             var second = new Article
             {
                 Title = "Another title",
+                Summary = "Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. ",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/black-water-glass-strawberry.jpg"
@@ -207,6 +209,7 @@ namespace Foodsy.Data.Migrations
             var third = new Article
             {
                 Title = "Another another title",
+                Summary = "Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. Some summary. ",
                 Text = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/blueberries_1600x900_sc.jpg"
@@ -253,19 +256,23 @@ namespace Foodsy.Data.Migrations
 
         private void GetTagsForArticle(FoodsyDbContext context, Article àrticle)
         {
-            var tagNames = Regex.Split(àrticle.Title, @"\W+").ToList();
+            var tagsSummary = Regex.Split(àrticle.Summary, @"\W+").ToList();
+            tagsSummary.AddRange(Regex.Split(àrticle.Title, @"\W+").ToList());
 
-            foreach (var tag in tagNames)
+            foreach (var tag in tagsSummary)
             {
-                if (!context.Tags.Any(x => x.Name == tag.ToLower()))
+                if (tag.Length >= 3)
                 {
-                    var newTag = new Tag { Name = tag.ToLower() };
-                    newTag.Articles.Add(àrticle);
-                    context.Tags.Add(newTag);
-                }
-                else
-                {
-                    context.Tags.FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(àrticle);
+                    if (!context.Tags.Any(x => x.Name == tag.ToLower()))
+                    {
+                        var newTag = new Tag { Name = tag.ToLower() };
+                        newTag.Articles.Add(àrticle);
+                        context.Tags.Add(newTag);
+                    }
+                    else
+                    {
+                        context.Tags.FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(àrticle);
+                    }
                 }
             }
         }

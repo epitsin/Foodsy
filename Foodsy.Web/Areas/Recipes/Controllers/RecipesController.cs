@@ -45,6 +45,7 @@
             return View(recipes);
         }
 
+        [HttpPost]
         public ActionResult Sort(int id)
         {
             var category = (Category)id;
@@ -84,7 +85,7 @@
 
             var recipeModel = Mapper.Map<DetailedRecipeViewModel>(recipe);
 
-            if (this.CurrentUser != null)
+            if (this.CurrentUser != null && recipe.AuthorId != this.CurrentUser.Id)
             {
                 var canLike = !recipe.Likes.Any(x => x.AuthorId == this.CurrentUser.Id);
                 ViewBag.CanLike = canLike;
@@ -107,12 +108,10 @@
                 ViewBag.CanBuy = false;
             }
 
-            if (recipe == null)
+            if (recipe.AuthorId == this.CurrentUser.Id)
             {
-                return HttpNotFound();
+                ViewBag.Rate = this.LikeProbability(recipe);
             }
-
-            ViewBag.Rate = this.LikeProbability(recipe);
 
             return View(recipeModel);
         }
@@ -223,6 +222,7 @@
         }
 
         [Authorize]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PostComment(SubmitCommentViewModel commentModel)
         {
@@ -249,6 +249,7 @@
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ModelState.Values.First().ToString());
         }
 
+        [HttpPost]
         public ActionResult Upvote(int id)
         {
             var userId = User.Identity.GetUserId();
@@ -361,9 +362,19 @@
                 count += 1;
             }
 
-            double finalIngredientCoef = myIngredientCoef / highestIngredientCoef;
             double highestCategoryCoef = sortedCategories.OrderByDescending(x => x.Value).FirstOrDefault().Value;
-            double finalCategoryCoef = sortedCategories[(int)myRecipe.Category] / highestCategoryCoef;
+            double finalIngredientCoef = 0d;
+            double finalCategoryCoef = 0d;
+            if (highestIngredientCoef != 0)
+            {
+                finalIngredientCoef = myIngredientCoef / highestIngredientCoef;
+            }
+
+            if (finalCategoryCoef != 0)
+            {
+                finalCategoryCoef = sortedCategories[(int)myRecipe.Category] / highestCategoryCoef;
+            }
+
             double finalActionsCoef = 0;
             if (myRecipe.Actions.Count <= minCountOfSteps)
             {

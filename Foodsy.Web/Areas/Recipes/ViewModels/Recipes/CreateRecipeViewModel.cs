@@ -17,22 +17,27 @@
 
         [Required]
         [StringLength(100, MinimumLength = 3)]
+        [UIHint("Name")]
         public string Name { get; set; }
 
         [Required]
         [StringLength(5000, MinimumLength = 20)]
+        [UIHint("Description")]
         public string Description { get; set; }
 
         [Required]
+        [UIHint("Category")]
         public Category Category { get; set; }
 
         [Required]
         [Display(Name = "Meal type")]
+        [UIHint("MealType")]
         public MealType MealType { get; set; }
 
         [Required]
         [Range(5, 2000)]
         [Display(Name = "Grams per portion")]
+        [UIHint("GramsPerPortion")]
         public int GramsPerPortion { get; set; }
 
         public ICollection<ActionViewModel> Actions { get; set; }

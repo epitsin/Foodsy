@@ -638,6 +638,11 @@
     <Content Include="Areas\Recipes\Views\Recipes\_AllRecipesPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <Content Include="Areas\Recipes\Views\Shared\DisplayTemplates\AllRecipesViewModel.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Name.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\GramsPerPortion.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\MealType.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Description.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Category.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

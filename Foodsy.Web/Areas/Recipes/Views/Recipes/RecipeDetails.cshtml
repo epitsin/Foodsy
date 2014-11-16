@@ -98,10 +98,12 @@
         <div id="buy-form" class="top-bottom-space">
             @if (User.Identity.IsAuthenticated && Model.PricePerPortion != 0m && ViewBag.CanBuy)
             {
-                <div> Don't feel like cooking?</div>
-                <div>Buy it now!</div>
-                <div><strong>Only @Model.PricePerPortion $</strong></div>
-                @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideBuyButton" }, new { id = "like-button", @class = "btn send_btn" })
+                <div class="container">
+                    <div> Don't feel like cooking?</div>
+                    <div>Buy it now!</div>
+                    <div><strong>Only @Model.PricePerPortion $</strong></div>
+                    @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideBuyButton" }, new { id = "like-button", @class = "btn send_btn" })
+                </div>
             }
         </div>
     </section>

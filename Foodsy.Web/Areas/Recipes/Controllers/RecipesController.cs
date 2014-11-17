@@ -81,12 +81,19 @@
                 return HttpNotFound();
             }
 
-            if (!recipe.Views.Any(x => x.AuthorId == User.Identity.GetUserId()))
+            if (this.CurrentUser != null && !recipe.Views.Any(x => x.AuthorId == this.CurrentUser.Id))
             {
-                recipe.Views.Add(new View
+                var view = new View
                 {
-                    AuthorId = User.Identity.GetUserId()
-                });
+                    AuthorId = this.CurrentUser.Id,
+                    //RecipeId = recipe.Id
+                };
+
+                //this.Data.SaveChanges();
+
+                recipe.Views.Add(view);
+
+                //this.Data.Views.Add(view);
 
                 this.Data.SaveChanges();
             }
@@ -110,15 +117,14 @@
                     ViewBag.CanBuy = true;
                 }
             }
+            else if (this.CurrentUser != null && recipe.AuthorId == this.CurrentUser.Id)
+            {
+                ViewBag.Rate = this.LikeProbability(recipe);
+            }
             else
             {
                 ViewBag.CanLike = false;
                 ViewBag.CanBuy = false;
-            }
-
-            if (recipe.AuthorId == this.CurrentUser.Id)
-            {
-                ViewBag.Rate = this.LikeProbability(recipe);
             }
 
             return View(recipeModel);
@@ -162,7 +168,7 @@
                     CreatedOn = DateTime.Now,
                     MealType = recipe.MealType,
                     Actions = actions,
-                    GramsPerPortion = recipe.GramsPerPortion
+                    NumberOfPortions = recipe.NumberOfPortions
                 };
 
                 foreach (var ingredient in recipe.SelectedIngredients)
@@ -183,7 +189,7 @@
 
             return View(recipe);
         }
-        
+
         [HttpPost]
         public ActionResult Upvote(int id)
         {

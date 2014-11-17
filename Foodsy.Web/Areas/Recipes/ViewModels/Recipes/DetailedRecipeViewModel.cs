@@ -44,9 +44,9 @@
         public MealType MealType { get; set; }
 
         [Required]
-        [Display(Name = "Grams per portion")]
-        [Range(5, 2000)]
-        public int GramsPerPortion { get; set; }
+        [Display(Name = "Number of Portions")]
+        [Range(1, 30)]
+        public int NumberOfPortions { get; set; }
 
         [Required]
         [Range(10, 2000)]

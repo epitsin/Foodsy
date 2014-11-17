@@ -38,7 +38,6 @@
         [StringLength(5000, MinimumLength = 10)]
         public string Description { get; set; }
 
-        //[Required]
         public string ImageUrl { get; set; }
 
         [Required]
@@ -55,7 +54,7 @@
         {
             get
             {
-                return this.CaloriesPerPortion / this.GramsPerPortion * 100;
+                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
             }
         }
 
@@ -64,7 +63,7 @@
         {
             get
             {
-                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
+                return this.Calories / this.NumberOfPortions;
             }
         }
 
@@ -81,8 +80,8 @@
         public int Fats { get; set; }
 
         [Required]
-        [Range(5, 2000)]
-        public int GramsPerPortion { get; set; }
+        [Range(1, 30)]
+        public int NumberOfPortions { get; set; }
 
         [Range(0, 200)]
         public decimal PricePerPortion { get; set; }

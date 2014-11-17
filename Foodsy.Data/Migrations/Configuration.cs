@@ -88,7 +88,7 @@ namespace Foodsy.Data.Migrations
                 MealType = MealType.Breakfast,
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/beer-tomato-food-knife-still-life_1920x1080_sc.jpg",
-                GramsPerPortion = 200
+                NumberOfPortions = 2
             };
 
             var batter = new Ingredient { Name = "Batter", Proteins = 0, Carbohydrates = 30, Fats = 5 };
@@ -127,9 +127,9 @@ namespace Foodsy.Data.Migrations
             foreach (var relationship in relationships)
             {
                 var ingredient = relationship.Ingredient;
-                banica.Proteins += ingredient.Proteins;
-                banica.Carbohydrates += ingredient.Carbohydrates;
-                banica.Fats += ingredient.Fats;
+                banica.Proteins += ingredient.Proteins / banica.NumberOfPortions;
+                banica.Carbohydrates += ingredient.Carbohydrates / banica.NumberOfPortions;
+                banica.Fats += ingredient.Fats / banica.NumberOfPortions;
             }
 
             context.Recipes.Add(banica);
@@ -142,7 +142,7 @@ namespace Foodsy.Data.Migrations
                 MealType = MealType.MainMeal,
                 CreatedOn = DateTime.Now,
                 ImageUrl = "/Content/img/black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg",
-                GramsPerPortion = 200
+                NumberOfPortions = 2
             };
 
             var potato = new Ingredient { Name = "Potato", Proteins = 0, Carbohydrates = 30, Fats = 0 };
@@ -174,9 +174,9 @@ namespace Foodsy.Data.Migrations
             foreach (var relationship in relationshipsMusaka)
             {
                 var ingredient = relationship.Ingredient;
-                musaka.Proteins += ingredient.Proteins;
-                musaka.Carbohydrates += ingredient.Carbohydrates;
-                musaka.Fats += ingredient.Fats;
+                musaka.Proteins += ingredient.Proteins / musaka.NumberOfPortions;
+                musaka.Carbohydrates += ingredient.Carbohydrates / musaka.NumberOfPortions;
+                musaka.Fats += ingredient.Fats / musaka.NumberOfPortions;
             }
 
             context.Recipes.Add(musaka);

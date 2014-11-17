@@ -34,10 +34,10 @@
         public MealType MealType { get; set; }
 
         [Required]
-        [Range(5, 2000)]
-        [Display(Name = "Grams per portion")]
-        [UIHint("GramsPerPortion")]
-        public int GramsPerPortion { get; set; }
+        [Range(1, 30)]
+        [Display(Name = "Number of Portions")]
+        [UIHint("NumberOfPortions")]
+        public int NumberOfPortions { get; set; }
 
         public ICollection<ActionViewModel> Actions { get; set; }
 

@@ -642,7 +642,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <Content Include="Areas\Recipes\Views\Shared\DisplayTemplates\AllRecipesViewModel.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Name.cshtml" />
-    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\GramsPerPortion.cshtml" />
+    <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\NumberOfPortions.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\MealType.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Description.cshtml" />
     <Content Include="Areas\Recipes\Views\Recipes\EditorTemplates\Category.cshtml" />
@@ -762,6 +762,8 @@
     <Content Include="Views\Articles\_RecentPostsPartial.cshtml" />
     <Content Include="Views\Articles\DisplayTemplates\ArticleViewModel.cshtml" />
     <Content Include="Views\Challenges\EditorTemplates\Title.cshtml" />
+    <Content Include="Views\Challenges\EditorTemplates\Description.cshtml" />
+    <Content Include="Views\Challenges\EditorTemplates\ChallengeType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

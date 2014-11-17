@@ -4,7 +4,10 @@
     <div class="col-md-12">
         <h2 class="text-center">Let's challenge people!</h2>
         <section id="userInformation" class="top-bottom-space">
-            @using (Html.BeginForm("CreateChallenge", "Challenges", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("CreateChallenge",
+                "Challenges",
+                FormMethod.Post,
+                new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                 @Html.AntiForgeryToken()

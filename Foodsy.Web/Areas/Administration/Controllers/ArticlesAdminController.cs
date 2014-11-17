@@ -89,6 +89,8 @@
                     {
                         this.Data.Tags.All().FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(newArticle);
                     }
+
+                    this.Data.SaveChanges();
                 }
             }
 

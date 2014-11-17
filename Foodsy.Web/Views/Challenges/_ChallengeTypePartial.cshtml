@@ -13,17 +13,43 @@
                 Value = ((int)i).ToString()
             });
         }
-    }    
-    
+    }
+
     @if (User.Identity.IsAuthenticated)
     {
-        <li><a class="btn send_btn" href="@Url.Action("CreateChallenge", "Challenges", new { area = String.Empty })">Create challenge</a></li>
+        <li>
+            <a class="btn send_btn" href="@Url.Action("CreateChallenge", "Challenges", new { area = String.Empty })">Create challenge</a>
+        </li>
     }
 
     @foreach (var item in items)
     {
-        <li>@Ajax.ActionLink(item.Text, "Sort", new { id = item.Value }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "challenges", HttpMethod = "Post", OnSuccess = "changeColour(" + item.Value + ")" }, new { id = item.Value, @class = "btn dark_btn sorting" })</li>
+        <li>
+            @Ajax.ActionLink(item.Text,
+                "Sort",
+                new { id = item.Value },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "challenges",
+                    HttpMethod = "Post",
+                    OnSuccess = "changeColour(" + item.Value + ")"
+                },
+                new { id = item.Value, @class = "btn dark_btn sorting" })
+        </li>
     }
 
-    <li>@Ajax.ActionLink("Finished", "FinishedChallenges", new { }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "challenges", HttpMethod = "Post", OnSuccess = "changeColour('finished')" }, new { id = "finished", @class = "btn dark_btn sorting" })</li>
+    <li>
+        @Ajax.ActionLink("Finished",
+            "FinishedChallenges",
+            new { },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "challenges",
+                HttpMethod = "Post",
+                OnSuccess = "changeColour('finished')"
+            },
+            new { id = "finished", @class = "btn dark_btn sorting" })
+    </li>
 </ul>

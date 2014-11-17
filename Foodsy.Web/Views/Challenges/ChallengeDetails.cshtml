@@ -6,7 +6,9 @@
         <div class="col-md-8">
             <div class="post">
                 <div class="post_info">
-                    <div class="fleft">From <span>@Html.DisplayFor(x => Model.Start)</span> / To <span>@Html.DisplayFor(x => Model.Finish)</span></div>
+                    <div class="fleft">
+                        From <span>@Html.DisplayFor(x => Model.Start)</span> / To <span>@Html.DisplayFor(x => Model.Finish)</span>
+                    </div>
                     <div class="clear"></div>
                 </div>
                 <p>@Model.Description</p>
@@ -30,7 +32,17 @@
                 </ul>
                 @if (User.Identity.IsAuthenticated && ViewBag.CanJoin)
                 {
-                    @Ajax.ActionLink("Join", "Join", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "participants", HttpMethod = "Post", OnSuccess = "hideJoinButton" }, new { id = "join-button", @class = "btn send_btn" })
+                    @Ajax.ActionLink("Join",
+                        "Join",
+                        new { id = Model.Id },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.InsertBefore,
+                            UpdateTargetId = "participants",
+                            HttpMethod = "Post",
+                            OnSuccess = "hideJoinButton"
+                        },
+                        new { id = "join-button", @class = "btn send_btn" })
                 }
             </div>
         </div>

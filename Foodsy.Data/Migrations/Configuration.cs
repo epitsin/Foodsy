@@ -273,6 +273,8 @@ namespace Foodsy.Data.Migrations
                     {
                         context.Tags.FirstOrDefault(x => x.Name == tag.ToLower()).Articles.Add(àrticle);
                     }
+
+                    context.SaveChanges();
                 }
             }
         }

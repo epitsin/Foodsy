@@ -3,11 +3,17 @@
 <div class="col-md-4 element">
     <div class="hover_img">
         <img src="@Model.ImageUrl" alt="" />
-        <span class="portfolio_zoom"><a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a></span>
-        <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", new { Model.Id })">View item</a></span>
+        <span class="portfolio_zoom">
+            <a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a>
+        </span>
+        <span class="portfolio_link">
+            <a href="@Url.Action("RecipeDetails", new { Model.Id })">View item</a>
+        </span>
     </div>
     <div class="item_description">
-        <h6><a href="@Url.Action("RecipeDetails", new { Model.Id })">@Model.Name</a></h6>
+        <h6>
+            <a href="@Url.Action("RecipeDetails", new { Model.Id })">@Model.Name</a>
+        </h6>
         <div class="descr">@Model.Description</div>
     </div>
 </div>

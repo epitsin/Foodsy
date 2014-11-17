@@ -25,7 +25,8 @@
         [HttpGet]
         public ActionResult GetInformation()
         {
-            return View();
+            var model = new CustomMenuViewModel();
+            return View(model);
         }
 
         [Authorize]

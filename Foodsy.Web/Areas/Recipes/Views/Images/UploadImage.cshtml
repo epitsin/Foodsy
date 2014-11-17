@@ -5,7 +5,10 @@
             <hr />
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
-                    @using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("UploadImage", 
+                        "Images", 
+                        FormMethod.Post, 
+                        new { enctype = "multipart/form-data" }))
                     {
                         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()

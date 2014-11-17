@@ -11,13 +11,24 @@
                         <div class="col-md-6 element">
                             <div class="hover_img">
                                 <img src="@recipe.ImageUrl" alt="" />
-                                <span class="portfolio_zoom"><a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]"></a></span>
-                                <span class="portfolio_link"><a href="@Url.Action("RecipeDetails", "Recipes", new { recipe.Id })">View item</a></span>
+                                <span class="portfolio_zoom">
+                                    <a href="" rel="prettyPhoto[cup-of-coffee_1920x1080_sc]">
+                                    </a>
+                                </span>
+                                <span class="portfolio_link">
+                                    <a href="@Url.Action("RecipeDetails", "Recipes", new { recipe.Id })">
+                                        View item
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-6 element">
                             <div class="item_description">
-                                <h3><a href="@Url.Action("RecipeDetails", "Recipes", new { @recipe.Id })">@recipe.Name</a></h3>
+                                <h3>
+                                    <a href="@Url.Action("RecipeDetails", "Recipes", new { @recipe.Id })">
+                                        @recipe.Name
+                                    </a>
+                                </h3>
                                 <div class="descr">@recipe.Description</div>
                                 <h5>Grams of portion: <span class="descr-heading">@recipe.GramsPerPortion</span></h5>
                                 <h5>Calories per portion: <span class="descr-heading">@recipe.CaloriesPerPortion</span></h5>

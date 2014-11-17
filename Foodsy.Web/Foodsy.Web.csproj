@@ -660,6 +660,8 @@
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Portions.cshtml" />
+    <Content Include="Areas\Recipes\Views\CustomMenu\EditorTemplates\Number.cshtml" />
+    <Content Include="Areas\Recipes\Views\CustomMenu\EditorTemplates\CustomMenuType.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

@@ -39,11 +39,21 @@
                     {
                         <h4>The chance that this is going to be the next hit: @ViewBag.Rate %</h4>
                     }
-                    
+
                     Likes: <span id="recipe-votes">@Model.Likes</span>
                     @if (User.Identity.IsAuthenticated && ViewBag.CanLike)
                     {
-                        @Ajax.ActionLink("Like", "Upvote", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "recipe-votes", HttpMethod = "Post", OnSuccess = "hideVoteButton" }, new { id = "like-button", @class = "btn send_btn" })
+                        @Ajax.ActionLink("Like",
+                        "Upvote",
+                        new { id = Model.Id },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "recipe-votes",
+                            HttpMethod = "Post",
+                            OnSuccess = "hideVoteButton"
+                        },
+                            new { id = "like-button", @class = "btn send_btn" })
                     }
                 </div>
                 <div id="comments">
@@ -58,7 +68,15 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <h4>Leave a comment</h4>
-                    using (Ajax.BeginForm("PostComment", "Comments", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "comments", OnFailure = "commentPostFailure" }))
+                    using (Ajax.BeginForm("PostComment",
+                        "Comments",
+                        new AjaxOptions
+                        {
+                            HttpMethod = "Post",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            UpdateTargetId = "comments",
+                            OnFailure = "commentPostFailure"
+                        }))
                     {
                         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
@@ -79,7 +97,13 @@
                     <ul class="links">
                         @foreach (var ingredient in Model.RecipeIngredients)
                         {
-                            <li><a href="@Url.Action("IngredientDetails", "Ingredients", new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
+                            <li>
+                                <a href="@Url.Action("IngredientDetails",
+                                            "Ingredients",
+                                      >
+                                    @ingredient.Ingredient.Name
+                                </a> - @ingredient.Quantity grams
+                            </li>
                         }
                     </ul>
                 </div>
@@ -102,7 +126,17 @@
                     <div> Don't feel like cooking?</div>
                     <div>Buy it now!</div>
                     <div><strong>Only @Model.PricePerPortion $</strong></div>
-                    @Ajax.ActionLink("Buy", "Buy", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "bought", HttpMethod = "Post", OnSuccess = "hideBuyButton" }, new { id = "like-button", @class = "btn send_btn" })
+                    @Ajax.ActionLink("Buy",
+                    "Buy",
+                    new { id = Model.Id },
+                    new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "bought",
+                        HttpMethod = "Post",
+                        OnSuccess = "hideBuyButton"
+                    },
+                        new { id = "like-button", @class = "btn send_btn" })
                 </div>
             }
         </div>

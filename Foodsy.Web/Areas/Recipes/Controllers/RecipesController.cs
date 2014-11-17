@@ -85,15 +85,9 @@
             {
                 var view = new View
                 {
-                    AuthorId = this.CurrentUser.Id,
-                    //RecipeId = recipe.Id
+                    AuthorId = this.CurrentUser.Id
                 };
-
-                //this.Data.SaveChanges();
-
                 recipe.Views.Add(view);
-
-                //this.Data.Views.Add(view);
 
                 this.Data.SaveChanges();
             }

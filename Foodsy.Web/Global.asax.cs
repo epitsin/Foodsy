@@ -17,7 +17,7 @@
         {
             ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
 
-            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            ConfigureAutoMapper();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -28,6 +28,11 @@
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+        }
+
+        public static void ConfigureAutoMapper()
+        {
+            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }

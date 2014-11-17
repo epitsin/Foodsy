@@ -66,7 +66,8 @@
                     .FirstOrDefault(x => x.Name == name);
                 foreach (var ingredient in ingredients)
                 {
-                    var recipeIngredient = recipe.RecipeIngredients.FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
+                    var recipeIngredient = recipe.RecipeIngredients
+                        .FirstOrDefault(x => x.Ingredient.Name == ingredient.Name);
                     recipeIngredient.Quantity = ingredient.Quantity;
                 }
 
@@ -76,7 +77,6 @@
                 return RedirectToAction("UploadImage", "Images", new { recipeName = recipe.Name });
             }
 
-            //ingredients = this.populator.GetIngredients();
             return View(ingredients);
         }
 
@@ -84,9 +84,9 @@
         {
             foreach (var ingredient in recipe.RecipeIngredients)
             {
-                recipe.Proteins += ingredient.Quantity * ingredient.Ingredient.Proteins / 100;
-                recipe.Fats += ingredient.Quantity * ingredient.Ingredient.Fats / 100;
-                recipe.Carbohydrates += ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100;
+                recipe.Proteins += (ingredient.Quantity * ingredient.Ingredient.Proteins) / (100 * recipe.NumberOfPortions);
+                recipe.Fats += (ingredient.Quantity * ingredient.Ingredient.Fats / 100) / (100 * recipe.NumberOfPortions);
+                recipe.Carbohydrates += (ingredient.Quantity * ingredient.Ingredient.Carbohydrates / 100) / (100 * recipe.NumberOfPortions);
             }
         }
     }

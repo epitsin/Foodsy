@@ -215,6 +215,8 @@
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
+    <Compile Include="Areas\Shop\Controllers\Base\ShopBaseController.cs" />
+    <Compile Include="Areas\Shop\Controllers\Base\KendoGridShopController.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
     <Compile Include="Areas\Shop\ShopAreaRegistration.cs" />
     <Compile Include="Areas\Shop\ViewModels\RecipeViewModel.cs" />
@@ -660,8 +662,6 @@
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\EditorTemplates\Portions.cshtml" />
-    <Content Include="Areas\Recipes\Views\CustomMenu\EditorTemplates\Number.cshtml" />
-    <Content Include="Areas\Recipes\Views\CustomMenu\EditorTemplates\CustomMenuType.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -761,6 +761,7 @@
     <Content Include="Views\Articles\_TagsPartial.cshtml" />
     <Content Include="Views\Articles\_RecentPostsPartial.cshtml" />
     <Content Include="Views\Articles\DisplayTemplates\ArticleViewModel.cshtml" />
+    <Content Include="Views\Challenges\EditorTemplates\Title.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -97,13 +97,8 @@
                     <ul class="links">
                         @foreach (var ingredient in Model.RecipeIngredients)
                         {
-                            <li>
-                                <a href="@Url.Action("IngredientDetails",
-                                            "Ingredients",
-                                      >
-                                    @ingredient.Ingredient.Name
-                                </a> - @ingredient.Quantity grams
-                            </li>
+                            <li><a href="@Url.Action("IngredientDetails", "Ingredients", 
+                            new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
                         }
                     </ul>
                 </div>
@@ -136,7 +131,7 @@
                         HttpMethod = "Post",
                         OnSuccess = "hideBuyButton"
                     },
-                        new { id = "like-button", @class = "btn send_btn" })
+                    new { id = "like-button", @class = "btn send_btn" })
                 </div>
             }
         </div>

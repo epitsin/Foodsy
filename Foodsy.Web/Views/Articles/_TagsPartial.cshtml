@@ -6,7 +6,15 @@
     </h2>
     @foreach (var tag in Model)
     {
-        @Ajax.ActionLink(tag.Name, "Sort", new { tagName = tag.Name }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "articles", HttpMethod = "Post" }, null)
+        @Ajax.ActionLink(tag.Name,
+        "Sort",
+        new { tagName = tag.Name },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "articles",
+            HttpMethod = "Post"
+        },
+            null)
     }
 </div>
-

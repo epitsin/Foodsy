@@ -37,7 +37,6 @@
                     model.Field(product => product.Name).Editable(false);
                 })
             .Read(read => read.Action("Read", ControllerName))
-            .Create(create => create.Action("Create", ControllerName))
             .Update(update => update.Action("Update", ControllerName))
             .Destroy(destroy => destroy.Action("Destroy", ControllerName))
             ))

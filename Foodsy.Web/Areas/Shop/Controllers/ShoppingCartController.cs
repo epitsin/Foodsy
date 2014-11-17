@@ -9,7 +9,7 @@
     using AutoMapper.QueryableExtensions;
 
     using Foodsy.Data;
-    using Foodsy.Web.Areas.Administration.Controllers.Base;
+    using Foodsy.Web.Areas.Shop.Controllers.Base;
     using Foodsy.Web.Areas.Shop.ViewModels;
 
     using Kendo.Mvc.UI;
@@ -17,7 +17,7 @@
     using Model = Foodsy.Data.Models.RecipeShoppingCart;
     using ViewModel = Foodsy.Web.Areas.Shop.ViewModels.RecipeViewModel;
 
-    public class ShoppingCartController : KendoGridAdministrationController
+    public class ShoppingCartController : KendoGridShopController
     {
         public ShoppingCartController(IFoodsyData data)
             :base(data)
@@ -39,15 +39,6 @@
         protected override T GetById<T>(object id)
         {
             return this.Data.RecipeShoppingCarts.Find(id) as T;
-        }
-
-        [HttpPost]
-        public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
-        {
-            var dbModel = base.Create<Model>(model);
-            if (dbModel != null)
-                model.Id = dbModel.Id;
-            return this.GridOperation(model, request);
         }
 
         [HttpPost]

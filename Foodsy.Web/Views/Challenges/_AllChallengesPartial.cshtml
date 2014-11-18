@@ -1,0 +1,13 @@
+﻿﻿@model List<Foodsy.Web.ViewModels.Challenges.AllChallengesViewModel>
+
+@foreach (var challenge in Model)
+{
+    <div class="col-md-6">
+        <div class="item_description">
+            <h3>
+                <a href="@Url.Action("ChallengeDetails", "Challenges", new { area = String.Empty,       challenge.Id })">@challenge.Title</a>
+            </h3>
+            <div class="descr">@challenge.Description</div>
+        </div>
+    </div>
+}

@@ -49,21 +49,14 @@
         [Required]
         public Category Category { get; set; }
 
-        [Range(0, 2000)]
-        public int Calories
-        {
-            get
-            {
-                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
-            }
-        }
+        
 
         [Range(0, 2000)]
         public int CaloriesPerPortion
         {
             get
             {
-                return this.Calories / this.NumberOfPortions;
+                return this.Proteins * 4 + this.Carbohydrates * 4 + this.Fats * 9;
             }
         }
 

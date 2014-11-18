@@ -114,6 +114,7 @@
             else if (this.CurrentUser != null && recipe.AuthorId == this.CurrentUser.Id)
             {
                 ViewBag.Rate = this.LikeProbability(recipe);
+                ViewBag.CanLike = false;
             }
             else
             {

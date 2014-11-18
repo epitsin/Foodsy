@@ -1368,3 +1368,20 @@ a {
 .red{
     color: #d00b01;
 }
+
+.img-modal {
+    background: rgba(0,0,0,0.6);
+    display: none;
+    height: 100%;
+    padding: 3em;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.img-modal img {
+    height: auto;
+    max-height: 95%;
+    max-width:100%;
+    width: auto;
+}

@@ -18,6 +18,10 @@
 
 @section scripts{
     <script>
+        $(document).ready(function () {
+            $('body').find('a[rel=prettyPhoto]').prettyPhoto();
+        });
+
         function changeColour(modelName) {
             $(".sorting").removeClass("selected");
             $("#" + modelName).addClass("selected");

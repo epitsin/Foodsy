@@ -61,11 +61,11 @@
                 }
                 else if (model.Type == CustomMenuType.Raw)
                 {
-                    meals = this.SelectMeals(bmr + 50, (x => x.Calories), Category.Raw);
+                    meals = this.SelectMeals(bmr + 50, (x => x.CaloriesPerPortion), Category.Raw);
                 }
                 else if (model.Type == CustomMenuType.Vegetarian)
                 {
-                    meals = this.SelectMeals(bmr + 50, (x => x.Calories), Category.Vegetarian);
+                    meals = this.SelectMeals(bmr + 50, (x => x.CaloriesPerPortion), Category.Vegetarian);
                 }
                 else
                 {

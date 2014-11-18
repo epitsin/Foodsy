@@ -92,8 +92,8 @@
             var milk = new Ingredient { Name = "Milk", Proteins = 5, Carbohydrates = 10, Fats = 3 };
             var cream = new Ingredient { Name = "Cream", Proteins = 10, Carbohydrates = 0, Fats = 20 };
             var eggs = new Ingredient { Name = "Eggs", Proteins = 10, Carbohydrates = 0, Fats = 10 };
-            var mascarpone = new Ingredient { Name = "Mascarpone oil", Proteins = 10, Carbohydrates = 5, Fats = 15 };
-            var blueberries = new Ingredient { Name = "Mascarpone oil", Proteins = 5, Carbohydrates = 15, Fats = 0 };
+            var mascarpone = new Ingredient { Name = "Mascarpone", Proteins = 10, Carbohydrates = 5, Fats = 15 };
+            var blueberries = new Ingredient { Name = "Blueberries", Proteins = 5, Carbohydrates = 15, Fats = 0 };
 
             var relationships = new List<RecipeIngredient>();
             relationships.Add(new RecipeIngredient
@@ -132,9 +132,9 @@
             foreach (var relationship in relationships)
             {
                 var ingredient = relationship.Ingredient;
-                cremeBrule.Proteins += ingredient.Proteins / cremeBrule.NumberOfPortions;
-                cremeBrule.Carbohydrates += ingredient.Carbohydrates / cremeBrule.NumberOfPortions;
-                cremeBrule.Fats += ingredient.Fats / cremeBrule.NumberOfPortions;
+                cremeBrule.Proteins += (ingredient.Proteins * relationship.Quantity) / (100 * cremeBrule.NumberOfPortions);
+                cremeBrule.Carbohydrates += (ingredient.Carbohydrates * relationship.Quantity) / (100 * cremeBrule.NumberOfPortions);
+                cremeBrule.Fats += (ingredient.Fats * relationship.Quantity) / (100 * cremeBrule.NumberOfPortions);
             }
 
             cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
@@ -190,13 +190,13 @@
             {
                 Ingredient = orzo,
                 Recipe = mediterranean,
-                Quantity = 200 
+                Quantity = 200
             });
             relationshipsMediter.Add(new RecipeIngredient
             {
                 Ingredient = meat,
                 Recipe = mediterranean,
-                Quantity = 100 
+                Quantity = 100
             });
             relationshipsMediter.Add(new RecipeIngredient
             {
@@ -222,9 +222,9 @@
             foreach (var relationship in relationshipsMediter)
             {
                 var ingredient = relationship.Ingredient;
-                mediterranean.Proteins += ingredient.Proteins / mediterranean.NumberOfPortions;
-                mediterranean.Carbohydrates += ingredient.Carbohydrates / mediterranean.NumberOfPortions;
-                mediterranean.Fats += ingredient.Fats / mediterranean.NumberOfPortions;
+                mediterranean.Proteins += (ingredient.Proteins * relationship.Quantity) / (100 * mediterranean.NumberOfPortions);
+                mediterranean.Carbohydrates += (ingredient.Carbohydrates * relationship.Quantity) / (100 * mediterranean.NumberOfPortions);
+                mediterranean.Fats += (ingredient.Fats * relationship.Quantity) / (100 * mediterranean.NumberOfPortions);
             }
 
             mediterranean.Actions.Add(new Foodsy.Data.Models.Action
@@ -264,7 +264,7 @@
             var fish = new Ingredient { Name = "Salmon", Proteins = 25, Carbohydrates = 0, Fats = 15 };
             var zucchini = new Ingredient { Name = "Zucchini", Proteins = 5, Carbohydrates = 10, Fats = 0 };
             var teriyaki = new Ingredient { Name = "Teriyaki sauce", Proteins = 0, Carbohydrates = 10, Fats = 10 };
-            
+
             var relationshipsSalmon = new List<RecipeIngredient>();
             relationshipsSalmon.Add(new RecipeIngredient
             {
@@ -290,9 +290,9 @@
             foreach (var relationship in relationshipsSalmon)
             {
                 var ingredient = relationship.Ingredient;
-                salmon.Proteins += ingredient.Proteins / salmon.NumberOfPortions;
-                salmon.Carbohydrates += ingredient.Carbohydrates / salmon.NumberOfPortions;
-                salmon.Fats += ingredient.Fats / salmon.NumberOfPortions;
+                salmon.Proteins += (ingredient.Proteins * relationship.Quantity) / (100 * salmon.NumberOfPortions);
+                salmon.Carbohydrates += (ingredient.Carbohydrates * relationship.Quantity) / (100 * salmon.NumberOfPortions);
+                salmon.Fats += (ingredient.Fats * relationship.Quantity) / (100 * salmon.NumberOfPortions);
             }
 
             salmon.Actions.Add(new Foodsy.Data.Models.Action

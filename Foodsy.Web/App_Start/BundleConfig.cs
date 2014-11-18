@@ -26,6 +26,9 @@ namespace Foodsy.Web
                       "~/Content/kendo/kendo.common-bootstrap.min.css",
                       "~/Content/kendo/kendo.default.min.css"));
 
+            bundles.Add(new StyleBundle("~/Content/prettyPhoto").Include(
+                      "~/Content/prettyPhoto.css"));
+
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                       "~/Content/site.css"));
         }
@@ -50,6 +53,9 @@ namespace Foodsy.Web
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/prettyPhoto").Include(
+                        "~/Scripts/jquery.prettyPhoto.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",

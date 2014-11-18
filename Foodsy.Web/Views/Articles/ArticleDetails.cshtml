@@ -15,7 +15,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <p>@Model.Text</p>
+            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Text))</p>
         </div>
         <div class="col-md-3">
             <div class="sidebar" style="padding-top:60px;">

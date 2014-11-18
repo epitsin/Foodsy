@@ -6,6 +6,7 @@
         Fish,
         Vegetarian,
         Vegan,
+        Pasta,
         DairyFree,
         GlutenFree,
         Raw,

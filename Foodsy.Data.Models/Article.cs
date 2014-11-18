@@ -19,11 +19,11 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 3)]
+        [StringLength(150, MinimumLength = 3)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(400, MinimumLength = 10)]
         public string Summary { get; set; }
 
         [Required]

@@ -20,7 +20,7 @@
         </div>
         <div class="clear"></div>
     </div>
-    <p>@Model.Text</p>
+    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Text.Substring(0, 200)))...</p>
     <a href="@Url.Action("ArticleDetails", new { id = Model.Id })" class="arrow_link">Read more</a>
 </div>
 

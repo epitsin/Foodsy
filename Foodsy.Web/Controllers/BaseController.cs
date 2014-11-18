@@ -17,6 +17,7 @@
             this.Data = data;
         }
 
+       
         protected IFoodsyData Data { get; set; }
 
         public User CurrentUser

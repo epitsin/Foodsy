@@ -97,10 +97,35 @@
                     <ul class="links">
                         @foreach (var ingredient in Model.RecipeIngredients)
                         {
-                            <li><a href="@Url.Action("IngredientDetails", "Ingredients", 
-                            new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams</li>
+                            <li>
+                                <a href="@Url.Action("IngredientDetails", "Ingredients",
+                            new { ingredient.Ingredient.Id })">@ingredient.Ingredient.Name</a> - @ingredient.Quantity grams
+                            </li>
                         }
                     </ul>
+                </div>
+
+                <div id="bought" class="red"></div>
+                <div id="buy-form" class="top-bottom-space">
+                    @if (User.Identity.IsAuthenticated && Model.PricePerPortion != 0m && ViewBag.CanBuy)
+                    {
+                        <div class="container">
+                            <div> Don't feel like cooking?</div>
+                            <div>Buy it now!</div>
+                            <div><strong>Only @Model.PricePerPortion $</strong></div>
+                            @Ajax.ActionLink("Buy",
+                            "Buy",
+                            new { id = Model.Id },
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = "bought",
+                                HttpMethod = "Post",
+                                OnSuccess = "hideBuyButton"
+                            },
+                            new { id = "like-button", @class = "btn send_btn" })
+                        </div>
+                    }
                 </div>
                 <div class="widget">
                     <h2 class="title"><span>It's easy to do it!</span></h2>
@@ -112,28 +137,6 @@
                     </ol>
                 </div>
             </div>
-        </div>
-        <div id="bought"></div>
-        <div id="buy-form" class="top-bottom-space">
-            @if (User.Identity.IsAuthenticated && Model.PricePerPortion != 0m && ViewBag.CanBuy)
-            {
-                <div class="container">
-                    <div> Don't feel like cooking?</div>
-                    <div>Buy it now!</div>
-                    <div><strong>Only @Model.PricePerPortion $</strong></div>
-                    @Ajax.ActionLink("Buy",
-                    "Buy",
-                    new { id = Model.Id },
-                    new AjaxOptions
-                    {
-                        InsertionMode = InsertionMode.Replace,
-                        UpdateTargetId = "bought",
-                        HttpMethod = "Post",
-                        OnSuccess = "hideBuyButton"
-                    },
-                    new { id = "like-button", @class = "btn send_btn" })
-                </div>
-            }
         </div>
     </section>
 </div>

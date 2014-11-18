@@ -27,7 +27,7 @@
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
-            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = false;
         }
 
         public static void ConfigureAutoMapper()

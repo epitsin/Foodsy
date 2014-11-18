@@ -31,9 +31,8 @@
         public Category Category { get; set; }
 
         [Required]
-        [Range(5, 2000)]
-        [Display(Name = "Grams per portion")]
-        public int GramsPerPortion { get; set; }
+        [Range(1, 30)]
+        public int NumberOfPortions { get; set; }
 
         [Required]
         [Range(1, 200)]

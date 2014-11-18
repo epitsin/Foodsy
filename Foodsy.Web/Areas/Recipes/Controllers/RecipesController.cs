@@ -21,7 +21,7 @@
 
     public class RecipesController : BaseController
     {
-        private const int PageSize = 9;
+        private const int PageSize = 3;
 
         private IDropDownListPopulator populator;
 

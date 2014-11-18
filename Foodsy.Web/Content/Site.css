@@ -1365,7 +1365,7 @@ a {
     word-wrap: break-word;
 }
 
-.red{
+.red {
     color: #d00b01;
 }
 
@@ -1379,9 +1379,13 @@ a {
     z-index: 100;
 }
 
-.img-modal img {
-    height: auto;
-    max-height: 95%;
-    max-width:100%;
-    width: auto;
+    .img-modal img {
+        height: auto;
+        max-height: 95%;
+        max-width: 100%;
+        width: auto;
+    }
+
+.fixed-height {
+    height: 400px;
 }

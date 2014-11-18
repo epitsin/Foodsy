@@ -12,6 +12,7 @@
 
     using Microsoft.AspNet.Identity;
 
+    [Authorize]
     public class FavouriteRecipesController : BaseController
     {
         private const int PageSize = 9;
@@ -21,7 +22,6 @@
         {
         }
 
-        [Authorize]
         [HttpGet]
         [OutputCache(Duration = 10, VaryByParam = "none")]
         public ActionResult FavouriteRecipes(int? id)

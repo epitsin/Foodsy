@@ -60,15 +60,13 @@
             context.Ingredients.Add(new Ingredient { Name = "Chicken", Proteins = 30, Carbohydrates = 0, Fats = 10 });
             context.Ingredients.Add(new Ingredient { Name = "Bread", Proteins = 0, Carbohydrates = 30, Fats = 5 });
             context.Ingredients.Add(new Ingredient { Name = "Cheese", Proteins = 20, Carbohydrates = 0, Fats = 20 });
-            context.Ingredients.Add(new Ingredient { Name = "Tomato", Proteins = 5, Carbohydrates = 10, Fats = 0 });
-            context.Ingredients.Add(new Ingredient { Name = "Cucumber", Proteins = 5, Carbohydrates = 10, Fats = 0 });
-            context.Ingredients.Add(new Ingredient { Name = "Olive", Proteins = 0, Carbohydrates = 0, Fats = 10 });
+            context.Ingredients.Add(new Ingredient { Name = "Cucumbers", Proteins = 5, Carbohydrates = 10, Fats = 0 });
+            context.Ingredients.Add(new Ingredient { Name = "Olives", Proteins = 0, Carbohydrates = 0, Fats = 10 });
             context.Ingredients.Add(new Ingredient { Name = "Olive oil", Proteins = 0, Carbohydrates = 0, Fats = 10 });
             context.Ingredients.Add(new Ingredient { Name = "Butter", Proteins = 0, Carbohydrates = 0, Fats = 10 });
             context.Ingredients.Add(new Ingredient { Name = "Lettuce", Proteins = 2, Carbohydrates = 5, Fats = 0 });
             context.Ingredients.Add(new Ingredient { Name = "Wine", Proteins = 0, Carbohydrates = 20, Fats = 0 });
             context.Ingredients.Add(new Ingredient { Name = "Rice", Proteins = 0, Carbohydrates = 30, Fats = 0 });
-            context.Ingredients.Add(new Ingredient { Name = "Milk", Proteins = 5, Carbohydrates = 10, Fats = 5 });
 
             context.SaveChanges();
         }
@@ -139,6 +137,35 @@
                 cremeBrule.Fats += ingredient.Fats / cremeBrule.NumberOfPortions;
             }
 
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Pour the milk and cream into a large milk pan. Scrape the seeds from the vanilla pods using the tip of a knife. Put the seeds and the pods in the pan. Heat until just below boiling point."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Put the eggs, egg yolks and sugar in a large bowl. Using an electric beater, whisk for about 5 minutes until pale and creamy."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Add the mascarpone and whisk until well combined."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Remove the vanilla pods from the milk. Pour the hot milk mixture over the egg mixture, whisking continuously until well combined."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Strain the mixture back into the pan. Return to the heat for 2-3 minutes just to warm through."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Divide the blueberries between the ramekins. Pour over the cream mixture. Chill for at least 2 hours or overnight until set."
+            });
+            cremeBrule.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Sprinkle a thin layer of caster sugar over the surface of the cream mixture. Caramelise using a blow torch, or place under a preheated hot grill for 2-3 minutes until the sugar is melted and golden."
+            });
+
             context.Recipes.Add(cremeBrule);
 
             var mediterranean = new Recipe
@@ -200,6 +227,27 @@
                 mediterranean.Fats += ingredient.Fats / mediterranean.NumberOfPortions;
             }
 
+            mediterranean.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Cook the orzo according to package directions, omitting salt and fat."
+            });
+            mediterranean.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Drain; rinse with cold water. Combine orzo, spinach, and next 5 ingredients (through salt) in a large bowl."
+            });
+            mediterranean.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Drain artichokes, reserving marinade."
+            });
+            mediterranean.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Coarsely chop artichokes, and add artichokes, reserved marinade, and 1/2 cup feta cheese to orzo mixture, tossing gently to coat."
+            });
+            mediterranean.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Sprinkle each serving with remaining feta cheese."
+            });
+
             context.Recipes.Add(mediterranean);
 
             var salmon = new Recipe
@@ -247,6 +295,27 @@
                 salmon.Fats += ingredient.Fats / salmon.NumberOfPortions;
             }
 
+            salmon.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Combine 5 tablespoons teriyaki sauce and fish in a zip-top plastic bag. Seal and marinate 20 minutes. "
+            });
+            salmon.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Toast sesame seeds in a large nonstick skillet over medium heat, and set aside."
+            });
+            salmon.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Drain fish, discarding marinade. Add fish to skillet, and cook 5 minutes. Turn and cook for 5 more minutes over medium-low heat. Remove from skillet, and keep warm."
+            });
+            salmon.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = " Add the zucchini, scallions, and 2 teaspoons oil to skillet. Sauté 4 minutes, or until lightly browned. "
+            });
+            salmon.Actions.Add(new Foodsy.Data.Models.Action
+            {
+                Text = "Stir in 2 tablespoons teriyaki sauce. Sprinkle with sesame seeds, and serve with salmon."
+            });
+
             context.Recipes.Add(salmon);
 
             context.SaveChanges();
@@ -286,11 +355,9 @@
 
             context.Articles.Add(first);
             this.GetTagsForArticle(context, first);
-            context.SaveChanges();
 
             context.Articles.Add(first);
             this.GetTagsForArticle(context, second);
-            context.SaveChanges();
 
             context.Articles.Add(first);
             this.GetTagsForArticle(context, third);
@@ -309,8 +376,8 @@
 
             context.Challenges.Add(new Challenge
             {
-                Title = "Only Bulgarian food challenge",
-                Description = "Some long long text. Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.Some long long text.",
+                Title = "First Foodsy Challenge",
+                Description = "This is the first challange we are organizing since the company was found. We hope that you would enjoy it and see the difference between feeling ordinary and absolutely amazing! You are most welcome to join :)",
                 Start = DateTime.Now.AddDays(3),
                 Finish = DateTime.Now.AddDays(13),
                 ChallengeType = ChallengeType.Detox,

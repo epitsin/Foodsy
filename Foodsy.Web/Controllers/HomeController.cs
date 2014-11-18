@@ -17,8 +17,6 @@
 
         }
 
-
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -26,14 +24,12 @@
         }
 
         [HttpGet]
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult About()
         {
             return View();
         }
 
         [HttpGet]
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Contact()
         {
             var feedback = new Message();
@@ -41,20 +37,20 @@
         }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Contact(Message model)
-        //{
-        //    string text = "<html> <head> </head>" +
-        //    " <body style= \" font-size:12px; font-family: Arial\">" +
-        //    model.Text +
-        //    "</body></html>";
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Contact(Message model)
+        {
+            string text = "<html> <head> </head>" +
+            " <body style= \" font-size:12px; font-family: Arial\">" +
+            model.Text +
+            "</body></html>";
 
-        //    SendEmail("epitsin@yahoo.com", text);
+            SendEmail("epitsin@yahoo.com", text);
 
-        //    var feedback = new Message();
-        //    return View(feedback);
-        //}
+            var feedback = new Message();
+            return View(feedback);
+        }
 
 
         public static bool SendEmail(string sentTo, string text)

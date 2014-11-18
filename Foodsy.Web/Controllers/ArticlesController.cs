@@ -21,6 +21,7 @@
         }
 
         [HttpGet]
+        [OutputCache(Duration = 100, VaryByParam = "id")]
         public ActionResult AllArticles(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);

@@ -32,6 +32,7 @@
         }
 
         [HttpGet]
+        [OutputCache(Duration = 100, VaryByParam = "id")]
         public ActionResult AllRecipes(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);
@@ -49,6 +50,7 @@
         }
 
         [HttpPost]
+        [OutputCache(Duration = 100, VaryByParam = "id")]
         public ActionResult Sort(int id)
         {
             var category = (Category)id;

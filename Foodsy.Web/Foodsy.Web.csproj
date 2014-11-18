@@ -266,10 +266,7 @@
     <Content Include="Content\img\American-Bar_1920x600_01.jpg" />
     <Content Include="Content\img\Articles.png" />
     <Content Include="Content\img\assets\responsive-illustrations.png" />
-    <Content Include="Content\img\beer-tomato-food-knife-still-life_1920x1080_sc.jpg" />
     <Content Include="Content\img\black-background-glass-water-drops-liquid-sprays-tangerines-oranges-skin-cuts-food_1920x1080_sc.jpg" />
-    <Content Include="Content\img\black-water-glass-strawberry.jpg" />
-    <Content Include="Content\img\blueberries_1600x900_sc.jpg" />
     <Content Include="Content\img\blueberry-dessert_1920x1080_sc.jpg" />
     <Content Include="Content\img\chocolate-i-love-it_1920x1080_sc.jpg" />
     <Content Include="Content\img\chocolate-ice-cream_1920x1080_sc.jpg" />
@@ -277,8 +274,6 @@
     <Content Include="Content\img\error.jpg" />
     <Content Include="Content\img\Food Pasta Wallpaper 1920×1080 1920x1080.jpg" />
     <Content Include="Content\img\food-on-the-table_1920x1080_sc.jpg" />
-    <Content Include="Content\img\food-table.jpg" />
-    <Content Include="Content\img\Food__039387_.jpg" />
     <Content Include="Content\img\foot_socials.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
@@ -335,12 +330,9 @@
     <Content Include="Content\img\prettyPhoto\light_square\default_thumbnail.gif" />
     <Content Include="Content\img\prettyPhoto\light_square\loader.gif" />
     <Content Include="Content\img\prettyPhoto\light_square\sprite.png" />
-    <Content Include="Content\img\raspberries___food-wallpaper-1920x600.jpg" />
     <Content Include="Content\img\red-wine_1920x1080_sc.jpg" />
     <Content Include="Content\img\red_wine_bottle-wallpaper-1920x1080.jpg" />
     <Content Include="Content\img\resized_160x159_recipes.png" />
-    <Content Include="Content\img\Restaurant-Food_02_1920x600_01.jpg" />
-    <Content Include="Content\img\Restaurant-Food_03_1920x600_03.jpg" />
     <Content Include="Content\img\salmon-and-fresh-vegetables_1920x1080_sc.jpg" />
     <Content Include="Content\img\saucer-coffee-smoke-corn-spoon-cappuccino-foam-table-croissant-star-anise-cinnamon_1920x1080_sc.jpg" />
     <Content Include="Content\img\slider_nav.png" />
@@ -349,13 +341,11 @@
     <Content Include="Content\img\table-mat-barrel-bottle-glass-wine-red-wine-cheese-bread-baguette-leaves_1920x1080_sc.jpg" />
     <Content Include="Content\img\tag_bg.png" />
     <Content Include="Content\img\testimonials_arrow.png" />
-    <Content Include="Content\img\tomato-drop-food_1920x1080_sc.jpg" />
     <Content Include="Content\img\top_socials.png" />
     <Content Include="Content\img\twit.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\users.jpg" />
     <Content Include="Content\img\watch.png" />
-    <Content Include="Content\img\Weihnachten_02_1920x600_01.jpg" />
     <Content Include="Content\img\welcome_bg.png" />
     <Content Include="Content\img\wine-red-cheese-cheese-sausage-grapes-glass-bottle-knife_1920x1080_sc.jpg" />
     <Content Include="Content\img\wine-red-grapes-bottle-glass-black-background_1920x1080_sc.jpg" />

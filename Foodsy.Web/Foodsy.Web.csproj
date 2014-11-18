@@ -214,7 +214,7 @@
     <Compile Include="Areas\Recipes\RecipesAreaRegistration.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Ingredients\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Recipes\ViewModels\Recipes\AllRecipesViewModel.cs" />
-    <Compile Include="Areas\Recipes\ViewModels\Recipes\CustomMenuRecipeViewModel.cs" />
+    <Compile Include="Areas\Recipes\ViewModels\CustomMenu\CustomMenuRecipeViewModel.cs" />
     <Compile Include="Areas\Shop\Controllers\Base\ShopBaseController.cs" />
     <Compile Include="Areas\Shop\Controllers\Base\KendoGridShopController.cs" />
     <Compile Include="Areas\Shop\Controllers\ShoppingCartController.cs" />
@@ -754,7 +754,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Recipes\Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

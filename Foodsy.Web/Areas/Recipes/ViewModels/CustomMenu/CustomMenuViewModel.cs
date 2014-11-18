@@ -1,5 +1,4 @@
-﻿
-namespace Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu
+﻿namespace Foodsy.Web.Areas.Recipes.ViewModels.CustomMenu
 {
     using System.ComponentModel.DataAnnotations;
 
